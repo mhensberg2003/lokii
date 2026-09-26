@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { ArrowDownToLine, Compass, House, LibraryBig, Settings, type LucideIcon } from "lucide-react";
+import { UpdateNotice } from "./UpdateNotice";
 import styles from "./Sidebar.module.css";
 
 type NavItem = { to: string; label: string; icon: LucideIcon; end?: boolean };
@@ -34,6 +35,7 @@ export function Sidebar() {
         ))}
       </nav>
       <nav className={styles.footer} aria-label="App">
+        <UpdateNotice />
         <Item {...SETTINGS} />
       </nav>
     </aside>
