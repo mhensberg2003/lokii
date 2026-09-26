@@ -1,0 +1,96 @@
+name: Release
+
+# Push a tag such as v0.2.0 to build Lokii and put it in a draft GitHub Release.
+# Publish the draft by hand; the updater only sees published releases.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  # One draft for all build jobs, so parallel jobs do not create duplicates.
+  create-release:
+    runs-on: ubuntu-latest
+    outputs:
+      id: ${{ steps.draft.outputs.id }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check that the tag is the app version
+        run: |
+          version="v$(jq -r .version src-tauri/tauri.conf.json)"
+          if [ "$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match tauri.conf.json ($version)." >&2
+            exit 1
+          fi
+      - id: draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          id=$(gh api "repos/$GITHUB_REPOSITORY/releases" -X POST \
+            -f tag_name="$GITHUB_REF_NAME" -f name="Lokii $GITHUB_REF_NAME" \
+            -f body="See the README for install notes." -F draft=true -q .id)
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: create-release
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            platform: macos-arm64
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            platform: macos-x64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            platform: windows-x64
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+          key: ${{ matrix.target }}
+      - run: pnpm install --frozen-lockfile
+      - run: scripts/fetch-libmpv.sh ${{ matrix.platform }}
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          releaseId: ${{ needs.create-release.outputs.id }}
+          args: --target ${{ matrix.target }}
+
+  # Each build job merges its platform into latest.json. Two jobs that finish at the
+  # same time can lose one platform; then re-run the failed build job.
+  check-updater:
+    needs: [create-release, build]
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ needs.create-release.outputs.id }}
+        run: |
+          asset=$(gh api "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID/assets" -q '.[] | select(.name == "latest.json") | .id')
+          gh api -H "Accept: application/octet-stream" "repos/$GITHUB_REPOSITORY/releases/assets/$asset" > latest.json
+          for platform in darwin-aarch64 darwin-x86_64 windows-x86_64; do
+            jq -e --arg p "$platform" '.platforms[$p]' latest.json > /dev/null || { echo "latest.json has no $platform." >&2; exit 1; }
+          done

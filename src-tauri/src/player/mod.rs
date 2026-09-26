@@ -2,11 +2,13 @@
 
 #[cfg(target_os = "macos")]
 mod macos;
+#[cfg(windows)]
+mod win32;
 
 use std::sync::{Arc, OnceLock};
 
 use libmpv2::events::{Event, PropertyData};
-use libmpv2::{Format, Mpv};
+use libmpv2::{Format, Mpv, MpvInitializer};
 use serde::Serialize;
 use serde_json::{json, Value};
 use tauri::{AppHandle, Emitter, Manager, State};
@@ -80,19 +82,47 @@ fn attach_renderer(mpv: &Arc<Mpv>) -> Result<(), String> {
     macos::attach_mpv(mpv.clone(), std::time::Duration::from_secs(10))
 }
 
-#[cfg(not(target_os = "macos"))]
-fn video_surface(_window: &tauri::WebviewWindow) -> Result<(), String> {
-    Err("video surface is not implemented on this platform yet".into())
+/// mpv renders through the render API into the macOS video layer.
+#[cfg(target_os = "macos")]
+fn video_output(init: &MpvInitializer) -> libmpv2::Result<()> {
+    init.set_option("vo", "libmpv")
 }
 
-#[cfg(not(target_os = "macos"))]
+#[cfg(windows)]
+fn video_surface(window: &tauri::WebviewWindow) -> Result<(), String> {
+    win32::attach_video_window(window)
+}
+
+/// mpv draws into the child window from `video_surface`.
+#[cfg(windows)]
+fn video_output(init: &MpvInitializer) -> libmpv2::Result<()> {
+    init.set_option("vo", "gpu")?;
+    init.set_option("wid", win32::video_window())
+}
+
+#[cfg(windows)]
+fn attach_renderer(_mpv: &Arc<Mpv>) -> Result<(), String> {
+    Ok(())
+}
+
+#[cfg(not(any(target_os = "macos", windows)))]
+fn video_surface(_window: &tauri::WebviewWindow) -> Result<(), String> {
+    Err("Lokii plays video only on macOS and Windows".into())
+}
+
+#[cfg(not(any(target_os = "macos", windows)))]
+fn video_output(init: &MpvInitializer) -> libmpv2::Result<()> {
+    init.set_option("vo", "libmpv")
+}
+
+#[cfg(not(any(target_os = "macos", windows)))]
 fn attach_renderer(_mpv: &Arc<Mpv>) -> Result<(), String> {
     Ok(())
 }
 
 fn run(app: AppHandle) -> Result<(), String> {
     let mpv = Mpv::with_initializer(|init| {
-        init.set_option("vo", "libmpv")?;
+        video_output(&init)?;
         init.set_option("hwdec", "auto-safe")?;
         init.set_option("keep-open", "yes")?;
         // keep-open pauses at the end of a file; the next file must still start playing.
@@ -245,4 +275,32 @@ pub fn player_set_track(player: State<Player>, kind: String, id: Option<i64>) ->
     };
     let value = id.map_or_else(|| "no".to_string(), |id| id.to_string());
     player.mpv()?.set_property(property, value).map_err(|e| e.to_string())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// Checks the linked libmpv: it decodes an HEVC 10-bit MKV and reads its ASS track.
+    /// Run with `LOKII_TEST_MKV=/path/to/test.mkv cargo test libmpv_plays -- --ignored`.
+    #[test]
+    #[ignore = "needs a test MKV"]
+    fn libmpv_plays_hevc_10_bit_with_ass() {
+        let path = std::env::var("LOKII_TEST_MKV").expect("set LOKII_TEST_MKV");
+        let mpv = Mpv::with_initializer(|init| {
+            init.set_option("vo", "null")?;
+            init.set_option("ao", "null")?;
+            init.set_option("sid", "1")?;
+            Ok(())
+        })
+        .unwrap();
+        mpv.command("loadfile", &[&path]).unwrap();
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(10);
+        while mpv.get_property::<f64>("time-pos").unwrap_or(0.0) < 1.0 {
+            assert!(std::time::Instant::now() < deadline, "playback did not start");
+            mpv.wait_event(0.1);
+        }
+        assert_eq!(mpv.get_property::<String>("current-tracks/video/codec").unwrap(), "hevc");
+        assert_eq!(mpv.get_property::<String>("current-tracks/sub/codec").unwrap(), "ass");
+    }
 }

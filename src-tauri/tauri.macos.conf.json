@@ -1,0 +1,33 @@
+{
+  "bundle": {
+    "targets": [
+      "app",
+      "dmg"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": "-",
+      "frameworks": [
+        "libmpv/macos/libass.dylib",
+        "libmpv/macos/libavcodec.dylib",
+        "libmpv/macos/libavfilter.dylib",
+        "libmpv/macos/libavformat.dylib",
+        "libmpv/macos/libavutil.dylib",
+        "libmpv/macos/libdav1d.dylib",
+        "libmpv/macos/libfreetype.dylib",
+        "libmpv/macos/libfribidi.dylib",
+        "libmpv/macos/libharfbuzz.dylib",
+        "libmpv/macos/libmbedcrypto.dylib",
+        "libmpv/macos/libmbedtls.dylib",
+        "libmpv/macos/libmbedx509.dylib",
+        "libmpv/macos/libmpv.dylib",
+        "libmpv/macos/libpng16.dylib",
+        "libmpv/macos/libswresample.dylib",
+        "libmpv/macos/libswscale.dylib",
+        "libmpv/macos/libuchardet.dylib",
+        "libmpv/macos/libxml2.dylib"
+      ],
+      "entitlements": "Entitlements.plist"
+    }
+  }
+}
