@@ -86,8 +86,7 @@ fn run(app: AppHandle) -> Result<(), String> {
     .map_err(|e| format!("mpv failed to start: {e}"))?;
 
     for (id, (name, format)) in OBSERVED.iter().enumerate() {
-        mpv.observe_property(name, *format, id as u64)
-            .map_err(|e| format!("cannot observe {name}: {e}"))?;
+        mpv.observe_property(name, *format, id as u64).map_err(|e| format!("cannot observe {name}: {e}"))?;
     }
 
     let mpv = Arc::new(mpv);
@@ -96,11 +95,9 @@ fn run(app: AppHandle) -> Result<(), String> {
     player.mpv.set(mpv.clone()).map_err(|_| "player started twice")?;
     let _ = app.emit("player://ready", ());
 
-
     // Spike helper: autoplay a file so playback can be checked without the UI.
     if let Ok(path) = std::env::var("LOKII_SPIKE_FILE") {
-        mpv.command("loadfile", &[&path, "replace"])
-            .map_err(|e| format!("cannot load {path}: {e}"))?;
+        mpv.command("loadfile", &[&path, "replace"]).map_err(|e| format!("cannot load {path}: {e}"))?;
     }
 
     loop {
@@ -160,10 +157,7 @@ pub fn player_toggle_pause(player: State<Player>) -> Result<(), String> {
 
 #[tauri::command]
 pub fn player_seek(player: State<Player>, seconds: f64) -> Result<(), String> {
-    player
-        .mpv()?
-        .command("seek", &[&seconds.to_string(), "absolute"])
-        .map_err(|e| e.to_string())
+    player.mpv()?.command("seek", &[&seconds.to_string(), "absolute"]).map_err(|e| e.to_string())
 }
 
 #[tauri::command]

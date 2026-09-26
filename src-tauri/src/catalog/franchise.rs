@@ -43,11 +43,15 @@ async fn walk_direction<F: NodeFetcher>(
     let mut chain = Vec::new();
     let mut current = start.clone();
     while *hops_left > 0 {
-        let Some(id) = relation_target(&current, relation) else { break };
+        let Some(id) = relation_target(&current, relation) else {
+            break;
+        };
         if !visited.insert(id) {
             break; // cycle guard: this id is already part of the walk
         }
-        let Ok(node) = fetcher.fetch(id).await else { break };
+        let Ok(node) = fetcher.fetch(id).await else {
+            break;
+        };
         if !is_chain_member(&node) {
             break;
         }

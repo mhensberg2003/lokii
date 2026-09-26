@@ -170,10 +170,7 @@ mod tests {
 
     #[test]
     fn parses_episode_title() {
-        assert_eq!(
-            parse_streaming_title("Episode 12 - The Reunion"),
-            Some((12, "The Reunion".to_string()))
-        );
+        assert_eq!(parse_streaming_title("Episode 12 - The Reunion"), Some((12, "The Reunion".to_string())));
     }
 
     #[test]

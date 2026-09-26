@@ -10,6 +10,8 @@ import { Tabs } from "../components/ui/Tabs";
 import { EpisodeCard } from "../components/ui/EpisodeCard";
 import { PosterCard } from "../components/ui/PosterCard";
 import { PageMessage, errorText } from "../components/PageMessage";
+import { ReleaseLine } from "../components/ReleaseLine";
+import { ReleaseDialog } from "../components/ReleaseDialog";
 import styles from "./Show.module.css";
 
 type ShowTab = "episodes" | "related" | "details";
@@ -39,6 +41,7 @@ export function Show() {
 function ShowView({ show }: { show: ShowDetails }) {
   const navigate = useNavigate();
   const [tab, setTab] = useState<ShowTab>("episodes");
+  const [changingRelease, setChangingRelease] = useState(false);
   const art = show.bannerUrl ?? show.coverUrl;
   const firstEpisode = show.episodeList.find((e) => e.airingAt === null);
   const seasons = franchiseSeasons(show.franchise);
@@ -67,8 +70,13 @@ function ShowView({ show }: { show: ShowDetails }) {
               {firstEpisode ? `Play episode ${firstEpisode.number}` : "Not aired yet"}
             </Button>
           </div>
+          {firstEpisode && <ReleaseLine showId={show.id} episode={firstEpisode.number} onChange={() => setChangingRelease(true)} />}
         </div>
       </section>
+
+      {changingRelease && firstEpisode && (
+        <ReleaseDialog show={show} episode={firstEpisode.number} onClose={() => setChangingRelease(false)} />
+      )}
 
       <div className={styles.body}>
         {seasons.length > 1 && (

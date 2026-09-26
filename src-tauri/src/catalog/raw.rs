@@ -104,6 +104,8 @@ pub struct RawMedia {
     pub id: i64,
     pub id_mal: Option<i64>,
     pub title: RawTitle,
+    #[serde(default)]
+    pub synonyms: Vec<String>,
     pub description: Option<String>,
     pub cover_image: RawCoverImage,
     pub banner_image: Option<String>,

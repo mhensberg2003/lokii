@@ -1,11 +1,10 @@
-//! Catalog: Tauri commands backed by the AniList client (`anilist.rs`), a SQLite
-//! response cache (`cache.rs`), and a 30-request-per-minute throttle (`throttle.rs`).
+//! Catalog: Tauri commands backed by the AniList client (`anilist.rs`), the shared
+//! SQLite response cache (`crate::store`), and a 30-request-per-minute throttle (`throttle.rs`).
 //! Output types mirror `src/lib/catalog.ts` exactly (see `model.rs`).
 
-mod anilist;
-mod cache;
+pub mod anilist;
 mod franchise;
-mod model;
+pub mod model;
 mod queries;
 mod raw;
 mod season;
@@ -14,13 +13,13 @@ mod throttle;
 
 use std::collections::HashSet;
 
-use tauri::{AppHandle, Manager, State};
-use tokio::sync::OnceCell;
+use tauri::{AppHandle, State};
 
 use anilist::{AniListClient, CachingFetcher};
-use cache::Cache;
 use model::{BrowseFeed, HomeFeed, NextAiring, ShowCard, ShowDetails, ShowRow};
 use raw::{RawFranchiseNode, RawMedia, RawStudioConnection};
+
+use crate::store::{Store, StoreState};
 
 /// Genres the Browse page supports. Mirrors `BROWSE_GENRES` in `src/lib/catalog.ts`.
 pub const BROWSE_GENRES: &[&str] = &[
@@ -42,36 +41,28 @@ pub const BROWSE_GENRES: &[&str] = &[
     "Thriller",
 ];
 
+#[derive(Default)]
 pub struct CatalogState {
     client: AniListClient,
-    cache: OnceCell<Cache>,
-}
-
-impl Default for CatalogState {
-    fn default() -> Self {
-        Self { client: AniListClient::new(), cache: OnceCell::new() }
-    }
 }
 
 impl CatalogState {
-    /// Lazily opens the SQLite cache at `<app data dir>/lokii.db` on first use.
-    async fn cache(&self, app: &AppHandle) -> Result<&Cache, String> {
-        self.cache
-            .get_or_try_init(|| async {
-                let dir = app.path().app_data_dir().map_err(|e| format!("cannot find the app data folder: {e}"))?;
-                Cache::open(dir.join("lokii.db")).await
-            })
-            .await
+    pub fn client(&self) -> &AniListClient {
+        &self.client
     }
 }
 
 #[tauri::command]
-pub async fn catalog_home(app: AppHandle, state: State<'_, CatalogState>) -> Result<HomeFeed, String> {
-    let cache = state.cache(&app).await?;
+pub async fn catalog_home(
+    app: AppHandle,
+    state: State<'_, CatalogState>,
+    store: State<'_, StoreState>,
+) -> Result<HomeFeed, String> {
+    let cache = store.get(&app).await?;
     home(&state.client, cache).await
 }
 
-async fn home(client: &AniListClient, cache: &Cache) -> Result<HomeFeed, String> {
+async fn home(client: &AniListClient, cache: &Store) -> Result<HomeFeed, String> {
     let (season, year) = season::current_season();
     let data = client.fetch_home(cache, season, year).await?;
 
@@ -93,15 +84,20 @@ async fn home(client: &AniListClient, cache: &Cache) -> Result<HomeFeed, String>
 }
 
 #[tauri::command]
-pub async fn catalog_browse(app: AppHandle, state: State<'_, CatalogState>, genre: String) -> Result<BrowseFeed, String> {
+pub async fn catalog_browse(
+    app: AppHandle,
+    state: State<'_, CatalogState>,
+    store: State<'_, StoreState>,
+    genre: String,
+) -> Result<BrowseFeed, String> {
     if !BROWSE_GENRES.contains(&genre.as_str()) {
         return Err(format!("\"{genre}\" is not a Browse genre."));
     }
-    let cache = state.cache(&app).await?;
+    let cache = store.get(&app).await?;
     browse(&state.client, cache, genre).await
 }
 
-async fn browse(client: &AniListClient, cache: &Cache, genre: String) -> Result<BrowseFeed, String> {
+async fn browse(client: &AniListClient, cache: &Store, genre: String) -> Result<BrowseFeed, String> {
     let (season, year) = season::current_season();
     let data = client.fetch_browse(cache, &genre, season, year).await?;
 
@@ -115,12 +111,17 @@ async fn browse(client: &AniListClient, cache: &Cache, genre: String) -> Result<
 }
 
 #[tauri::command]
-pub async fn catalog_show(app: AppHandle, state: State<'_, CatalogState>, id: i64) -> Result<ShowDetails, String> {
-    let cache = state.cache(&app).await?;
+pub async fn catalog_show(
+    app: AppHandle,
+    state: State<'_, CatalogState>,
+    store: State<'_, StoreState>,
+    id: i64,
+) -> Result<ShowDetails, String> {
+    let cache = store.get(&app).await?;
     show(&state.client, cache, id).await
 }
 
-async fn show(client: &AniListClient, cache: &Cache, id: i64) -> Result<ShowDetails, String> {
+pub async fn show(client: &AniListClient, cache: &Store, id: i64) -> Result<ShowDetails, String> {
     let media = client.fetch_show(cache, id).await?;
 
     let start = RawFranchiseNode::from_media(&media);
@@ -139,10 +140,14 @@ async fn show(client: &AniListClient, cache: &Cache, id: i64) -> Result<ShowDeta
         id_mal: media.id_mal,
         title_romaji: media.title.romaji.clone(),
         title_native: media.title.native.clone(),
+        synonyms: media.synonyms.clone(),
         status: media.status.clone(),
         duration: media.duration,
         studios: studio_names(media.studios.as_ref()),
-        next_airing: media.next_airing_episode.as_ref().map(|next| NextAiring { episode: next.episode, airing_at: next.airing_at }),
+        next_airing: media
+            .next_airing_episode
+            .as_ref()
+            .map(|next| NextAiring { episode: next.episode, airing_at: next.airing_at }),
         episode_list: model::build_episode_list(&media),
         franchise,
         related,
@@ -150,16 +155,21 @@ async fn show(client: &AniListClient, cache: &Cache, id: i64) -> Result<ShowDeta
 }
 
 #[tauri::command]
-pub async fn catalog_search(app: AppHandle, state: State<'_, CatalogState>, query: String) -> Result<Vec<ShowCard>, String> {
+pub async fn catalog_search(
+    app: AppHandle,
+    state: State<'_, CatalogState>,
+    store: State<'_, StoreState>,
+    query: String,
+) -> Result<Vec<ShowCard>, String> {
     let trimmed = query.trim();
     if trimmed.chars().count() < 2 {
         return Ok(Vec::new());
     }
-    let cache = state.cache(&app).await?;
+    let cache = store.get(&app).await?;
     search(&state.client, cache, trimmed).await
 }
 
-async fn search(client: &AniListClient, cache: &Cache, query: &str) -> Result<Vec<ShowCard>, String> {
+async fn search(client: &AniListClient, cache: &Store, query: &str) -> Result<Vec<ShowCard>, String> {
     let results = client.fetch_search(cache, query).await?;
     Ok(results.iter().map(model::to_show_card).collect())
 }
@@ -182,7 +192,7 @@ mod tests {
     #[ignore = "calls the live AniList API"]
     async fn dump_preview_fixtures() {
         let client = AniListClient::new();
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../preview/fixtures");
         std::fs::create_dir_all(&dir).unwrap();
         let write = |name: &str, value: &dyn erased::Json| {

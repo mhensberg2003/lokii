@@ -90,6 +90,7 @@ pub struct ShowDetails {
     pub id_mal: Option<i64>,
     pub title_romaji: Option<String>,
     pub title_native: Option<String>,
+    pub synonyms: Vec<String>,
     pub status: Option<String>,
     pub duration: Option<i64>,
     pub studios: Vec<String>,
@@ -156,7 +157,9 @@ pub fn to_franchise_entry(node: &RawFranchiseNode) -> FranchiseEntry {
 /// Only the next, not-yet-aired Episode carries `airingAt`.
 pub fn build_episode_list(media: &RawMedia) -> Vec<EpisodeInfo> {
     let total = episode_count(media);
-    let Some(total) = total else { return Vec::new() };
+    let Some(total) = total else {
+        return Vec::new();
+    };
 
     let streaming: std::collections::HashMap<i64, &crate::catalog::raw::RawStreamingEpisode> = media
         .streaming_episodes
@@ -175,11 +178,8 @@ pub fn build_episode_list(media: &RawMedia) -> Vec<EpisodeInfo> {
             let matched = streaming.get(&number);
             let title = matched.and_then(|ep| ep.title.as_deref()).and_then(parse_streaming_title).map(|(_, t)| t);
             let thumbnail_url = matched.and_then(|ep| ep.thumbnail.clone());
-            let airing_at = media
-                .next_airing_episode
-                .as_ref()
-                .filter(|next| next.episode == number)
-                .map(|next| next.airing_at);
+            let airing_at =
+                media.next_airing_episode.as_ref().filter(|next| next.episode == number).map(|next| next.airing_at);
             EpisodeInfo { number, title, thumbnail_url, airing_at }
         })
         .collect()
@@ -270,7 +270,20 @@ mod tests {
         let value = serde_json::to_value(&lite).unwrap();
         let obj = value.as_object().unwrap();
         assert!(!obj.contains_key("card"), "ShowCard must be flattened, not nested: {obj:?}");
-        for key in ["id", "title", "coverUrl", "bannerUrl", "color", "format", "episodes", "season", "seasonYear", "averageScore", "genres", "description"] {
+        for key in [
+            "id",
+            "title",
+            "coverUrl",
+            "bannerUrl",
+            "color",
+            "format",
+            "episodes",
+            "season",
+            "seasonYear",
+            "averageScore",
+            "genres",
+            "description",
+        ] {
             assert!(obj.contains_key(key), "missing key {key} in {obj:?}");
         }
     }

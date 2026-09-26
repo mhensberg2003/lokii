@@ -1,9 +1,10 @@
-//! SQLite-backed response cache for the AniList client. Every GraphQL response is
-//! stored under a key derived from its query text and variables, with a per-call TTL.
-//! A network failure falls back to a stale cached copy when one exists.
+//! The app's one SQLite database (`<app data dir>/lokii.db`): an HTTP response cache
+//! shared by every online service, the ID mapping, and user state such as Release picks.
+//! A cached response has a per-call TTL; a network failure falls back to a stale copy
+//! when one exists.
 //!
 //! Blocking `rusqlite` calls run through `tokio::task::spawn_blocking`, holding the
-//! connection lock only for the duration of one query.
+//! connection lock only for the duration of one call.
 
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
@@ -12,17 +13,18 @@ use std::sync::Arc;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
 use rusqlite::{Connection, OptionalExtension};
-use tokio::sync::Mutex;
+use tauri::{AppHandle, Manager};
+use tokio::sync::{Mutex, OnceCell};
 
 /// The schema version this build knows how to migrate to. Later milestones add more
 /// `if version < N` steps in `migrate` and bump this constant.
-const SCHEMA_VERSION: i32 = 1;
+const SCHEMA_VERSION: i32 = 2;
 
-pub struct Cache {
+pub struct Store {
     conn: Arc<Mutex<Connection>>,
 }
 
-impl Cache {
+impl Store {
     /// Opens (creating if needed) the SQLite file at `path` and runs migrations.
     pub async fn open(path: impl AsRef<Path>) -> Result<Self, String> {
         let path = path.as_ref().to_path_buf();
@@ -30,12 +32,12 @@ impl Cache {
             if let Some(dir) = path.parent() {
                 std::fs::create_dir_all(dir).map_err(|e| format!("cannot create {}: {e}", dir.display()))?;
             }
-            let conn = Connection::open(&path).map_err(|e| format!("cannot open cache database: {e}"))?;
+            let conn = Connection::open(&path).map_err(|e| format!("cannot open the database: {e}"))?;
             migrate(&conn)?;
             Ok(conn)
         })
         .await
-        .map_err(|e| format!("cache init task panicked: {e}"))??;
+        .map_err(|e| format!("database init task panicked: {e}"))??;
         Ok(Self { conn: Arc::new(Mutex::new(conn)) })
     }
 
@@ -74,7 +76,7 @@ impl Cache {
     async fn read(&self, key: &str) -> Result<Option<(String, i64)>, String> {
         let key = key.to_string();
         self.with_conn(move |conn| {
-            conn.query_row("SELECT body, fetched_at FROM anilist_cache WHERE key = ?1", [&key], |row| {
+            conn.query_row("SELECT body, fetched_at FROM http_cache WHERE key = ?1", [&key], |row| {
                 Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?))
             })
             .optional()
@@ -87,7 +89,7 @@ impl Cache {
         let body = body.to_string();
         self.with_conn(move |conn| {
             conn.execute(
-                "INSERT INTO anilist_cache (key, body, fetched_at) VALUES (?1, ?2, ?3)
+                "INSERT INTO http_cache (key, body, fetched_at) VALUES (?1, ?2, ?3)
                  ON CONFLICT(key) DO UPDATE SET body = excluded.body, fetched_at = excluded.fetched_at",
                 rusqlite::params![key, body, fetched_at],
             )?;
@@ -102,7 +104,8 @@ impl Cache {
         self.write(key, body, fetched_at).await
     }
 
-    async fn with_conn<T, F>(&self, f: F) -> Result<T, String>
+    /// Runs `f` with the connection on a blocking thread.
+    pub async fn with_conn<T, F>(&self, f: F) -> Result<T, String>
     where
         T: Send + 'static,
         F: FnOnce(&Connection) -> rusqlite::Result<T> + Send + 'static,
@@ -110,7 +113,7 @@ impl Cache {
         let guard = self.conn.clone().lock_owned().await;
         tokio::task::spawn_blocking(move || f(&guard).map_err(|e| e.to_string()))
             .await
-            .map_err(|e| format!("cache task panicked: {e}"))?
+            .map_err(|e| format!("database task panicked: {e}"))?
     }
 }
 
@@ -126,17 +129,55 @@ fn migrate(conn: &Connection) -> Result<(), String> {
         )
         .map_err(|e| e.to_string())?;
     }
-    // Future milestones: `if version < 2 { ... }`, etc.
+    if version < 2 {
+        conn.execute_batch(
+            "ALTER TABLE anilist_cache RENAME TO http_cache;
+             CREATE TABLE IF NOT EXISTS meta (
+                key TEXT PRIMARY KEY,
+                value TEXT NOT NULL
+             );
+             CREATE TABLE IF NOT EXISTS anime_ids (
+                anilist_id INTEGER PRIMARY KEY,
+                anidb_id INTEGER,
+                mal_id INTEGER
+             );
+             CREATE TABLE IF NOT EXISTS release_pick (
+                show_id INTEGER PRIMARY KEY,
+                info_hash TEXT NOT NULL,
+                release_group TEXT,
+                resolution INTEGER,
+                picked_at INTEGER NOT NULL
+             );",
+        )
+        .map_err(|e| e.to_string())?;
+    }
     conn.pragma_update(None, "user_version", SCHEMA_VERSION).map_err(|e| e.to_string())?;
     Ok(())
 }
 
-fn now() -> i64 {
+pub fn now() -> i64 {
     SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0)
 }
 
 fn is_fresh(fetched_at: i64, ttl: Duration) -> bool {
     now().saturating_sub(fetched_at) < ttl.as_secs() as i64
+}
+
+/// Opens the database lazily, on first use, and shares it between every command.
+#[derive(Default)]
+pub struct StoreState {
+    store: OnceCell<Store>,
+}
+
+impl StoreState {
+    pub async fn get(&self, app: &AppHandle) -> Result<&Store, String> {
+        self.store
+            .get_or_try_init(|| async {
+                let dir = app.path().app_data_dir().map_err(|e| format!("cannot find the app data folder: {e}"))?;
+                Store::open(dir.join("lokii.db")).await
+            })
+            .await
+    }
 }
 
 /// A cache key derived from a GraphQL query's text and variables, tagged with a
@@ -154,7 +195,7 @@ mod tests {
 
     #[tokio::test]
     async fn fresh_entry_is_returned_without_calling_fetch() {
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         cache.put_at("k", "cached", now()).await.unwrap();
 
         let result = cache
@@ -166,23 +207,22 @@ mod tests {
 
     #[tokio::test]
     async fn expired_entry_triggers_a_fetch_and_is_replaced() {
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         cache.put_at("k", "old", now() - 1000).await.unwrap();
 
-        let result = cache
-            .get_or_fetch("k", Duration::from_secs(10), || async { Ok("fresh".to_string()) })
-            .await
-            .unwrap();
+        let result =
+            cache.get_or_fetch("k", Duration::from_secs(10), || async { Ok("fresh".to_string()) }).await.unwrap();
         assert_eq!(result, "fresh");
 
         // The replacement was persisted.
-        let again = cache.get_or_fetch("k", Duration::from_secs(10), || async { panic!("should be cached") }).await.unwrap();
+        let again =
+            cache.get_or_fetch("k", Duration::from_secs(10), || async { panic!("should be cached") }).await.unwrap();
         assert_eq!(again, "fresh");
     }
 
     #[tokio::test]
     async fn network_error_falls_back_to_stale_cache() {
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         cache.put_at("k", "stale", now() - 1_000_000).await.unwrap();
 
         let result = cache
@@ -194,7 +234,7 @@ mod tests {
 
     #[tokio::test]
     async fn network_error_with_no_cache_propagates_the_error() {
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         let result =
             cache.get_or_fetch("missing", Duration::from_secs(10), || async { Err("network down".to_string()) }).await;
         assert_eq!(result, Err("network down".to_string()));
@@ -202,13 +242,34 @@ mod tests {
 
     #[tokio::test]
     async fn a_successful_fetch_with_no_prior_cache_is_stored() {
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         let result =
             cache.get_or_fetch("k", Duration::from_secs(10), || async { Ok("first".to_string()) }).await.unwrap();
         assert_eq!(result, "first");
 
-        let again = cache.get_or_fetch("k", Duration::from_secs(10), || async { panic!("should be cached") }).await.unwrap();
+        let again =
+            cache.get_or_fetch("k", Duration::from_secs(10), || async { panic!("should be cached") }).await.unwrap();
         assert_eq!(again, "first");
+    }
+
+    #[test]
+    fn version_1_databases_keep_their_cache_after_migrating() {
+        let conn = Connection::open_in_memory().unwrap();
+        conn.execute_batch(
+            "CREATE TABLE anilist_cache (key TEXT PRIMARY KEY, body TEXT NOT NULL, fetched_at INTEGER NOT NULL);
+             INSERT INTO anilist_cache VALUES ('k', 'kept', 1);
+             PRAGMA user_version = 1;",
+        )
+        .unwrap();
+        migrate(&conn).unwrap();
+        let body: String = conn.query_row("SELECT body FROM http_cache WHERE key = 'k'", [], |row| row.get(0)).unwrap();
+        assert_eq!(body, "kept");
+        for table in ["meta", "anime_ids", "release_pick"] {
+            let count: i64 = conn.query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |row| row.get(0)).unwrap();
+            assert_eq!(count, 0, "{table} should exist and be empty");
+        }
+        let version: i32 = conn.query_row("PRAGMA user_version", [], |row| row.get(0)).unwrap();
+        assert_eq!(version, SCHEMA_VERSION);
     }
 
     #[test]

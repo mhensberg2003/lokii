@@ -17,8 +17,8 @@ use objc2_app_kit::{NSAutoresizingMaskOptions, NSView, NSWindowOrderingMode};
 use objc2_core_foundation::CFTimeInterval;
 use objc2_core_video::CVTimeStamp;
 use objc2_open_gl::{
-    CGLChoosePixelFormat, CGLContextObj, CGLOpenGLProfile, CGLPixelFormatAttribute,
-    CGLPixelFormatObj, CGLSetCurrentContext,
+    CGLChoosePixelFormat, CGLContextObj, CGLOpenGLProfile, CGLPixelFormatAttribute, CGLPixelFormatObj,
+    CGLSetCurrentContext,
 };
 use objc2_quartz_core::{CALayer, CAOpenGLLayer};
 
@@ -53,9 +53,8 @@ pub fn attach_mpv(mpv: Arc<Mpv>, timeout: Duration) -> Result<(), String> {
 
     let (lock, ready) = &RENDERER_READY;
     let guard = lock.lock().map_err(|_| "renderer state is poisoned")?;
-    let (guard, _) = ready
-        .wait_timeout_while(guard, timeout, |created| !*created)
-        .map_err(|_| "renderer state is poisoned")?;
+    let (guard, _) =
+        ready.wait_timeout_while(guard, timeout, |created| !*created).map_err(|_| "renderer state is poisoned")?;
     if *guard {
         Ok(())
     } else {
@@ -125,7 +124,9 @@ define_class!(
 
 fn render_frame() {
     let Some(mpv) = MPV.get() else { return };
-    let Ok(mut guard) = RENDERER.lock() else { return };
+    let Ok(mut guard) = RENDERER.lock() else {
+        return;
+    };
     if guard.is_none() {
         *guard = create_renderer(mpv.as_ref());
         if guard.is_some() {
@@ -136,7 +137,9 @@ fn render_frame() {
             }
         }
     }
-    let Some(Renderer(ctx)) = guard.as_ref() else { return };
+    let Some(Renderer(ctx)) = guard.as_ref() else {
+        return;
+    };
 
     let mut fbo: GLint = 0;
     let mut viewport: [GLint; 4] = [0; 4];
@@ -165,11 +168,7 @@ fn core_profile_pixel_format() -> Option<CGLPixelFormatObj> {
     let mut pix: CGLPixelFormatObj = std::ptr::null_mut();
     let mut count: GLint = 0;
     let err = unsafe {
-        CGLChoosePixelFormat(
-            NonNull::new(attribs.as_mut_ptr())?,
-            NonNull::from(&mut pix),
-            NonNull::from(&mut count),
-        )
+        CGLChoosePixelFormat(NonNull::new(attribs.as_mut_ptr())?, NonNull::from(&mut pix), NonNull::from(&mut count))
     };
     (err.0 == 0 && !pix.is_null()).then_some(pix)
 }
