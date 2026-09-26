@@ -6,6 +6,7 @@
 import { settingsHandlers } from "./mockSettings";
 import { playerHandlers } from "./mockPlayer";
 import { streamHandlers } from "./mockStreams";
+import { libraryHandlers } from "./mockLibrary";
 
 const fixtures = import.meta.glob<unknown>("./fixtures/*.json", { eager: true, import: "default" });
 
@@ -17,6 +18,13 @@ function fixture(name: string): unknown {
 
 function hasFixture(name: string): boolean {
   return `./fixtures/${name}.json` in fixtures;
+}
+
+/** The saved Show with this ID, else the first saved Show. */
+function showFixture(id: number): unknown {
+  if (hasFixture(`show-${id}`)) return fixture(`show-${id}`);
+  const first = Object.keys(fixtures).find((key) => key.includes("/show-"));
+  return first ? fixtures[first] : undefined;
 }
 
 type Args = Record<string, unknown> | undefined;
@@ -34,18 +42,14 @@ const handlers: Record<string, (args: Args) => unknown> = {
   ...settingsHandlers,
   ...streamHandlers(fixtures),
   ...playerHandlers(emit),
+  ...libraryHandlers((id) => showFixture(id)),
   catalog_home: () => fixture("home"),
   catalog_browse: (args) => {
     const genre = String(args?.genre);
     const feed = fixture("browse-Action") as { rows: unknown[] };
     return hasFixture(`browse-${genre}`) ? fixture(`browse-${genre}`) : { ...feed, genre };
   },
-  catalog_show: (args) => {
-    const id = Number(args?.id);
-    if (hasFixture(`show-${id}`)) return fixture(`show-${id}`);
-    const first = Object.keys(fixtures).find((key) => key.includes("/show-"));
-    return first ? fixtures[first] : Promise.reject("No show fixtures");
-  },
+  catalog_show: (args) => showFixture(Number(args?.id)) ?? Promise.reject("No show fixtures"),
   catalog_search: () => fixture("search"),
   index_releases: (args) => episodeReleases(Number(args?.showId), Number(args?.episode)),
   index_pick: (args) => {

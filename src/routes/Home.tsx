@@ -5,6 +5,7 @@ import { catalog, type ShowDetailsLite } from "../lib/catalog";
 import { scoreLabel, showMeta } from "../lib/format";
 import { Button } from "../components/ui/Button";
 import { ShowRowView, SkeletonRows } from "../components/ShowRows";
+import { ContinueRow } from "../components/ContinueRow";
 import { PageMessage, errorText } from "../components/PageMessage";
 import styles from "./Home.module.css";
 
@@ -23,6 +24,7 @@ export function Home() {
     <div className={styles.page}>
       {home.data ? <Hero show={home.data.hero} /> : <div className={styles.heroSkeleton} />}
       <div className={styles.rows}>
+        <ContinueRow />
         {home.data ? home.data.rows.map((row) => <ShowRowView key={row.id} row={row} />) : <SkeletonRows />}
       </div>
     </div>

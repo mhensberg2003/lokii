@@ -73,7 +73,11 @@ An Episode whose Watch Progress passed 90% of its length.
 _Avoid_: Completed, seen
 
 **Up Next**:
-The Episode to play next for a Show: the first Episode after the last Watched one.
+The Episode to play next for a Show: the last played Episode when the user left it before it was Watched, else the first Episode after the last Watched one. After the last Episode of a Show, it is Episode 1 of the next Show in the Franchise.
+
+**Continue watching**:
+The Up Next Episodes of the Shows the user played most recently.
+_Avoid_: Recently watched, history
 
 **Watchlist**:
 Shows the user saved to watch later.

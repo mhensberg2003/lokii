@@ -83,6 +83,11 @@ describe("nextEpisodeOf", () => {
     const upcoming = show({ episodeList: [episode(1)], franchise: [entry(1, "TV"), entry(2, "TV", "NOT_YET_RELEASED")] });
     expect(nextEpisodeOf(upcoming, 1)).toBeNull();
   });
+
+  it("does not continue into a sequel while the Show still airs", () => {
+    const airing = show({ status: "RELEASING", episodeList: [episode(1)], franchise: [entry(1, "TV"), entry(2, "TV")] });
+    expect(nextEpisodeOf(airing, 1)).toBeNull();
+  });
 });
 
 describe("nextEpisodeDue", () => {

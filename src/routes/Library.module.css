@@ -1,0 +1,37 @@
+/* Rows pad themselves with the gutter, so the page pads only its own headings and grid. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  padding: calc(var(--topbar-height) + var(--space-6)) 0 var(--space-16);
+}
+
+.heading {
+  padding: 0 var(--gutter);
+  font-size: var(--text-2xl);
+  margin-bottom: calc(-1 * var(--space-4));
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0 var(--gutter);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-8) var(--space-4);
+}
+
+.empty {
+  color: var(--text-muted);
+  font-size: var(--text-md);
+}

@@ -23,6 +23,26 @@ pub const TTL_BROWSE: Duration = Duration::from_secs(6 * 3600);
 pub const TTL_SHOW: Duration = Duration::from_secs(24 * 3600);
 pub const TTL_FRANCHISE: Duration = Duration::from_secs(7 * 24 * 3600);
 pub const TTL_SEARCH: Duration = Duration::from_secs(3600);
+/// The TTL of `Freshness::AnyAge`: a cached copy of any age is used.
+const ANY_AGE: Duration = Duration::from_secs(10 * 365 * 24 * 3600);
+
+/// How old a cached response may be before the client asks AniList again.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Freshness {
+    /// The normal TTL of the query.
+    Ttl,
+    /// Any cached copy. Only a Show with no cached copy causes a request.
+    AnyAge,
+}
+
+impl Freshness {
+    fn ttl(self, normal: Duration) -> Duration {
+        match self {
+            Freshness::Ttl => normal,
+            Freshness::AnyAge => ANY_AGE,
+        }
+    }
+}
 
 #[derive(Deserialize)]
 pub struct HomeData {
@@ -96,9 +116,10 @@ impl AniListClient {
         self.cached_query("browse", BROWSE_QUERY, variables, TTL_BROWSE, cache).await
     }
 
-    pub async fn fetch_show(&self, cache: &Store, id: i64) -> Result<RawMedia, String> {
+    pub async fn fetch_show(&self, cache: &Store, id: i64, freshness: Freshness) -> Result<RawMedia, String> {
         let variables = json!({ "id": id });
-        let data: ShowData = self.cached_query("show", SHOW_QUERY, variables, TTL_SHOW, cache).await?;
+        let ttl = freshness.ttl(TTL_SHOW);
+        let data: ShowData = self.cached_query("show", SHOW_QUERY, variables, ttl, cache).await?;
         Ok(data.media)
     }
 
@@ -108,10 +129,16 @@ impl AniListClient {
         Ok(data.page.media)
     }
 
-    async fn fetch_franchise_node(&self, cache: &Store, id: i64) -> Result<RawFranchiseNode, String> {
+    async fn fetch_franchise_node(
+        &self,
+        cache: &Store,
+        id: i64,
+        freshness: Freshness,
+    ) -> Result<RawFranchiseNode, String> {
         let variables = json!({ "id": id });
+        let ttl = freshness.ttl(TTL_FRANCHISE);
         let data: FranchiseNodeData =
-            self.cached_query("franchise", FRANCHISE_NODE_QUERY, variables, TTL_FRANCHISE, cache).await?;
+            self.cached_query("franchise", FRANCHISE_NODE_QUERY, variables, ttl, cache).await?;
         Ok(data.media)
     }
 
@@ -203,12 +230,13 @@ fn graphql_error_message(parsed: &Value) -> Option<&str> {
 pub struct CachingFetcher<'a> {
     pub client: &'a AniListClient,
     pub cache: &'a Store,
+    pub freshness: Freshness,
 }
 
 #[async_trait]
 impl NodeFetcher for CachingFetcher<'_> {
     async fn fetch(&self, id: i64) -> Result<RawFranchiseNode, String> {
-        self.client.fetch_franchise_node(self.cache, id).await
+        self.client.fetch_franchise_node(self.cache, id, self.freshness).await
     }
 }
 
