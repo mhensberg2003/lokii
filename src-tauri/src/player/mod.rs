@@ -105,6 +105,21 @@ fn attach_renderer(_mpv: &Arc<Mpv>) -> Result<(), String> {
     Ok(())
 }
 
+#[cfg(not(any(target_os = "macos", windows)))]
+fn video_surface(_window: &tauri::WebviewWindow) -> Result<(), String> {
+    Err("Lokii plays video only on macOS and Windows".into())
+}
+
+#[cfg(not(any(target_os = "macos", windows)))]
+fn video_output(init: &MpvInitializer) -> libmpv2::Result<()> {
+    init.set_option("vo", "libmpv")
+}
+
+#[cfg(not(any(target_os = "macos", windows)))]
+fn attach_renderer(_mpv: &Arc<Mpv>) -> Result<(), String> {
+    Ok(())
+}
+
 fn run(app: AppHandle) -> Result<(), String> {
     let mpv = Mpv::with_initializer(|init| {
         video_output(&init)?;

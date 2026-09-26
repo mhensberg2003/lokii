@@ -22,6 +22,7 @@ fn link_libmpv() {
                 }
             }
         }
+        "windows" => panic!("libmpv is missing: run scripts/fetch-libmpv.sh windows-x64"),
         _ => {}
     }
 }

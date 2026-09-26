@@ -8,8 +8,11 @@ import styles from "./UpdateNotice.module.css";
 /** Dev builds and the browser preview have no release to update from. */
 const CHECKS_FOR_UPDATES = !import.meta.env.DEV && import.meta.env.VITE_PREVIEW !== "1";
 
+/** Lokii can stay open for days, so it asks again after this time. */
+const CHECK_EVERY = 6 * 60 * 60 * 1000;
+
 /**
- * Asks GitHub Releases for a newer Lokii once per start. When there is one, a button
+ * Asks GitHub Releases for a newer Lokii at start and every few hours. When there is one, a button
  * downloads it, installs it and restarts the app.
  */
 export function UpdateNotice({ enabled = CHECKS_FOR_UPDATES }: { enabled?: boolean }) {
@@ -17,7 +20,8 @@ export function UpdateNotice({ enabled = CHECKS_FOR_UPDATES }: { enabled?: boole
     queryKey: ["update"],
     queryFn: () => check(),
     enabled,
-    staleTime: Infinity,
+    staleTime: CHECK_EVERY,
+    refetchInterval: CHECK_EVERY,
     retry: false,
   });
   const install = useMutation({
