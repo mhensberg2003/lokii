@@ -4,6 +4,7 @@
 //   cd src-tauri && cargo test live_episode_releases -- --ignored
 
 import { settingsHandlers } from "./mockSettings";
+import { playerHandlers } from "./mockPlayer";
 import { streamHandlers } from "./mockStreams";
 
 const fixtures = import.meta.glob<unknown>("./fixtures/*.json", { eager: true, import: "default" });
@@ -19,10 +20,20 @@ function hasFixture(name: string): boolean {
 }
 
 type Args = Record<string, unknown> | undefined;
+type Callback = (message: unknown) => void;
+
+/** Callbacks by ID (transformCallback), and listener IDs by event name. */
+const callbacks = new Map<number, Callback>();
+const listeners = new Map<string, Set<number>>();
+
+function emit(event: string, payload: unknown) {
+  for (const id of listeners.get(event) ?? []) callbacks.get(id)?.({ event, id, payload });
+}
 
 const handlers: Record<string, (args: Args) => unknown> = {
   ...settingsHandlers,
   ...streamHandlers(fixtures),
+  ...playerHandlers(emit),
   catalog_home: () => fixture("home"),
   catalog_browse: (args) => {
     const genre = String(args?.genre);
@@ -44,8 +55,15 @@ const handlers: Record<string, (args: Args) => unknown> = {
     else picks.set(showId, hash);
     return episodeReleases(showId, Number(args?.episode));
   },
-  "plugin:event|listen": () => 0,
-  "plugin:event|unlisten": () => undefined,
+  "plugin:event|listen": (args) => {
+    const event = String(args?.event);
+    const id = Number(args?.handler);
+    listeners.set(event, (listeners.get(event) ?? new Set()).add(id));
+    return id;
+  },
+  "plugin:event|unlisten": (args) => {
+    listeners.get(String(args?.event))?.delete(Number(args?.eventId));
+  },
 };
 
 type PreviewReleases = { releases: { infoHash: string }[]; chosen: string | null; pickedByUser: boolean };
@@ -73,7 +91,17 @@ let callbackId = 0;
     await new Promise((resolve) => setTimeout(resolve, 150));
     return handler(args);
   },
-  transformCallback: () => ++callbackId,
-  unregisterCallback: () => undefined,
+  transformCallback: (callback: Callback) => {
+    callbacks.set(++callbackId, callback);
+    return callbackId;
+  },
+  unregisterCallback: (id: number) => callbacks.delete(id),
   metadata: { currentWindow: { label: "main" }, currentWebview: { label: "main" } },
 };
+
+(window as unknown as { __TAURI_EVENT_PLUGIN_INTERNALS__: unknown }).__TAURI_EVENT_PLUGIN_INTERNALS__ = {
+  unregisterListener: (event: string, id: number) => listeners.get(event)?.delete(id),
+};
+
+// A still "video frame" behind the transparent player page. Other routes paint over it.
+document.documentElement.style.background = "radial-gradient(circle at 30% 35%, #4a5a78, #1a1d27 55%, #0c0d12)";

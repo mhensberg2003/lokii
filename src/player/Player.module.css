@@ -1,0 +1,615 @@
+/* The player screen. The page is transparent: mpv's video layer shows through. */
+
+.stage {
+  --scrim: rgba(10, 10, 14, 0.72);
+  --glass: rgba(18, 19, 25, 0.9);
+  --control-hover: rgba(255, 255, 255, 0.1);
+  --side: 28px;
+
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.stage[data-idle] {
+  cursor: none;
+}
+
+/* Clicks on the video: pause or play; double click: fullscreen. */
+.surface {
+  position: absolute;
+  inset: 0;
+}
+
+.top,
+.bottom,
+.status,
+.notice,
+.buffering {
+  position: relative;
+  z-index: 1;
+}
+
+.top,
+.controls {
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.stage[data-idle] .top,
+.stage[data-idle] .controls {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Heading, top-left */
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 20px var(--side) 56px;
+  background: linear-gradient(var(--scrim), transparent);
+}
+
+/* Leave room for the macOS traffic lights (overlay title bar) outside fullscreen. */
+:global(.platform-mac) .stage:not([data-fullscreen]) .top {
+  padding-top: 40px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Buttons */
+
+.iconButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.iconButton:hover,
+.iconButton[aria-pressed="true"] {
+  background: var(--control-hover);
+}
+
+.iconButton svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* The "10" inside the skip back and forward icons. */
+.stepLabel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-top: 1px;
+  font-size: 8px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.textButton {
+  padding: 8px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.textButton:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Bottom: prompts, track panel, controls */
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keeps its height, so the controls do not move when the panel opens. */
+.prompts[hidden] {
+  display: flex;
+  visibility: hidden;
+}
+
+.prompts {
+  display: flex;
+  visibility: visible;
+  justify-content: flex-end;
+  min-height: 0;
+  padding: 0 var(--side) var(--space-2);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 48px var(--side) 18px;
+  background: linear-gradient(transparent, var(--scrim) 60%);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-inline: -10px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.time {
+  margin-left: var(--space-2);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.timeTotal {
+  color: var(--text-muted);
+}
+
+/* Volume: the slider opens on hover or keyboard focus. */
+
+.volume {
+  display: flex;
+  align-items: center;
+}
+
+.volumeSlider {
+  appearance: none;
+  width: 0;
+  height: 4px;
+  margin: 0;
+  border-radius: var(--r-full);
+  background: linear-gradient(to right, var(--text) var(--level), rgba(255, 255, 255, 0.24) var(--level));
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    width var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+
+.volume:hover .volumeSlider,
+.volume:focus-within .volumeSlider {
+  width: 88px;
+  margin-inline: 4px 8px;
+  opacity: 1;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+/* Timeline */
+
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 18px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.rail {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+  transition: height var(--dur-fast) var(--ease-out);
+}
+
+.timeline:hover .rail,
+.timeline[data-dragging] .rail {
+  height: 6px;
+}
+
+.segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.played {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--accent);
+}
+
+.knob {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.timeline:hover .knob,
+.timeline[data-dragging] .knob {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 20px;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  background: var(--glass);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Skip Segment and Next Episode prompts */
+
+.skip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 11px 16px 11px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--glass);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.skip:hover {
+  background: var(--text);
+  color: var(--text-on-light);
+}
+
+.skip svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nextCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: min(380px, 100%);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--glass);
+}
+
+.nextText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nextLabel {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nextTitle {
+  font-weight: 600;
+}
+
+.nextDetail {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nextActions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.nextPlay {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--text);
+  color: var(--text-on-light);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nextPlay:hover {
+  background: #fff;
+}
+
+.nextPlay svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.nextDismiss {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.nextDismiss:hover {
+  background: var(--control-hover);
+  color: var(--text);
+}
+
+.nextDismiss svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Subtitles and audio panel */
+
+.trackPanel {
+  position: absolute;
+  right: var(--side);
+  bottom: 84px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  width: min(560px, calc(100% - 2 * var(--side)));
+  max-height: min(420px, 60vh);
+  padding: var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+.trackColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 0;
+}
+
+.trackHeading {
+  padding-inline: var(--space-2);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.trackList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.trackOption {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.trackOption:hover {
+  background: var(--control-hover);
+  color: var(--text);
+}
+
+.trackOption[aria-pressed="true"] {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.trackCheck {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 21px;
+  flex: none;
+}
+
+.trackCheck svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+}
+
+.trackText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.trackDetail {
+  color: var(--text-faint);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.trackEmpty {
+  padding: 8px;
+  color: var(--text-faint);
+  font-size: var(--text-sm);
+}
+
+/* Notices over the video */
+
+.notice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 480px;
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  background: var(--scrim);
+  color: var(--danger);
+  transform: translate(-50%, -50%);
+}
+
+.buffering {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  border-top-color: var(--text);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  pointer-events: none;
+}
+
+/* Stream status, before the video plays */
+
+.status {
+  align-self: center;
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 440px;
+  padding: var(--space-6) var(--space-8);
+  border-radius: var(--r-lg);
+  background: var(--scrim);
+  text-align: center;
+}
+
+.statusTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.statusDetail {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.statusRelease {
+  color: var(--text-faint);
+  font-size: var(--text-xs);
+  overflow-wrap: anywhere;
+}
+
+.statusBar {
+  width: 220px;
+  height: 3px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.statusBar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.statusActions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .buffering {
+    animation-duration: 2.4s;
+  }
+}
