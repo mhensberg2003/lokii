@@ -22,6 +22,7 @@ import { TrackPanel } from "../player/TrackPanel";
 import { usePlayerState, useSkipSegments, useTracks } from "../player/usePlayer";
 import { useFullscreen, useIdle, useShortcuts } from "../player/useScreen";
 import { useStreamPlayback } from "../player/useStreamPlayback";
+import { useWatchProgress } from "../player/useWatchProgress";
 import styles from "../player/Player.module.css";
 
 type Screen = ReturnType<typeof useFullscreen>;
@@ -70,9 +71,12 @@ type EpisodePlayerProps = { showId: number; episode: number; screen: Screen };
 function EpisodePlayer({ showId, episode, screen }: EpisodePlayerProps) {
   const navigate = useNavigate();
   const mpv = usePlayerState();
-  const { stream, fileLoaded, startError, retry } = useStreamPlayback(showId, episode, mpv);
+  const { stream, fileLoaded, startError, retry, markWatched } = useStreamPlayback(showId, episode, mpv);
   // Before this Episode's file loads, mpv can still report the previous file's time.
   const state = fileLoaded ? mpv : { ...mpv, timePos: 0, duration: 0 };
+  const progress = useWatchProgress(showId, episode, state, fileLoaded);
+  // Next Episode can show from the outro, before 90%: leaving with it counts as Watched.
+  const finish = () => Promise.all([progress.markWatched(state.duration), markWatched()]).then(() => {});
   const { show, title, next } = useEpisode(showId, episode);
   const segments = useSkipSegments(showId, episode, state.duration);
   const tracks = useTracks(state.sid, state.aid);
@@ -88,7 +92,7 @@ function EpisodePlayer({ showId, episode, screen }: EpisodePlayerProps) {
 
   const hover = { onPointerEnter: () => setOnControls(true), onPointerLeave: () => setOnControls(false) };
   const onSurfaceClick = () => (panelOpen ? closePanel() : playing && void player.togglePause().catch(() => {}));
-  const layer = { state, segments, tracks, next, screen, panelOpen, hover };
+  const layer = { state, segments, tracks, next, screen, panelOpen, hover, finish };
   return (
     <main className={styles.stage} data-idle={idle || undefined} data-fullscreen={screen.fullscreen || undefined}>
       <div
@@ -138,15 +142,20 @@ type LayerProps = {
   panelOpen: boolean;
   hover: Hover;
   onTogglePanel: () => void;
+  /** Marks this Episode Watched before Next Episode. */
+  finish: () => Promise<void>;
 };
 
 /** Everything over the playing video: notices, Skip and Next Episode, the panel, the controls. */
-function PlaybackLayer({ state, segments, tracks, next, screen, panelOpen, hover, onTogglePanel }: LayerProps) {
+function PlaybackLayer({ state, segments, tracks, next, screen, panelOpen, hover, onTogglePanel, finish }: LayerProps) {
   const navigate = useNavigate();
   const [nextHidden, setNextHidden] = useState(false);
   const segment = activeSegment(segments, state.timePos);
   const showNext = next !== null && !nextHidden && nextEpisodeDue(state.timePos, state.duration, segments);
-  const playNext = () => next && navigate(`/watch/${next.showId}/${next.episode}`, { replace: true });
+  const playNext = () => {
+    if (!next) return;
+    void finish().then(() => navigate(`/watch/${next.showId}/${next.episode}`, { replace: true }));
+  };
 
   return (
     <>

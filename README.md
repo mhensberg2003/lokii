@@ -2,7 +2,7 @@
 
 A calm desktop app for watching anime on macOS and Windows. Lokii finds a show on AniList, picks a good Release, and streams it through TorBox or a local torrent. All your data stays on your device.
 
-> Status: early development (milestone M4: Player). Episodes play through TorBox or a local torrent, with Skip Segments from AniSkip, Next Episode and keyboard shortcuts. The Library comes in M5.
+> Status: early development (milestone M5: Library). Episodes play through TorBox or a local torrent, with Skip Segments from AniSkip, Next Episode and keyboard shortcuts. Watch Progress, Continue watching and a Watchlist stay on the device.
 
 ## Features (v1 plan)
 

@@ -18,7 +18,7 @@ use tokio::sync::{Mutex, OnceCell};
 
 /// The schema version this build knows how to migrate to. Later milestones add more
 /// `if version < N` steps in `migrate` and bump this constant.
-const SCHEMA_VERSION: i32 = 3;
+const SCHEMA_VERSION: i32 = 4;
 
 pub struct Store {
     conn: Arc<Mutex<Connection>>,
@@ -194,12 +194,37 @@ fn migrate(conn: &Connection) -> Result<(), String> {
         )
         .map_err(|e| e.to_string())?;
     }
+    if version < 4 {
+        conn.execute_batch(
+            "CREATE TABLE IF NOT EXISTS watch_progress (
+                show_id INTEGER NOT NULL,
+                episode INTEGER NOT NULL,
+                position REAL NOT NULL,
+                duration REAL NOT NULL,
+                watched INTEGER NOT NULL,
+                updated_at INTEGER NOT NULL,
+                PRIMARY KEY (show_id, episode)
+             );
+             CREATE INDEX IF NOT EXISTS watch_progress_updated ON watch_progress (updated_at);
+             CREATE TABLE IF NOT EXISTS watchlist (
+                show_id INTEGER PRIMARY KEY,
+                card TEXT NOT NULL,
+                added_at INTEGER NOT NULL
+             );",
+        )
+        .map_err(|e| e.to_string())?;
+    }
     conn.pragma_update(None, "user_version", SCHEMA_VERSION).map_err(|e| e.to_string())?;
     Ok(())
 }
 
 pub fn now() -> i64 {
     SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0)
+}
+
+/// Unix milliseconds, for rows that must keep the order of saves in the same second.
+pub fn now_ms() -> i64 {
+    SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_millis() as i64).unwrap_or(0)
 }
 
 fn is_fresh(fetched_at: i64, ttl: Duration) -> bool {
@@ -318,7 +343,7 @@ mod tests {
         migrate(&conn).unwrap();
         let body: String = conn.query_row("SELECT body FROM http_cache WHERE key = 'k'", [], |row| row.get(0)).unwrap();
         assert_eq!(body, "kept");
-        for table in ["meta", "anime_ids", "release_pick"] {
+        for table in ["meta", "anime_ids", "release_pick", "torbox_item", "watch_progress", "watchlist"] {
             let count: i64 = conn.query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |row| row.get(0)).unwrap();
             assert_eq!(count, 0, "{table} should exist and be empty");
         }

@@ -1,6 +1,7 @@
 mod catalog;
 mod ids;
 mod index;
+mod library;
 mod player;
 mod skip;
 mod sources;
@@ -42,6 +43,11 @@ pub fn run() {
             player::player_tracks,
             player::player_set_track,
             skip::skip_segments,
+            library::library_save_progress,
+            library::library_show,
+            library::library_continue,
+            library::library_watchlist,
+            library::library_set_watchlist,
             catalog::catalog_home,
             catalog::catalog_browse,
             catalog::catalog_show,

@@ -53,18 +53,22 @@ export function useStreamPlayback(showId: number, episode: number, state: Player
   useEffect(() => {
     if (!url || !state.ready || loaded.current === url) return;
     loaded.current = url;
+    setFileLoaded(false);
     player.load(url).catch(() => {});
   }, [url, state.ready]);
 
-  useEffect(() => {
-    if (!stream || !fileLoaded || watched.current || state.duration <= 0) return;
-    if (state.timePos / state.duration >= WATCHED_AT) {
-      watched.current = true;
-      streams.watched(stream.id).catch(() => {
-        watched.current = false;
-      });
-    }
-  }, [stream, fileLoaded, state.timePos, state.duration]);
+  const markWatched = async () => {
+    if (!stream || watched.current) return;
+    watched.current = true;
+    await streams.watched(stream.id).catch(() => {
+      watched.current = false;
+    });
+  };
 
-  return { stream, fileLoaded, startError, retry: () => setAttempt((n) => n + 1) };
+  useEffect(() => {
+    if (!fileLoaded || state.duration <= 0) return;
+    if (state.timePos / state.duration >= WATCHED_AT) void markWatched();
+  }, [stream, fileLoaded, state.timePos, state.duration]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return { stream, fileLoaded, startError, retry: () => setAttempt((n) => n + 1), markWatched };
 }

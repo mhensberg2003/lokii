@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
-import { Play, SearchX, WifiOff } from "lucide-react";
+import { Check, Play, Plus, SearchX, WifiOff } from "lucide-react";
 import { catalog, type ShowDetails } from "../lib/catalog";
 import { airingLabel, durationLabel, formatLabel, scoreLabel, seasonLabel } from "../lib/format";
 import { episodeRanges, franchiseSeasons } from "../lib/show";
+import { library, LIBRARY_KEY, libraryKeys, playAction, progressFraction, type ShowLibrary } from "../lib/library";
 import { Button } from "../components/ui/Button";
 import { Tabs } from "../components/ui/Tabs";
 import { EpisodeCard } from "../components/ui/EpisodeCard";
@@ -43,7 +44,9 @@ function ShowView({ show }: { show: ShowDetails }) {
   const [tab, setTab] = useState<ShowTab>("episodes");
   const [changingRelease, setChangingRelease] = useState(false);
   const art = show.bannerUrl ?? show.coverUrl;
-  const firstEpisode = show.episodeList.find((e) => e.airingAt === null);
+  const saved = useQuery({ queryKey: libraryKeys.show(show.id), queryFn: () => library.show(show.id) }).data;
+  const firstAired = show.episodeList.find((e) => e.airingAt === null)?.number ?? null;
+  const action = playAction(show.id, saved?.upNext ?? null, firstAired);
   const seasons = franchiseSeasons(show.franchise);
 
   const tabs = useMemo(() => {
@@ -65,16 +68,17 @@ function ShowView({ show }: { show: ShowDetails }) {
           <MetaLine show={show} />
           <p className={styles.description}>{show.description}</p>
           <div className={styles.actions}>
-            <Button variant="primary" size="lg" icon={<Play fill="currentColor" />} onClick={() => firstEpisode && play(firstEpisode.number)} disabled={!firstEpisode}>
-              {firstEpisode ? `Play episode ${firstEpisode.number}` : "Not aired yet"}
+            <Button variant="primary" size="lg" icon={<Play fill="currentColor" />} onClick={() => action && play(action.episode)} disabled={!action}>
+              {action ? action.label : "Not aired yet"}
             </Button>
+            <WatchlistButton showId={show.id} saved={saved} />
           </div>
-          {firstEpisode && <ReleaseLine showId={show.id} episode={firstEpisode.number} onChange={() => setChangingRelease(true)} />}
+          {action && <ReleaseLine showId={show.id} episode={action.episode} onChange={() => setChangingRelease(true)} />}
         </div>
       </section>
 
-      {changingRelease && firstEpisode && (
-        <ReleaseDialog show={show} episode={firstEpisode.number} onClose={() => setChangingRelease(false)} />
+      {changingRelease && action && (
+        <ReleaseDialog show={show} episode={action.episode} onClose={() => setChangingRelease(false)} />
       )}
 
       <div className={styles.body}>
@@ -97,7 +101,7 @@ function ShowView({ show }: { show: ShowDetails }) {
 
         <Tabs label="Show sections" tabs={tabs} value={tab} onChange={setTab} />
 
-        {tab === "episodes" && <EpisodeGrid show={show} onPlay={play} />}
+        {tab === "episodes" && <EpisodeGrid show={show} saved={saved} onPlay={play} />}
         {tab === "related" && (
           <div className={styles.posterGrid}>
             {show.related.map((related) => (
@@ -134,7 +138,37 @@ function MetaLine({ show }: { show: ShowDetails }) {
   );
 }
 
-function EpisodeGrid({ show, onPlay }: { show: ShowDetails; onPlay: (episode: number) => void }) {
+function WatchlistButton({ showId, saved }: { showId: number; saved: ShowLibrary | undefined }) {
+  const queryClient = useQueryClient();
+  const on = saved?.onWatchlist ?? false;
+  const toggle = useMutation({
+    mutationFn: () => library.setWatchlist(showId, !on),
+    onSettled: () => queryClient.invalidateQueries({ queryKey: LIBRARY_KEY }),
+  });
+  return (
+    <>
+      <Button
+        variant="secondary"
+        size="lg"
+        icon={on ? <Check /> : <Plus />}
+        aria-pressed={on}
+        onClick={() => toggle.mutate()}
+        disabled={!saved || toggle.isPending}
+      >
+        {on ? "On Watchlist" : "Watchlist"}
+      </Button>
+      {toggle.isError && (
+        <span className={styles.actionError} role="alert">
+          The Watchlist did not change. {errorText(toggle.error)}
+        </span>
+      )}
+    </>
+  );
+}
+
+type EpisodeGridProps = { show: ShowDetails; saved: ShowLibrary | undefined; onPlay: (episode: number) => void };
+
+function EpisodeGrid({ show, saved, onPlay }: EpisodeGridProps) {
   const ranges = episodeRanges(show.episodeList.length);
   const [rangeId, setRangeId] = useState(ranges[0]?.id ?? "all");
   const range = ranges.find((r) => r.id === rangeId);
@@ -162,12 +196,18 @@ function EpisodeGrid({ show, onPlay }: { show: ShowDetails; onPlay: (episode: nu
             episode={episode}
             fallbackArt={show.bannerUrl ?? show.coverUrl}
             color={show.color}
+            progress={progressOf(saved, episode.number)}
             onPlay={() => onPlay(episode.number)}
           />
         ))}
       </div>
     </div>
   );
+}
+
+function progressOf(saved: ShowLibrary | undefined, episode: number): number | undefined {
+  const progress = saved?.progress.find((p) => p.episode === episode);
+  return progress ? progressFraction(progress) : undefined;
 }
 
 function Details({ show }: { show: ShowDetails }) {

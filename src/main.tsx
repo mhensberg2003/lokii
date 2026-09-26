@@ -9,7 +9,7 @@ import { Browse } from "./routes/Browse";
 import { Show } from "./routes/Show";
 import { Search } from "./routes/Search";
 import { Player } from "./routes/Player";
-import { Library } from "./routes/Placeholders";
+import { Library } from "./routes/Library";
 import { Downloads } from "./routes/Downloads";
 import { Settings } from "./routes/Settings";
 import "./styles/base.css";

@@ -9,7 +9,7 @@ type EpisodeCardProps = {
   /** Used when the Episode has no thumbnail of its own. */
   fallbackArt: string | null;
   color: string | null;
-  /** Watch Progress, 0–1. */
+  /** Watch Progress, 0–1; 1 means Watched. */
   progress?: number;
   onPlay?: () => void;
 };
@@ -28,6 +28,7 @@ export function EpisodeCard({ episode, fallbackArt, color, progress, onPlay }: E
           </span>
         )}
         {upcoming && <span className={styles.badge}>Airs {airingLabel(episode.airingAt as number)}</span>}
+        {!upcoming && progress !== undefined && progress >= 1 && <span className={styles.badge}>Watched</span>}
         {progress !== undefined && progress > 0 && (
           <span className={styles.progress} aria-hidden="true">
             <span style={{ width: `${Math.min(progress, 1) * 100}%` }} />

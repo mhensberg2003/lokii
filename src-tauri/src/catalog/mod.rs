@@ -15,7 +15,7 @@ use std::collections::HashSet;
 
 use tauri::{AppHandle, State};
 
-use anilist::{AniListClient, CachingFetcher};
+use anilist::{AniListClient, CachingFetcher, Freshness};
 use model::{BrowseFeed, HomeFeed, NextAiring, ShowCard, ShowDetails, ShowRow};
 use raw::{RawFranchiseNode, RawMedia, RawStudioConnection};
 
@@ -122,10 +122,25 @@ pub async fn catalog_show(
 }
 
 pub async fn show(client: &AniListClient, cache: &Store, id: i64) -> Result<ShowDetails, String> {
-    let media = client.fetch_show(cache, id).await?;
+    show_with(client, cache, id, Freshness::Ttl).await
+}
+
+/// The Show from the cache at any age, so a list of many Shows costs no AniList
+/// requests. Only a Show that was never loaded is fetched.
+pub async fn cached_show(client: &AniListClient, cache: &Store, id: i64) -> Result<ShowDetails, String> {
+    show_with(client, cache, id, Freshness::AnyAge).await
+}
+
+async fn show_with(
+    client: &AniListClient,
+    cache: &Store,
+    id: i64,
+    freshness: Freshness,
+) -> Result<ShowDetails, String> {
+    let media = client.fetch_show(cache, id, freshness).await?;
 
     let start = RawFranchiseNode::from_media(&media);
-    let fetcher = CachingFetcher { client, cache };
+    let fetcher = CachingFetcher { client, cache, freshness };
     let franchise = franchise::walk(start, &fetcher).await;
     let franchise_ids: HashSet<i64> = franchise.iter().map(|entry| entry.id).collect();
 

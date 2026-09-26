@@ -105,13 +105,15 @@ export type NextEpisode = { showId: number; episode: number; title: string | nul
 
 /**
  * The Episode after this one: the next aired Episode of the Show, else Episode 1 of the
- * next TV Show in the Franchise. Null at the end of the Franchise, or when the next Show has not aired.
+ * next TV Show in the Franchise. Null at the end of the Franchise, when the next Show has not aired,
+ * or while this Show still airs. Mirrors `next_after` in src-tauri/src/library/up_next.rs.
  */
 export function nextEpisodeOf(show: ShowDetails, episode: number): NextEpisode | null {
   const next = show.episodeList.find((e) => e.number === episode + 1);
   if (next) {
     return next.airingAt === null ? { showId: show.id, episode: next.number, title: next.title, showTitle: null } : null;
   }
+  if (show.status === "RELEASING") return null;
   const index = show.franchise.findIndex((entry) => entry.id === show.id);
   const sequel = index < 0 ? undefined : show.franchise.slice(index + 1).find((entry) => isSeries(entry.format));
   if (!sequel || sequel.status === "NOT_YET_RELEASED" || sequel.status === null) return null;
