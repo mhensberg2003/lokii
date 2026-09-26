@@ -39,7 +39,7 @@ The Release that SeaDex recommends for a Show.
 _Avoid_: Recommended torrent
 
 **Chosen Release**:
-The Release the app plays for a Show: the Best Release, else the 1080p Release with the most seeders, unless the user picked another one.
+The Release the app plays for an Episode: the Best Release, else the 1080p Release with the most seeders, unless the user picked another one. A user's pick applies to the whole Show: for an Episode that the picked Release does not contain, the app uses a Release from the same group at the same resolution.
 _Avoid_: Selected torrent, default release
 
 ### Playback

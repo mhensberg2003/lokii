@@ -7,6 +7,7 @@ fragment MediaFields on Media {
   id
   idMal
   title { romaji english native }
+  synonyms
   description
   coverImage { extraLarge large color }
   bannerImage

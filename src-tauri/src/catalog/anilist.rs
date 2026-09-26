@@ -7,12 +7,14 @@ use async_trait::async_trait;
 use serde::Deserialize;
 use serde_json::{json, Value};
 
-use crate::catalog::cache::{cache_key, Cache};
 use crate::catalog::franchise::NodeFetcher;
 use crate::catalog::model::Season;
-use crate::catalog::queries::{with_fragment, BROWSE_QUERY, FRANCHISE_NODE_QUERY, HOME_QUERY, SEARCH_QUERY, SHOW_QUERY};
+use crate::catalog::queries::{
+    with_fragment, BROWSE_QUERY, FRANCHISE_NODE_QUERY, HOME_QUERY, SEARCH_QUERY, SHOW_QUERY,
+};
 use crate::catalog::raw::{RawFranchiseNode, RawMedia, RawMediaPage};
 use crate::catalog::throttle::Throttle;
+use crate::store::{cache_key, Store};
 
 const DEFAULT_ENDPOINT: &str = "https://graphql.anilist.co";
 
@@ -78,14 +80,14 @@ impl AniListClient {
         Self { http: reqwest::Client::new(), endpoint: endpoint.into(), throttle: Throttle::anilist() }
     }
 
-    pub async fn fetch_home(&self, cache: &Cache, season: Season, season_year: i32) -> Result<HomeData, String> {
+    pub async fn fetch_home(&self, cache: &Store, season: Season, season_year: i32) -> Result<HomeData, String> {
         let variables = json!({ "season": season, "seasonYear": season_year });
         self.cached_query("home", HOME_QUERY, variables, TTL_HOME, cache).await
     }
 
     pub async fn fetch_browse(
         &self,
-        cache: &Cache,
+        cache: &Store,
         genre: &str,
         season: Season,
         season_year: i32,
@@ -94,19 +96,19 @@ impl AniListClient {
         self.cached_query("browse", BROWSE_QUERY, variables, TTL_BROWSE, cache).await
     }
 
-    pub async fn fetch_show(&self, cache: &Cache, id: i64) -> Result<RawMedia, String> {
+    pub async fn fetch_show(&self, cache: &Store, id: i64) -> Result<RawMedia, String> {
         let variables = json!({ "id": id });
         let data: ShowData = self.cached_query("show", SHOW_QUERY, variables, TTL_SHOW, cache).await?;
         Ok(data.media)
     }
 
-    pub async fn fetch_search(&self, cache: &Cache, search: &str) -> Result<Vec<RawMedia>, String> {
+    pub async fn fetch_search(&self, cache: &Store, search: &str) -> Result<Vec<RawMedia>, String> {
         let variables = json!({ "search": search });
         let data: SearchData = self.cached_query("search", SEARCH_QUERY, variables, TTL_SEARCH, cache).await?;
         Ok(data.page.media)
     }
 
-    async fn fetch_franchise_node(&self, cache: &Cache, id: i64) -> Result<RawFranchiseNode, String> {
+    async fn fetch_franchise_node(&self, cache: &Store, id: i64) -> Result<RawFranchiseNode, String> {
         let variables = json!({ "id": id });
         let data: FranchiseNodeData =
             self.cached_query("franchise", FRANCHISE_NODE_QUERY, variables, TTL_FRANCHISE, cache).await?;
@@ -121,7 +123,7 @@ impl AniListClient {
         query: &str,
         variables: Value,
         ttl: Duration,
-        cache: &Cache,
+        cache: &Store,
     ) -> Result<T, String> {
         let full_query = with_fragment(query);
         let key = cache_key(namespace, &full_query, &variables);
@@ -200,7 +202,7 @@ fn graphql_error_message(parsed: &Value) -> Option<&str> {
 /// so each hop is cached under the Franchise TTL.
 pub struct CachingFetcher<'a> {
     pub client: &'a AniListClient,
-    pub cache: &'a Cache,
+    pub cache: &'a Store,
 }
 
 #[async_trait]
@@ -278,7 +280,7 @@ mod tests {
     #[ignore]
     async fn smoke_test_fetches_the_real_home_hero() {
         let client = AniListClient::new();
-        let cache = Cache::in_memory().unwrap();
+        let cache = Store::in_memory().unwrap();
         let (season, year) = crate::catalog::season::current_season();
 
         let data = client.fetch_home(&cache, season, year).await.expect("AniList request failed");
@@ -295,4 +297,3 @@ mod tests {
         assert!(!title.is_empty());
     }
 }
-

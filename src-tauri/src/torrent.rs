@@ -7,9 +7,9 @@ use std::sync::Arc;
 
 use anyhow::{anyhow, Context};
 use librqbit::http_api::{HttpApi, HttpApiOptions};
+use librqbit::{AddTorrent, AddTorrentOptions, AddTorrentResponse, Api, Session};
 use librqbit_dualstack_sockets::socket::MaybeDualstackSocket;
 use librqbit_dualstack_sockets::BindOpts;
-use librqbit::{AddTorrent, AddTorrentOptions, AddTorrentResponse, Api, Session};
 use tauri::State;
 use tokio::sync::OnceCell;
 
@@ -74,11 +74,7 @@ impl Engine {
             .session
             .add_torrent(
                 AddTorrent::from_bytes(listing.torrent_bytes),
-                Some(AddTorrentOptions {
-                    only_files: Some(vec![file_idx]),
-                    overwrite: true,
-                    ..Default::default()
-                }),
+                Some(AddTorrentOptions { only_files: Some(vec![file_idx]), overwrite: true, ..Default::default() }),
             )
             .await?;
         let id = match added {
@@ -86,10 +82,7 @@ impl Engine {
             AddTorrentResponse::ListOnly(_) => return Err(anyhow!("torrent was not added")),
         };
 
-        Ok(format!(
-            "http://{STREAM_USER}:{}@127.0.0.1:{}/torrents/{id}/stream/{file_idx}",
-            self.token, self.port
-        ))
+        Ok(format!("http://{STREAM_USER}:{}@127.0.0.1:{}/torrents/{id}/stream/{file_idx}", self.token, self.port))
     }
 }
 
@@ -110,7 +103,9 @@ fn largest_video_file(listing: &librqbit::ListOnlyResponse) -> anyhow::Result<us
 
 /// SPIKE-PROBE: prints a stream URL for LOKII_SPIKE_MAGNET so the stream can be checked with curl.
 pub fn spike_probe(app: &tauri::AppHandle) {
-    let Ok(magnet) = std::env::var("LOKII_SPIKE_MAGNET") else { return };
+    let Ok(magnet) = std::env::var("LOKII_SPIKE_MAGNET") else {
+        return;
+    };
     let app = app.clone();
     tauri::async_runtime::spawn(async move {
         use tauri::Manager;
@@ -127,11 +122,7 @@ pub async fn torrent_stream(
     magnet: String,
 ) -> Result<String, String> {
     use tauri::Manager;
-    let data_dir = app
-        .path()
-        .app_cache_dir()
-        .map_err(|e| e.to_string())?
-        .join("torrents");
+    let data_dir = app.path().app_cache_dir().map_err(|e| e.to_string())?.join("torrents");
     let engine = engine.get(data_dir).await.map_err(|e| format!("{e:#}"))?;
     engine.stream_url(&magnet).await.map_err(|e| format!("{e:#}"))
 }

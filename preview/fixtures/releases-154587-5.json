@@ -1,0 +1,898 @@
+{
+  "showId": 154587,
+  "episode": 5,
+  "releases": [
+    {
+      "infoHash": "143ed15e5e3df072ae91adaeb149973a887590dd",
+      "title": "[PMR] Frieren Beyond Journey's End (BD Remux 1080p AVC FLAC AAC) [Dual Audio]",
+      "group": "PMR",
+      "resolution": 1080,
+      "sizeBytes": 201647243335,
+      "seeders": 96,
+      "leechers": 19,
+      "fileCount": 33,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": true,
+      "publishedAt": 1745073365,
+      "magnet": "magnet:?xt=urn:btih:CQ7NCXS6HXYHFLURVWXLCSMXHKEHLEG5&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/542835"
+    },
+    {
+      "infoHash": "e2c84e3067c737ffbacc66b388f78064614ef023",
+      "title": "[ToonsHub] Frieren: Beyond Journey's End S01 E01-E14 2160p B-Global WEB-DL x264 (Multi-Subs) [Batch - Part 1]",
+      "group": "ToonsHub",
+      "resolution": 2160,
+      "sizeBytes": 28344158099,
+      "seeders": 119,
+      "leechers": 8,
+      "fileCount": 14,
+      "coverage": {
+        "kind": "range",
+        "first": 1,
+        "last": 14
+      },
+      "isBest": false,
+      "publishedAt": 1711784521,
+      "magnet": "magnet:?xt=urn:btih:4LEE4MDHY4377OWMM2ZYR54AMRQU54BD&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/469990"
+    },
+    {
+      "infoHash": "37596f6e6267ee249bb9d4ea731f8663c645fe19",
+      "title": "[Tenrai-Sensei] Frieren: Beyond Journey's End (Season 1+OVAs) [BD][4k (2160p)][HEVC 10bit x265][Dual Audio] Sousou no Frieren",
+      "group": "Tenrai-Sensei",
+      "resolution": 2160,
+      "sizeBytes": 38534476152,
+      "seeders": 17,
+      "leechers": 5,
+      "fileCount": 46,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1732812060,
+      "magnet": "magnet:?xt=urn:btih:G5MW63TCM7XCJG5Z2TVHGH4GMPDEL7QZ&tr=http%3A%2F%2Fanidex.moe%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/680932"
+    },
+    {
+      "infoHash": "ee07bc759d6e8ce06d0fdab77b7b000329930355",
+      "title": "[AniMeitantei] Frieren.Beyond.Journey's.End.S01.2160p.WEB-DL.Multi.AUDIO.x265.Multi.Subs",
+      "group": "AniMeitantei",
+      "resolution": 2160,
+      "sizeBytes": 46493006084,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1772218499,
+      "magnet": "magnet:?xt=urn:btih:5YD3Y5M5N2GOA3IP3K3XW6YAAMUZGA2V&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=https%3A%2F%2Funspoused-enzymatically-luisa.ngrok-free.dev%2Fanimeitantei%2Fannounce.php",
+      "link": "https://animetosho.xyz/view/682791"
+    },
+    {
+      "infoHash": "0a82e400e3f5a6d7863982bf23ba41658843f449",
+      "title": "Sousou no Frieren [2160p h.265 Nvidia NVEnc] Ep. 01-16",
+      "group": null,
+      "resolution": 2160,
+      "sizeBytes": 43490311309,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 16,
+      "coverage": {
+        "kind": "range",
+        "first": 1,
+        "last": 16
+      },
+      "isBest": false,
+      "publishedAt": 1704536761,
+      "magnet": "magnet:?xt=urn:btih:BKBOIAHD6WTNPBRZQK7SHOSBMWEEH5CJ&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fpublic.popcorn-tracker.org%3A6969%2Fannounceudp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/458301"
+    },
+    {
+      "infoHash": "f03841b6b24585b1571df6b0c930d9946047058f",
+      "title": "[EMBER] Frieren: Beyond Journey`s End (2023) (Season 1) [BDRip] [1080p Dual Audio HEVC 10 bits DDP] (Sousou no Frieren) (Batch)",
+      "group": "EMBER",
+      "resolution": 1080,
+      "sizeBytes": 18068053638,
+      "seeders": 428,
+      "leechers": 29,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1723636828,
+      "magnet": "magnet:?xt=urn:btih:6A4EDNVSIWC3CVY562YMSMGZSRQEOBMP&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/499219"
+    },
+    {
+      "infoHash": "98116a72dafa644a76da295ca20c1795f88a2cc8",
+      "title": "[EMBER] Sousou no Frieren (2024) (Season 1) [1080p] [HEVC WEBRip] (Frieren: Beyond Journey`s End) (Batch)",
+      "group": "EMBER",
+      "resolution": 1080,
+      "sizeBytes": 10497196015,
+      "seeders": 365,
+      "leechers": 118,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1711168322,
+      "magnet": "magnet:?xt=urn:btih:TAIWU4W27JSEU5W2FFOKEDAXSX4IULGI&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/468905"
+    },
+    {
+      "infoHash": "5aa77eb2b1e86648914bff9e4b32df174dbed421",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (1080p) [Unofficial Batch]",
+      "group": "SubsPlease",
+      "resolution": 1080,
+      "sizeBytes": 42183619647,
+      "seeders": 214,
+      "leechers": 42,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1711853522,
+      "magnet": "magnet:?xt=urn:btih:LKTX5MVR5BTEREKL76PEWMW7C5G35VBB&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/470318"
+    },
+    {
+      "infoHash": "6fcbcb05847247bcc96908e96e5927b08ba13eb8",
+      "title": "[Judas] Sousou no Frieren (Frieren Beyond Journey`s End) (Season 01) [BD 1080p][HEVC x265 10bit][Dual-Audio][Eng-Subs] (Batch)",
+      "group": "Judas",
+      "resolution": 1080,
+      "sizeBytes": 12618627762,
+      "seeders": 167,
+      "leechers": 16,
+      "fileCount": 44,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1759107062,
+      "magnet": "magnet:?xt=urn:btih:N7F4WBMEOJD3ZSLJBDUW4WJHWCF2CPVY&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/571013"
+    },
+    {
+      "infoHash": "8780bb54daee09f08972460d06a5a0a1f49a4312",
+      "title": "[EMBER] Frieren: Beyond Journey`s End (2023) (Season 1) [1080p] [Dual Audio HEVC WEBRip DDP] (Sousou no Frieren) (Batch)",
+      "group": "EMBER",
+      "resolution": 1080,
+      "sizeBytes": 11535847728,
+      "seeders": 160,
+      "leechers": 16,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1712649121,
+      "magnet": "magnet:?xt=urn:btih:Q6ALWVG25YE7BCLSIYGQNJNAUH2JUQYS&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/472142"
+    },
+    {
+      "infoHash": "a0182104642b16fbf6dc2d75f4d1f0b7dbbd414e",
+      "title": "[amZero] Sousou no Frieren S1 [1080p AV1 10Bit][WEBRip][Dual Audio][MultiSubs] (Frieren: Beyond Journey's End) (Batch)",
+      "group": "amZero",
+      "resolution": 1080,
+      "sizeBytes": 10697529400,
+      "seeders": 143,
+      "leechers": 69,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1711145762,
+      "magnet": "magnet:?xt=urn:btih:UAMCCBDEFMLPX5W4FV27JUPQW7N32QKO&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/468877"
+    },
+    {
+      "infoHash": "3753beaf0d30f9ac0ae4c4dead8f1816c4ddac6d",
+      "title": "[DB] Sousou no Frieren | Frieren: Beyond Journey's End [Dual Audio 10bit BD1080p][HEVC-x265]",
+      "group": "DB",
+      "resolution": 1080,
+      "sizeBytes": 19790079443,
+      "seeders": 119,
+      "leechers": 11,
+      "fileCount": 44,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1721902250,
+      "magnet": "magnet:?xt=urn:btih:G5J35LYNGD42YCXEYTPK3DYYC3CN3LDN&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=http%3A%2F%2Fanidex.moe%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/494892"
+    },
+    {
+      "infoHash": "7207dbb0a03f3210ee6085d6b168f0dc9b12e3a8",
+      "title": "[wham] Sousou no Frieren | Frieren: Beyond Journey's End - S01 (BD 1080p AV1 Opus AAC Dual Audio)",
+      "group": "wham",
+      "resolution": 1080,
+      "sizeBytes": 19442470253,
+      "seeders": 95,
+      "leechers": 5,
+      "fileCount": 32,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1764655861,
+      "magnet": "magnet:?xt=urn:btih:OID5XMFAH4ZBB3TAQXLLC2HQ3SNRFY5I&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/581727"
+    },
+    {
+      "infoHash": "5c286b8b6059fea71be70d9fb79e226510493f08",
+      "title": "[Erai-raws] Sousou no Frieren - 01 ~ 28 [1080p][HEVC][BATCH][Multiple Subtitle] [ENG][POR-BR][SPA-LA][SPA][ARA][FRE][GER][ITA][RUS]",
+      "group": "Erai-raws",
+      "resolution": 1080,
+      "sizeBytes": 19970512623,
+      "seeders": 87,
+      "leechers": 26,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1714140721,
+      "magnet": "magnet:?xt=urn:btih:LQUGXC3ALH7KOG7HBWP3PHRCMUIESPYI&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/475741"
+    },
+    {
+      "infoHash": "c711410c2db62bd7155927296bd206853531e452",
+      "title": "Frieren꞉ Beyond Journey's End [BD][1080p][HEVC 10bit x265][Dual Audio][Tenrai-Sensei]",
+      "group": "Tenrai-Sensei",
+      "resolution": 1080,
+      "sizeBytes": 17470987703,
+      "seeders": 76,
+      "leechers": 19,
+      "fileCount": 46,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1732812723,
+      "magnet": "magnet:?xt=urn:btih:Y4IUCDBNWYV5OFKZE4UWXUQGQU2TDZCS&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/519019"
+    },
+    {
+      "infoHash": "2963e040ac1076c7d3dd097260863e5b2586ad07",
+      "title": "[Anitsu] Sousou no Frieren (Frieren: Beyond Journey's End) S01 [BD 1080p x265 Opus] [DUAL JAP PT-BR] [SUB PT-BR ENG]",
+      "group": "Anitsu",
+      "resolution": 1080,
+      "sizeBytes": 20598046661,
+      "seeders": 71,
+      "leechers": 11,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1722007921,
+      "magnet": "magnet:?xt=urn:btih:FFR6AQFMCB3MPU65BFZGBBR6LMSYNLIH&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/495195"
+    },
+    {
+      "infoHash": "19534e08bca21f1347bbff729c82804ddbb05b57",
+      "title": "[LostYears] Frieren Beyond Journey's End - Season 1 (S01) (WEB 1080p x265 10-bit AAC Opus) [Dual Audio] | (Sousou no Frieren) (Batch)",
+      "group": "LostYears",
+      "resolution": 1080,
+      "sizeBytes": 92615547102,
+      "seeders": 68,
+      "leechers": 12,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1726176361,
+      "magnet": "magnet:?xt=urn:btih:DFJU4CF4UIPRGR5375ZJZAUAJXN3AW2X&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/505303"
+    },
+    {
+      "infoHash": "fb9ce1e001837de7662bd72b3fb79b3fea13d03f",
+      "title": "[LostYears] Frieren: Beyond Journey’s End Season 1 v2 (WEBRip 1080p HEVC 10-bit Opus) [Dual Audio] | Sousou no Frieren",
+      "group": "LostYears",
+      "resolution": 1080,
+      "sizeBytes": 92615547060,
+      "seeders": 61,
+      "leechers": 7,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1753541343,
+      "magnet": "magnet:?xt=urn:btih:7OOODYABQN66OZRL24VT7N43H7VBHUB7&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/559589"
+    },
+    {
+      "infoHash": "08a46adfd0856757006c81b8495788902a04823b",
+      "title": "[9volt] Sousou no Frieren - 01-16 (Cour 1) (WEB 1080p)",
+      "group": "9volt",
+      "resolution": 1080,
+      "sizeBytes": 52495358728,
+      "seeders": 58,
+      "leechers": 11,
+      "fileCount": 16,
+      "coverage": {
+        "kind": "range",
+        "first": 1,
+        "last": 16
+      },
+      "isBest": false,
+      "publishedAt": 1704425761,
+      "magnet": "magnet:?xt=urn:btih:BCSGVX6QQVTVOADMQG4ESV4ISAVAJAR3&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/458201"
+    },
+    {
+      "infoHash": "7c9293aa1fdeba8e509627bbf8ae52a7d8a6922f",
+      "title": "[TACHiKEN] Frieren Beyond Journey`s End (2023) (Season 1) [1080p BD REMUX AVC FLAC] (Sousou no Frieren)",
+      "group": "TACHiKEN",
+      "resolution": 1080,
+      "sizeBytes": 85736558889,
+      "seeders": 55,
+      "leechers": 4,
+      "fileCount": 12,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1711272961,
+      "magnet": "magnet:?xt=urn:btih:PSJJHKQ7325I4UEWE657RLSSU7MKNERP&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=http%3A%2F%2Ft.acg.rip%3A6699%2Fannounce&tr=http%3A%2F%2Ftracker.files.fm%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/468975"
+    },
+    {
+      "infoHash": "c320d934e27010e1adbbf7aa549386721010e4dc",
+      "title": "[Erai-raws] Sousou no Frieren - 01 ~ 28 [1080p][Multiple Subtitle]",
+      "group": "Erai-raws",
+      "resolution": 1080,
+      "sizeBytes": 42358675198,
+      "seeders": 49,
+      "leechers": 28,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1713794522,
+      "magnet": "magnet:?xt=urn:btih:YMQNSNHCOAIODLN366VFJE4GOIIBBZG4&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/475139"
+    },
+    {
+      "infoHash": "b5f614d0031124b9b7530ebb552c691455cfb076",
+      "title": "[Salieri] Frieren - Beyond Journey's End S1 - BD (1080p) (HDR) [Dual Audio]",
+      "group": "Salieri",
+      "resolution": 1080,
+      "sizeBytes": 86915820853,
+      "seeders": 45,
+      "leechers": 35,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1761174062,
+      "magnet": "magnet:?xt=urn:btih:WX3BJUADCESLTN2TB25VKLDJCRK47MDW&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/574854"
+    },
+    {
+      "infoHash": "cf4dfdad6c04edb22fc61ab3013d1ec08cd032e7",
+      "title": "[Cifer] Sousou no Frieren S1 [BD 1080p Opus] | Frieren: Beyond Journey's End S1",
+      "group": "Cifer",
+      "resolution": 1080,
+      "sizeBytes": 36584879694,
+      "seeders": 43,
+      "leechers": 4,
+      "fileCount": 33,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1769892662,
+      "magnet": "magnet:?xt=urn:btih:Z5G73LLMATW3EL6GDKZQCPI6YCGNAMXH&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/591258"
+    },
+    {
+      "infoHash": "96f0955ba19513512d4e8ee270e3ac93f66070db",
+      "title": "[amZero] Sousou no Frieren S1_v2 [1080p AV1 10Bit][WEBRip][Dual Audio][MultiSubs] (Frieren: Beyond Journey's End) (Batch)",
+      "group": "amZero",
+      "resolution": 1080,
+      "sizeBytes": 10510063917,
+      "seeders": 33,
+      "leechers": 5,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1712568233,
+      "magnet": "magnet:?xt=urn:btih:S3YJKW5BSUJVCLKOR3RHBY5MSP3GA4G3&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/471845"
+    },
+    {
+      "infoHash": "55f32b1f5b3d02561e4fd9f9e19eb77da14931bb",
+      "title": "[Anime Time] Frieren: Beyond Journey's End (Season 01) [Dual Audio] [BD] [1080p][HEVC 10bit x265][AAC][Eng Sub] (Sousou no Frieren)",
+      "group": "Anime Time",
+      "resolution": 1080,
+      "sizeBytes": 20387331081,
+      "seeders": 29,
+      "leechers": 7,
+      "fileCount": 33,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1766313972,
+      "magnet": "magnet:?xt=urn:btih:KXZSWH23HUBFMHSP3H46DHVXPWQUSMN3&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/584935"
+    },
+    {
+      "infoHash": "2947e5fc895c11434184a260e2d381658a215c5d",
+      "title": "[Anitsu] Sousou no Frieren (Frieren: Beyond Journey's End) S01 [BD 1080p x265 FLAC] [DUAL JAP PT-BR] [SUB PT-BR ENG]",
+      "group": "Anitsu",
+      "resolution": 1080,
+      "sizeBytes": 69221645403,
+      "seeders": 24,
+      "leechers": 6,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1722348121,
+      "magnet": "magnet:?xt=urn:btih:FFD6L7EJLQIUGQMEUJQOFU4BMWFCCXC5&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/496171"
+    },
+    {
+      "infoHash": "3cd03843036879929142e251c55942f2764d57b0",
+      "title": "[DKB] Sousou no Frieren - (Season 01) [1080p][HEVC x265 10bit][Multi-Subs][Batch]",
+      "group": "DKB",
+      "resolution": 1080,
+      "sizeBytes": 18896906506,
+      "seeders": 18,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1711520162,
+      "magnet": "magnet:?xt=urn:btih:HTIDQQYDNB4ZFEKC4JI4KWKC6J3E2V5Q&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=http%3A%2F%2Fanidex.moe%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce",
+      "link": "https://animetosho.xyz/view/469650"
+    },
+    {
+      "infoHash": "d1c312bf1716c19eedcedff93b2aa6e936f074c4",
+      "title": "Sousou no Frieren S01 [1080p VVC xHE-AAC] (Batch)",
+      "group": null,
+      "resolution": 1080,
+      "sizeBytes": 5685281279,
+      "seeders": 14,
+      "leechers": 4,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1713106922,
+      "magnet": "magnet:?xt=urn:btih:2HBRFPYXC3AZ53OO374TWKVG5E3PA5GE&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/473358"
+    },
+    {
+      "infoHash": "b2c7c52492e418d4c55b8eaa42ced22b1b48eb27",
+      "title": "[Yameii] Frieren - Beyond Journey's End - S01 [English Dub] [CR WEB-DL 1080p]",
+      "group": "Yameii",
+      "resolution": 1080,
+      "sizeBytes": 42040848242,
+      "seeders": 12,
+      "leechers": 7,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1712759161,
+      "magnet": "magnet:?xt=urn:btih:WLD4KJES4QMNJRK3R2VEFTWSFMNUR2ZH&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/472273"
+    },
+    {
+      "infoHash": "1deb1dd172a50228eb8a94a9535c6d092976ee44",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (1080p) [V2] [Batch]",
+      "group": "SubsPlease",
+      "resolution": 1080,
+      "sizeBytes": 42198053683,
+      "seeders": 8,
+      "leechers": 369,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1779903365,
+      "magnet": "magnet:?xt=urn:btih:1deb1dd172a50228eb8a94a9535c6d092976ee44&dn=%5BSubsPlease%5D%20Sousou%20no%20Frieren%20%2801-28%29%20%281080p%29%20%5BV2%5D%20%5BBatch%5D&tr=http%3A//nyaa.tracker.wf%3A7777/announce&tr=udp%3A//open.stealth.si%3A80/announce&tr=udp%3A//tracker.opentrackr.org%3A1337/announce&tr=udp%3A//exodus.desync.com%3A6969/announce&tr=udp%3A//tracker.torrent.eu.org%3A451/announce",
+      "link": "https://animetosho.xyz/view/609815"
+    },
+    {
+      "infoHash": "0f2078ca96feba98b1d897ff6eec9fe90fa32327",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (1080p) [Batch]",
+      "group": "SubsPlease",
+      "resolution": 1080,
+      "sizeBytes": 42198053683,
+      "seeders": 8,
+      "leechers": 818,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1779652156,
+      "magnet": "magnet:?xt=urn:btih:0f2078ca96feba98b1d897ff6eec9fe90fa32327&dn=%5BSubsPlease%5D%20Sousou%20no%20Frieren%20%2801-28%29%20%281080p%29%20%5BBatch%5D&tr=http%3A//nyaa.tracker.wf%3A7777/announce&tr=udp%3A//open.stealth.si%3A80/announce&tr=udp%3A//tracker.opentrackr.org%3A1337/announce&tr=udp%3A//exodus.desync.com%3A6969/announce&tr=udp%3A//tracker.torrent.eu.org%3A451/announce",
+      "link": "https://animetosho.xyz/view/609410"
+    },
+    {
+      "infoHash": "a264dffe68544476bb7d31c966998a74f202c5ca",
+      "title": "[Shrimple] Sousou no Frieren - S1 (1080p BluRay AV1 Opus AAC 2.0 Dual Audio)",
+      "group": "Shrimple",
+      "resolution": 1080,
+      "sizeBytes": 16563983727,
+      "seeders": 7,
+      "leechers": 2,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1769590730,
+      "magnet": "magnet:?xt=urn:btih:UJSN77TIKRCHNO35GHEWNGMKOTZAFROK&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce",
+      "link": "https://animetosho.xyz/view/682450"
+    },
+    {
+      "infoHash": "d07b67a7c70c8bee88b299aa78e14f876ec46fba",
+      "title": "[Polarwindz] Frieren Beyond Journey's End (BD 1080p HEVC 10bit Opus 2.0)",
+      "group": "Polarwindz",
+      "resolution": 1080,
+      "sizeBytes": 87322045537,
+      "seeders": 4,
+      "leechers": 2,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1760281262,
+      "magnet": "magnet:?xt=urn:btih:2B5WPJ6HBSF65CFSTGVHRYKPQ5XMI352&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/573188"
+    },
+    {
+      "infoHash": "05bd3a45348e1338117e89cf1e25fd76b7a30de3",
+      "title": "[BlackRabbit] Frieren - Beyond Journey's End (2023) - S01 v2 [Bluray-1080p][Opus 2.0][Dual Audio][AV1]",
+      "group": "BlackRabbit",
+      "resolution": 1080,
+      "sizeBytes": 8423228390,
+      "seeders": 3,
+      "leechers": 87,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1789156573,
+      "magnet": "magnet:?xt=urn:btih:05bd3a45348e1338117e89cf1e25fd76b7a30de3&dn=%5BBlackRabbit%5D%20Frieren%20-%20Beyond%20Journey%27s%20End%20%282023%29%20-%20S01%20v2%20%5BBluray-1080p%5D%5BOpus%202.0%5D%5BDual%20Audio%5D%5BAV1%5D%20%7BTags%3AL2%3BV12%3BC3%3BA%3Dja%2Cen%3BF%3Den%3B%7D&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=udp%3A%2F%2Ftr.anitracker.org%3A7777%2Fannounce&tr=http%3A%2F%2Ftr.anitracker.org%3A1337%2Fannounce&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/687355"
+    },
+    {
+      "infoHash": "0fc9355d93ee77d9b75f122d18d6bdbad5f34968",
+      "title": "[BlackRabbit] Frieren - Beyond Journey's End (2023) - S01 [Bluray-1080p][Opus 2.0][Dual Audio][AV1]",
+      "group": "BlackRabbit",
+      "resolution": 1080,
+      "sizeBytes": 6769390088,
+      "seeders": 1,
+      "leechers": 4,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1783076210,
+      "magnet": "magnet:?xt=urn:btih:0fc9355d93ee77d9b75f122d18d6bdbad5f34968&dn=%5BBlackRabbit%5D%20Frieren%20-%20Beyond%20Journey's%20End%20(2023)%20-%20S01%20%5BBluray-1080p%5D%5BOpus%202.0%5D%5BDual%20Audio%5D%5BAV1%5D%20%7BTags%3AL2%3BV12%3BC3%3BA%3Dja%2Cen%3BF%3Den%3B%7D&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/619034"
+    },
+    {
+      "infoHash": "70009a9066ae2fc400cafc4aa7001250eba49732",
+      "title": "[AUTISM] Sousou no Frieren - S01 (BD Remux 1080p AVC FLAC｜MULTI AUDIO SUB)",
+      "group": "AUTISM",
+      "resolution": 1080,
+      "sizeBytes": 229079662079,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1772887060,
+      "magnet": "magnet:?xt=urn:btih:OAAJVEDGVYX4IAGK7RFKOAASKDV2JFZS&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce",
+      "link": "https://animetosho.xyz/view/682880"
+    },
+    {
+      "infoHash": "80c5ddc9030b00111dd1443cb1bcb509b958d08a",
+      "title": "[AUTISM] Sousou no Frieren - S01 (BD Remux 1080p AVC FLAC｜MULTI AUDIO SUB)",
+      "group": "AUTISM",
+      "resolution": 1080,
+      "sizeBytes": 224283363585,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1769882161,
+      "magnet": "magnet:?xt=urn:btih:QDC53SIDBMABCHORIQ6LDPFVBG4VRUEK&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce",
+      "link": "https://animetosho.xyz/view/682478"
+    },
+    {
+      "infoHash": "48c84d38aa3f27de6ed17cce99bda154f1a20fcd",
+      "title": "Frieren.Beyond.Journey.s.End.S01.MULTi.1080p.CR.WEB.x264-TenmaLand",
+      "group": "TenmaLand",
+      "resolution": 1080,
+      "sizeBytes": 51764656409,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 56,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1768524375,
+      "magnet": "magnet:?xt=urn:btih:JDEE2OFKH4T543WRPTHJTPNBKTY2ED6N&tr=https%3A%2F%2Ftracker.nekobt.to%2Fapi%2Ftracker%2Fpublic%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/682297"
+    },
+    {
+      "infoHash": "ab95fa1e95f191a0f485396bdf464181782cb3e0",
+      "title": "[Beatrice-Raws] Sousou no Frieren [BDRip 1920x1080 HEVC TrueHD]",
+      "group": "Beatrice-Raws",
+      "resolution": 1080,
+      "sizeBytes": 80707605898,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 589,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1722452161,
+      "magnet": "magnet:?xt=urn:btih:VOK7UHUV6GI2B5EFHFV56RSBQF4CZM7A&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=https%3A%2F%2Fbt.beatrice-raws.org%2Fannounce&tr=https%3A%2F%2Fbt6.beatrice-raws.org%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
+      "link": "https://animetosho.xyz/view/496366"
+    },
+    {
+      "infoHash": "6baa10cb87d5c4bb4514a78893521b8d67a6adaa",
+      "title": "[Beatrice-Raws] Sousou no Frieren [BDRip 1920x1080 HEVC TrueHD]",
+      "group": "Beatrice-Raws",
+      "resolution": 1080,
+      "sizeBytes": 79546779105,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 589,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1722297768,
+      "magnet": "magnet:?xt=urn:btih:NOVBBS4H2XCLWRIUU6EJGUQ3RVT2NLNK&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=https%3A%2F%2Fbt.beatrice-raws.org%2Fannounce&tr=https%3A%2F%2Fbt6.beatrice-raws.org%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
+      "link": "https://animetosho.xyz/view/496131"
+    },
+    {
+      "infoHash": "0264bdfb1282a9cef20a32f4d0405b8773210ada",
+      "title": "[Judas] Sousou no Frieren (Frieren Beyond Journey`s End) (Season 01) [1080p][HEVC x265 10bit][Dual-Audio][Multi-Subs] (Batch)",
+      "group": "Judas",
+      "resolution": 1080,
+      "sizeBytes": 12760299738,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1713039122,
+      "magnet": "magnet:?xt=urn:btih:AJSL36YSQKU454QKGL2NAQC3Q5ZSCCW2&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=http%3A%2F%2Fanidex.moe%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/473176"
+    },
+    {
+      "infoHash": "133a081ae76004e1f01e0e5d203be3b2e151e172",
+      "title": "[DB] Sousou no Frieren | Frieren: Beyond Journey's End [Dual Audio 10bit 1080p][HEVC-x265]",
+      "group": "DB",
+      "resolution": 1080,
+      "sizeBytes": 15885653064,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1712510162,
+      "magnet": "magnet:?xt=urn:btih:CM5AQGXHMACOD4A6BZOSAO7DWLQVDYLS&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=http%3A%2F%2Fanidex.moe%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/471841"
+    },
+    {
+      "infoHash": "ce865493081f3ee44709ed7dea116091b35c6ca8",
+      "title": "[Yameii] Frieren - Beyond Journey's End - S01 [English Dub] [CR WEB-DL 720p] - Unofficial Batch",
+      "group": "Yameii",
+      "resolution": 720,
+      "sizeBytes": 21348846348,
+      "seeders": 25,
+      "leechers": 5,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1743784261,
+      "magnet": "magnet:?xt=urn:btih:Z2DFJEYID47OIRYJ5V66UELASGZVY3FI&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/540450"
+    },
+    {
+      "infoHash": "5ddc04b95f6bcca89926d137d4640be260bf12a9",
+      "title": "[Erai-raws] Sousou no Frieren - 01 ~ 28 [720p][Multiple Subtitle]",
+      "group": "Erai-raws",
+      "resolution": 720,
+      "sizeBytes": 21680560792,
+      "seeders": 17,
+      "leechers": 9,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1713794641,
+      "magnet": "magnet:?xt=urn:btih:LXOAJOK7NPGKRGJG2E35IZAL4JQL6EVJ&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/475145"
+    },
+    {
+      "infoHash": "9fc9c5162d3882f2d42c20a4dc9e5bbffa341a2d",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (720p) [V2] [Batch]",
+      "group": "SubsPlease",
+      "resolution": 720,
+      "sizeBytes": 21582210662,
+      "seeders": 12,
+      "leechers": 95,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1779903338,
+      "magnet": "magnet:?xt=urn:btih:9fc9c5162d3882f2d42c20a4dc9e5bbffa341a2d&dn=%5BSubsPlease%5D%20Sousou%20no%20Frieren%20%2801-28%29%20%28720p%29%20%5BV2%5D%20%5BBatch%5D&tr=http%3A//nyaa.tracker.wf%3A7777/announce&tr=udp%3A//open.stealth.si%3A80/announce&tr=udp%3A//tracker.opentrackr.org%3A1337/announce&tr=udp%3A//exodus.desync.com%3A6969/announce&tr=udp%3A//tracker.torrent.eu.org%3A451/announce",
+      "link": "https://animetosho.xyz/view/609816"
+    },
+    {
+      "infoHash": "a47b68971cdb82a4ef05ca239317cdef99bd2ca0",
+      "title": "Frieren: Beyond Journey's End (Sousou no Frieren) - S01 (YT WEB-DL 720p VP9 Opus) (Muse/Telesuccess Filipino English dub)",
+      "group": null,
+      "resolution": 720,
+      "sizeBytes": 3368471939,
+      "seeders": 11,
+      "leechers": 143,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1788179545,
+      "magnet": "magnet:?xt=urn:btih:a47b68971cdb82a4ef05ca239317cdef99bd2ca0&dn=Frieren%3A%20Beyond%20Journey%27s%20End%20%28Sousou%20no%20Frieren%29%20-%20S01%20%28YT%20WEB-DL%20720p%20VP9%20Opus%29%20%28Muse%2FTelesuccess%20Filipino%20English%20dub%29&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftr.anitracker.org%3A7777%2Fannounce&tr=http%3A%2F%2Ftr.anitracker.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/684278"
+    },
+    {
+      "infoHash": "a8be8e5261838fc308d8d412f0a6390180cbe171",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (720p) [Batch]",
+      "group": "SubsPlease",
+      "resolution": 720,
+      "sizeBytes": 21582210662,
+      "seeders": 4,
+      "leechers": 222,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1779652073,
+      "magnet": "magnet:?xt=urn:btih:a8be8e5261838fc308d8d412f0a6390180cbe171&dn=%5BSubsPlease%5D%20Sousou%20no%20Frieren%20%2801-28%29%20%28720p%29%20%5BBatch%5D&tr=http%3A//nyaa.tracker.wf%3A7777/announce&tr=udp%3A//open.stealth.si%3A80/announce&tr=udp%3A//tracker.opentrackr.org%3A1337/announce&tr=udp%3A//exodus.desync.com%3A6969/announce&tr=udp%3A//tracker.torrent.eu.org%3A451/announce",
+      "link": "https://animetosho.xyz/view/609411"
+    },
+    {
+      "infoHash": "89b8031a146078c346986ff9d48723481c5b31b8",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (480p) [V2] [Batch]",
+      "group": "SubsPlease",
+      "resolution": 480,
+      "sizeBytes": 11166914969,
+      "seeders": 11,
+      "leechers": 34,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1779903314,
+      "magnet": "magnet:?xt=urn:btih:89b8031a146078c346986ff9d48723481c5b31b8&dn=%5BSubsPlease%5D%20Sousou%20no%20Frieren%20%2801-28%29%20%28480p%29%20%5BV2%5D%20%5BBatch%5D&tr=http%3A//nyaa.tracker.wf%3A7777/announce&tr=udp%3A//open.stealth.si%3A80/announce&tr=udp%3A//tracker.opentrackr.org%3A1337/announce&tr=udp%3A//exodus.desync.com%3A6969/announce&tr=udp%3A//tracker.torrent.eu.org%3A451/announce",
+      "link": "https://animetosho.xyz/view/609817"
+    },
+    {
+      "infoHash": "7f02a590a5417f04120505172a8840a1316d878c",
+      "title": "[Erai-raws] Sousou no Frieren - 01 ~ 28 [480p][Multiple Subtitle]",
+      "group": "Erai-raws",
+      "resolution": 480,
+      "sizeBytes": 11355773498,
+      "seeders": 8,
+      "leechers": 9,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1713794642,
+      "magnet": "magnet:?xt=urn:btih:P4BKLEFFIF7QIEQFAULSVCCAUEYW3B4M&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
+      "link": "https://animetosho.xyz/view/475146"
+    },
+    {
+      "infoHash": "60aed92dc336e98452b8403c2a2fe3491b1fde97",
+      "title": "[SubsPlease] Sousou no Frieren (01-28) (480p) [Batch]",
+      "group": "SubsPlease",
+      "resolution": 480,
+      "sizeBytes": 11166914969,
+      "seeders": 2,
+      "leechers": 3,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1779652002,
+      "magnet": "magnet:?xt=urn:btih:60aed92dc336e98452b8403c2a2fe3491b1fde97&dn=%5BSubsPlease%5D%20Sousou%20no%20Frieren%20%2801-28%29%20%28480p%29%20%5BBatch%5D&tr=http%3A//nyaa.tracker.wf%3A7777/announce&tr=udp%3A//open.stealth.si%3A80/announce&tr=udp%3A//tracker.opentrackr.org%3A1337/announce&tr=udp%3A//exodus.desync.com%3A6969/announce&tr=udp%3A//tracker.torrent.eu.org%3A451/announce",
+      "link": "https://animetosho.xyz/view/609405"
+    },
+    {
+      "infoHash": "e029996224c8bacd252deab76d98752a4cb896ea",
+      "title": "[SubsPlease] Sousou no Frieren",
+      "group": "SubsPlease",
+      "resolution": null,
+      "sizeBytes": 10850736685,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 28,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1711184700,
+      "magnet": "magnet:?xt=urn:btih:4AUZSYREZC5M2JJN5K3W3GDVFJGLRFXK&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=http%3A%2F%2Fanidex.moe%3A6969%2Fannounce&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce",
+      "link": "https://animetosho.xyz/view/680078"
+    },
+    {
+      "infoHash": "92a16de384aa68703587dbc38d1a416e392d9326",
+      "title": "Sousou no Frieren [BD.REMUX]",
+      "group": null,
+      "resolution": null,
+      "sizeBytes": 29458832296,
+      "seeders": 0,
+      "leechers": 0,
+      "fileCount": 4,
+      "coverage": {
+        "kind": "show"
+      },
+      "isBest": false,
+      "publishedAt": 1706653200,
+      "magnet": "magnet:?xt=urn:btih:SKQW3Y4EVJUHANMH3PBY2GSBNY4S3EZG&tr=http%3A%2F%2Ftracker.anirena.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.anirena.com%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce",
+      "link": "https://animetosho.xyz/view/680007"
+    }
+  ],
+  "chosen": "143ed15e5e3df072ae91adaeb149973a887590dd",
+  "pickedByUser": false
+}

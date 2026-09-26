@@ -2,7 +2,7 @@
 
 A calm desktop app for watching anime on macOS and Windows. Lokii finds a show on AniList, picks a good Release, and streams it through TorBox or a local torrent. All your data stays on your device.
 
-> Status: early development (milestone M1: app shell and catalog). Browsing works; playback does not yet.
+> Status: early development (milestone M2: finding Releases). Browsing and Release lookup work; playback does not yet.
 
 ## Features (v1 plan)
 
@@ -43,7 +43,13 @@ The UI can run in a normal browser with saved AniList data, without Tauri:
 pnpm preview:ui   # http://localhost:1430
 ```
 
-Refresh the saved data with `cd src-tauri && cargo test dump_preview_fixtures -- --ignored`.
+Refresh the saved data with `cd src-tauri && cargo test dump_preview_fixtures -- --ignored`
+(catalog) and `cargo test live_episode_releases -- --ignored --nocapture` (Releases).
+
+### ID mapping
+
+The app ships an AniList → AniDB/MAL ID table and refreshes it weekly at runtime.
+Rebuild the shipped copy with `node scripts/update-anime-ids.mjs`.
 
 ### Tests
 

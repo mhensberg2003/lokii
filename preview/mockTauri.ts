@@ -1,6 +1,7 @@
 // Browser preview: replaces the Tauri bridge with saved AniList responses, so the UI can be
 // checked in a normal browser (`pnpm preview:ui`). Refresh the data with:
 //   cd src-tauri && cargo test dump_preview_fixtures -- --ignored
+//   cd src-tauri && cargo test live_episode_releases -- --ignored
 
 const fixtures = import.meta.glob<unknown>("./fixtures/*.json", { eager: true, import: "default" });
 
@@ -30,9 +31,32 @@ const handlers: Record<string, (args: Args) => unknown> = {
     return first ? fixtures[first] : Promise.reject("No show fixtures");
   },
   catalog_search: () => fixture("search"),
+  index_releases: (args) => episodeReleases(Number(args?.showId), Number(args?.episode)),
+  index_pick: (args) => {
+    const showId = Number(args?.showId);
+    const hash = (args?.infoHash as string | null) ?? null;
+    if (hash === null) picks.delete(showId);
+    else picks.set(showId, hash);
+    return episodeReleases(showId, Number(args?.episode));
+  },
   "plugin:event|listen": () => 0,
   "plugin:event|unlisten": () => undefined,
 };
+
+type PreviewReleases = { releases: { infoHash: string }[]; chosen: string | null; pickedByUser: boolean };
+
+/** Picks made in this preview session, by Show. */
+const picks = new Map<number, string>();
+
+/** Serves the saved Releases of a Show for any Episode, with the preview pick applied. */
+function episodeReleases(showId: number, episode: number): unknown {
+  const key = Object.keys(fixtures).find((k) => k.startsWith(`./fixtures/releases-${showId}-`));
+  if (!key) return { showId, episode, releases: [], chosen: null, pickedByUser: false };
+  const saved = fixtures[key] as PreviewReleases;
+  const pick = picks.get(showId);
+  const picked = pick !== undefined && saved.releases.some((r) => r.infoHash === pick);
+  return { ...saved, showId, episode, chosen: picked ? pick : saved.chosen, pickedByUser: picked };
+}
 
 let callbackId = 0;
 

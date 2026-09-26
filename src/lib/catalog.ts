@@ -58,6 +58,8 @@ export type ShowDetails = ShowDetailsLite & {
   idMal: number | null;
   titleRomaji: string | null;
   titleNative: string | null;
+  /** Other names AniList knows the Show by. */
+  synonyms: string[];
   status: string | null;
   /** Minutes per Episode. */
   duration: number | null;
