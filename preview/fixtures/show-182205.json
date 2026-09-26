@@ -1,0 +1,217 @@
+{
+  "id": 182205,
+  "title": "That Time I Got Reincarnated as a Slime Season 4",
+  "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182205-q2AeO1owuQbO.jpg",
+  "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182205-fRUoKv6f2JAq.jpg",
+  "color": "#1abbd6",
+  "format": "TV",
+  "episodes": 24,
+  "season": "SPRING",
+  "seasonYear": 2026,
+  "averageScore": 83,
+  "genres": [
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Fantasy"
+  ],
+  "description": "Demon Lord Rimuru's dream of creating an alliance between humans and monsters takes a step closer to being realized. As Tempest continues to prosper, Granville Rozzo and his granddaughter, Maribel Rozzo, clash with Demon Lord Rimuru over their plan to protect mankind by ruling over them. Meanwhile, in El Dorado, Demon Lord Leon works toward goals of his own. The awakening of a new Hero draws near!",
+  "idMal": 59970,
+  "titleRomaji": "Tensei Shitara Slime Datta Ken 4th Season Part 1 & 2",
+  "titleNative": "転生したらスライムだった件 第4期 第1&2クール",
+  "status": "FINISHED",
+  "duration": 24,
+  "studios": [
+    "8-bit"
+  ],
+  "nextAiring": null,
+  "franchise": [
+    {
+      "id": 108511,
+      "title": "That Time I Got Reincarnated as a Slime Season 2",
+      "format": "TV",
+      "season": "WINTER",
+      "seasonYear": 2021,
+      "episodes": 12
+    },
+    {
+      "id": 116742,
+      "title": "That Time I Got Reincarnated as a Slime Season 2 Part 2",
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2021,
+      "episodes": 12
+    },
+    {
+      "id": 156822,
+      "title": "That Time I Got Reincarnated as a Slime Season 3",
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2024,
+      "episodes": 24
+    },
+    {
+      "id": 182205,
+      "title": "That Time I Got Reincarnated as a Slime Season 4",
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2026,
+      "episodes": 24
+    },
+    {
+      "id": 217331,
+      "title": "Tensei Shitara Slime Datta Ken 4th Season Part 3",
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2027,
+      "episodes": null
+    }
+  ],
+  "episodeList": [
+    {
+      "number": 1,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 2,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 3,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 4,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 5,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 6,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 7,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 8,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 9,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 10,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 11,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 12,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 13,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 14,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 15,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 16,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 17,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 18,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 19,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 20,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 21,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 22,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 23,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    },
+    {
+      "number": 24,
+      "title": null,
+      "thumbnailUrl": null,
+      "airingAt": null
+    }
+  ],
+  "related": []
+}

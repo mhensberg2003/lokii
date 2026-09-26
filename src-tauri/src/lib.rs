@@ -1,3 +1,4 @@
+mod catalog;
 mod player;
 mod torrent;
 
@@ -7,6 +8,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .manage(player::Player::default())
         .manage(torrent::TorrentEngine::default())
+        .manage(catalog::CatalogState::default())
         .setup(|app| {
             player::setup(app)?;
             torrent::spike_probe(app.handle());
@@ -21,6 +23,10 @@ pub fn run() {
             player::player_cycle,
             player::player_stop,
             torrent::torrent_stream,
+            catalog::catalog_home,
+            catalog::catalog_browse,
+            catalog::catalog_show,
+            catalog::catalog_search,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

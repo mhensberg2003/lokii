@@ -1,0 +1,111 @@
+.page {
+  padding-bottom: var(--space-16);
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: clamp(440px, 64vh, 680px);
+  overflow: hidden;
+}
+
+.heroArt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  animation: settle 1200ms var(--ease-out) both;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* Left shade keeps text readable; bottom shade melts the art into the page. */
+.heroShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(15, 16, 21, 0.92) 0%, rgba(15, 16, 21, 0.55) 38%, rgba(15, 16, 21, 0) 70%),
+    linear-gradient(0deg, var(--bg) 0%, rgba(15, 16, 21, 0.6) 22%, rgba(15, 16, 21, 0) 55%),
+    linear-gradient(180deg, rgba(15, 16, 21, 0.5) 0%, rgba(15, 16, 21, 0) 18%);
+}
+
+.heroContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 620px;
+  padding: 0 var(--gutter) var(--space-16);
+}
+
+.heroMeta {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.score {
+  color: var(--text);
+}
+
+.heroTitle {
+  font-size: clamp(var(--text-3xl), 4.4vw, var(--text-4xl));
+  max-width: 16ch;
+  letter-spacing: -0.015em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Long titles step down a size so the hero keeps its balance. */
+.heroTitle[data-long="true"] {
+  font-size: clamp(var(--text-2xl), 3.2vw, var(--text-3xl));
+  max-width: 22ch;
+}
+
+.heroDescription {
+  max-width: 52ch;
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-line;
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.heroSkeleton {
+  height: clamp(440px, 64vh, 680px);
+  background: linear-gradient(180deg, var(--surface-1), var(--bg));
+}
+
+.rows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  margin-top: calc(-1 * var(--space-8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroArt {
+    animation: none;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": 300,
+  "idMal": 54321,
+  "title": { "romaji": "Airing Show JP", "english": "Airing Show EN", "native": "放送中の番組" },
+  "description": "An airing show.",
+  "coverImage": {
+    "extraLarge": "https://example.test/airing-extra-large.jpg",
+    "large": "https://example.test/airing-large.jpg",
+    "color": "#336699"
+  },
+  "bannerImage": null,
+  "format": "TV",
+  "status": "RELEASING",
+  "episodes": null,
+  "duration": 24,
+  "season": "FALL",
+  "seasonYear": 2026,
+  "averageScore": 81,
+  "genres": ["Action"],
+  "isAdult": false,
+  "type": "ANIME",
+  "studios": { "nodes": [{ "name": "Studio B" }] },
+  "nextAiringEpisode": { "episode": 6, "airingAt": 1800000000 },
+  "streamingEpisodes": [
+    { "title": "Episode 1 - First", "thumbnail": "https://example.test/a1.jpg" },
+    { "title": "Episode 2 - Second", "thumbnail": "https://example.test/a2.jpg" }
+  ],
+  "relations": { "edges": [] }
+}
