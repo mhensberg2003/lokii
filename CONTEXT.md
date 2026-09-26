@@ -7,7 +7,7 @@ A desktop app (macOS, Windows) that finds anime, streams episodes through TorBox
 ### Catalog
 
 **Show**:
-One AniList media entry. Each season or cour is its own Show, linked to the others as sequel or prequel.
+One AniList media entry, or one One Pace Arc. Each season or cour is its own Show, linked to the others as sequel or prequel.
 _Avoid_: Anime, series, title
 
 **Episode**:
@@ -21,10 +21,17 @@ A Show that AniList links to another Show (sequel, prequel, side story).
 The chain of Shows linked by sequel and prequel links. The user sees each Show in a Franchise as a season on one page.
 _Avoid_: Series, collection
 
+**One Pace**:
+A fan recut of the One Piece anime that follows the manga. It is not on AniList: Lokii builds it from the One Pace Episode Guide and shows it as one Franchise of Arcs.
+
+**Arc**:
+One story arc of One Pace ("Wano"). Each Arc is one Show; its Episodes are the One Pace Episodes of that arc.
+_Avoid_: Saga (a group of Arcs)
+
 ### Finding video
 
 **Index**:
-A searchable list of Releases. AnimeTosho is the only Index in v1.
+A searchable list of Releases. AnimeTosho is the Index for AniList Shows; Nyaa is the Index for One Pace.
 _Avoid_: Provider, tracker, source
 
 **Release**:
@@ -35,7 +42,7 @@ _Avoid_: Torrent, upload, file
 A Release that contains many Episodes, often a full Show.
 
 **Best Release**:
-The Release that SeaDex recommends for a Show.
+The Release that SeaDex recommends for a Show. For One Pace: the newest Release of the Episode Guide's current file, a single-Episode Release before a Batch.
 _Avoid_: Recommended torrent
 
 **Chosen Release**:

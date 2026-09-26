@@ -9,12 +9,13 @@ const SEPARATORS = /^[\s:\-–—|]+/;
  * Uses each Show's own title minus the shared Franchise name ("Season 3 Part 2",
  * "Final Season"), so labels match what fans call them. The first Show is "Season 1".
  * Falls back to "Season N" when a title does not start with the Franchise name.
+ * A label from the catalog (One Pace Arc names) wins over all of this.
  */
 export function franchiseSeasons(franchise: FranchiseEntry[]): SeasonTab[] {
   const root = franchise[0]?.title.trim() ?? "";
   return franchise.map((entry, index) => ({
     id: entry.id,
-    label: index === 0 ? "Season 1" : seasonName(entry.title, root) ?? `Season ${index + 1}`,
+    label: entry.label ?? (index === 0 ? "Season 1" : seasonName(entry.title, root) ?? `Season ${index + 1}`),
     detail: entry.seasonYear ? String(entry.seasonYear) : null,
   }));
 }

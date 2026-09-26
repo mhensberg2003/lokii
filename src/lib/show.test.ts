@@ -10,6 +10,7 @@ const entry = (id: number, seasonYear: number | null, title = `Show ${id}`): Fra
   season: null,
   seasonYear,
   episodes: 12,
+  label: null,
 });
 
 describe("franchiseSeasons", () => {
@@ -21,6 +22,11 @@ describe("franchiseSeasons", () => {
       entry(4, 2021, "Attack on Titan: Final Season"),
     ];
     expect(franchiseSeasons(aot).map((s) => s.label)).toEqual(["Season 1", "Season 2", "Season 3 Part 2", "Final Season"]);
+  });
+
+  it("uses the catalog's label when it has one", () => {
+    const arcs = [{ ...entry(1, null, "One Pace: Romance Dawn"), label: "Romance Dawn" }, { ...entry(2, null, "One Pace: Orange Town"), label: "Orange Town" }];
+    expect(franchiseSeasons(arcs).map((s) => s.label)).toEqual(["Romance Dawn", "Orange Town"]);
   });
 
   it("numbers seasons when titles do not share the Franchise name", () => {

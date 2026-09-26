@@ -16,6 +16,7 @@ use tauri::{AppHandle, State};
 
 use crate::catalog::{self, model::ShowDetails, CatalogState};
 use crate::ids;
+use crate::onepace;
 use crate::store::{Store, StoreState};
 use animetosho::{AnimeTosho, ToshoItem};
 use choose::Pick;
@@ -120,9 +121,12 @@ pub async fn index_pick(
 }
 
 async fn episode_releases(deps: &Deps<'_>, show_id: i64, episode: i64) -> Result<EpisodeReleases, String> {
-    let show = catalog::show(deps.catalog, deps.store, show_id).await?;
-    let mut releases: Vec<Release> =
-        show_releases(deps, &show).await?.into_iter().filter(|r| r.coverage.contains(episode)).collect();
+    let mut releases: Vec<Release> = if onepace::is_arc(show_id) {
+        deps.catalog.onepace.releases(deps.store, show_id, episode).await?
+    } else {
+        let show = catalog::show(deps.catalog, deps.store, show_id).await?;
+        show_releases(deps, &show).await?.into_iter().filter(|r| r.coverage.contains(episode)).collect()
+    };
     choose::sort(&mut releases);
     let pick = picks::load(deps.store, show_id).await?;
     let (chosen, picked_by_user) = choose::choose(&releases, pick.as_ref());
@@ -183,6 +187,7 @@ fn to_release(ctx: &ShowContext, item: &ToshoItem, best: &[String]) -> Option<Re
         published_at: item.timestamp.unwrap_or(0),
         magnet,
         link: item.link.clone().unwrap_or_default(),
+        file_path: None,
     })
 }
 

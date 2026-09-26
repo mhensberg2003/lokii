@@ -46,6 +46,8 @@ export type FranchiseEntry = {
   season: Season | null;
   seasonYear: number | null;
   episodes: number | null;
+  /** The season strip label, when the catalog knows it (One Pace Arc names). */
+  label: string | null;
 };
 
 export type EpisodeInfo = {

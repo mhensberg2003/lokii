@@ -21,6 +21,7 @@ use episodes::EpisodeClient;
 use model::{BrowseFeed, HomeFeed, NextAiring, ShowCard, ShowDetails, ShowRow};
 use raw::{RawFranchiseNode, RawMedia, RawStudioConnection};
 
+use crate::onepace::{self, OnePace};
 use crate::store::{Store, StoreState};
 
 /// Genres the Browse page supports. Mirrors `BROWSE_GENRES` in `src/lib/catalog.ts`.
@@ -47,6 +48,8 @@ pub const BROWSE_GENRES: &[&str] = &[
 pub struct CatalogState {
     client: AniListClient,
     episodes: EpisodeClient,
+    /// One Pace Arcs, the Shows that do not come from AniList.
+    pub onepace: OnePace,
 }
 
 #[tauri::command]
@@ -134,6 +137,9 @@ async fn show_with(
     id: i64,
     freshness: Freshness,
 ) -> Result<ShowDetails, String> {
+    if onepace::is_arc(id) {
+        return catalog.onepace.show(cache, id).await;
+    }
     let client = &catalog.client;
     let media = client.fetch_show(cache, id, freshness).await?;
 
@@ -182,7 +188,14 @@ pub async fn catalog_search(
         return Ok(Vec::new());
     }
     let cache = store.get(&app).await?;
-    search(&state.client, cache, trimmed).await
+    let arcs = state.onepace.search(cache, trimmed).await?;
+    let shows = match search(&state.client, cache, trimmed).await {
+        Ok(shows) => shows,
+        Err(_) if !arcs.is_empty() => Vec::new(),
+        Err(err) => return Err(err),
+    };
+    // The Arcs lead when the query names One Pace, else AniList's Shows do.
+    Ok(if onepace::names_one_pace(trimmed) { [arcs, shows].concat() } else { [shows, arcs].concat() })
 }
 
 async fn search(client: &AniListClient, cache: &Store, query: &str) -> Result<Vec<ShowCard>, String> {

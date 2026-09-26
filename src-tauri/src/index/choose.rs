@@ -5,7 +5,8 @@ use std::cmp::Reverse;
 use crate::index::model::Release;
 
 /// The user's pick for a Show. When the picked Release does not contain an Episode,
-/// the app follows the same group and resolution ("SubsPlease 1080p") to that Episode.
+/// the app follows the same group and resolution ("SubsPlease 1080p") to that Episode,
+/// the Best Release of that group first.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Pick {
     pub info_hash: String,
@@ -43,7 +44,7 @@ fn follow_pick<'a>(releases: &'a [Release], pick: &Pick) -> Option<&'a Release> 
         .filter(|r| {
             r.group.as_deref().is_some_and(|g| g.eq_ignore_ascii_case(group)) && r.resolution == pick.resolution
         })
-        .max_by_key(|r| r.seeders)
+        .max_by_key(|r| (r.is_best, r.seeders))
 }
 
 /// The Best Release, else the 1080p Release with the most seeders, else the Release
@@ -78,6 +79,7 @@ mod tests {
             published_at: 0,
             magnet: String::new(),
             link: String::new(),
+            file_path: None,
         }
     }
 
@@ -125,6 +127,13 @@ mod tests {
 
         let gone = Pick { info_hash: "zz".into(), group: Some("Nobody".into()), resolution: Some(1080) };
         assert_eq!(choose(&list, Some(&gone)), (Some("b".into()), false));
+    }
+
+    #[test]
+    fn a_followed_pick_prefers_the_best_release_of_its_group() {
+        let list = [release("batch", "One Pace", 1080, 90, false), release("single", "One Pace", 1080, 10, true)];
+        let pick = Pick { info_hash: "other-episode".into(), group: Some("One Pace".into()), resolution: Some(1080) };
+        assert_eq!(choose(&list, Some(&pick)), (Some("single".into()), true));
     }
 
     #[test]

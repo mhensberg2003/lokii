@@ -67,6 +67,8 @@ pub struct FranchiseEntry {
     pub season: Option<Season>,
     pub season_year: Option<i32>,
     pub episodes: Option<i64>,
+    /// The season strip label, when the catalog knows it (One Pace Arc names).
+    pub label: Option<String>,
 }
 
 #[derive(Serialize, Debug, Clone)]
@@ -152,6 +154,7 @@ pub fn to_franchise_entry(node: &RawFranchiseNode) -> FranchiseEntry {
         season: node.season,
         season_year: node.season_year,
         episodes: node.episodes,
+        label: None,
     }
 }
 
