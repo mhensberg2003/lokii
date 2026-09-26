@@ -9,7 +9,9 @@ import { Browse } from "./routes/Browse";
 import { Show } from "./routes/Show";
 import { Search } from "./routes/Search";
 import { Player } from "./routes/Player";
-import { Downloads, Library, Settings } from "./routes/Placeholders";
+import { Library } from "./routes/Placeholders";
+import { Downloads } from "./routes/Downloads";
+import { Settings } from "./routes/Settings";
 import "./styles/base.css";
 
 // Browser preview only: swaps the Tauri bridge for saved data (see preview/mockTauri.ts).
@@ -46,7 +48,7 @@ const router = createHashRouter([
     ],
   },
   // The player has no shell: the transparent page shows mpv's video layer.
-  { path: "player", Component: Player },
+  { path: "watch/:showId/:episode", Component: Player },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

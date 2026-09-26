@@ -3,6 +3,9 @@
 //   cd src-tauri && cargo test dump_preview_fixtures -- --ignored
 //   cd src-tauri && cargo test live_episode_releases -- --ignored
 
+import { settingsHandlers } from "./mockSettings";
+import { streamHandlers } from "./mockStreams";
+
 const fixtures = import.meta.glob<unknown>("./fixtures/*.json", { eager: true, import: "default" });
 
 function fixture(name: string): unknown {
@@ -18,6 +21,8 @@ function hasFixture(name: string): boolean {
 type Args = Record<string, unknown> | undefined;
 
 const handlers: Record<string, (args: Args) => unknown> = {
+  ...settingsHandlers,
+  ...streamHandlers(fixtures),
   catalog_home: () => fixture("home"),
   catalog_browse: (args) => {
     const genre = String(args?.genre);

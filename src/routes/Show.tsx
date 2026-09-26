@@ -53,8 +53,7 @@ function ShowView({ show }: { show: ShowDetails }) {
     return list;
   }, [show.related.length]);
 
-  // The spike player (M0) stands in until Streams exist (M3).
-  const play = () => navigate("/player");
+  const play = (episode: number) => navigate(`/watch/${show.id}/${episode}`);
 
   return (
     <div className={styles.page}>
@@ -66,7 +65,7 @@ function ShowView({ show }: { show: ShowDetails }) {
           <MetaLine show={show} />
           <p className={styles.description}>{show.description}</p>
           <div className={styles.actions}>
-            <Button variant="primary" size="lg" icon={<Play fill="currentColor" />} onClick={play} disabled={!firstEpisode}>
+            <Button variant="primary" size="lg" icon={<Play fill="currentColor" />} onClick={() => firstEpisode && play(firstEpisode.number)} disabled={!firstEpisode}>
               {firstEpisode ? `Play episode ${firstEpisode.number}` : "Not aired yet"}
             </Button>
           </div>
@@ -135,7 +134,7 @@ function MetaLine({ show }: { show: ShowDetails }) {
   );
 }
 
-function EpisodeGrid({ show, onPlay }: { show: ShowDetails; onPlay: () => void }) {
+function EpisodeGrid({ show, onPlay }: { show: ShowDetails; onPlay: (episode: number) => void }) {
   const ranges = episodeRanges(show.episodeList.length);
   const [rangeId, setRangeId] = useState(ranges[0]?.id ?? "all");
   const range = ranges.find((r) => r.id === rangeId);
@@ -163,7 +162,7 @@ function EpisodeGrid({ show, onPlay }: { show: ShowDetails; onPlay: () => void }
             episode={episode}
             fallbackArt={show.bannerUrl ?? show.coverUrl}
             color={show.color}
-            onPlay={onPlay}
+            onPlay={() => onPlay(episode.number)}
           />
         ))}
       </div>

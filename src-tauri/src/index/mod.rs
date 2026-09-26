@@ -3,9 +3,9 @@
 
 mod animetosho;
 mod choose;
-mod matching;
-mod model;
-mod name;
+pub mod matching;
+pub mod model;
+pub mod name;
 mod picks;
 mod seadex;
 
@@ -39,6 +39,36 @@ impl Default for IndexState {
     fn default() -> Self {
         Self { http: http_client() }
     }
+}
+
+impl IndexState {
+    pub fn http(&self) -> &reqwest::Client {
+        &self.http
+    }
+}
+
+/// The Chosen Release of one Episode, with what a Source needs to find its file.
+pub struct Resolved {
+    pub show: ShowDetails,
+    pub release: Release,
+    pub context: ShowContext,
+}
+
+/// Finds the Chosen Release for the Episode.
+pub async fn resolve(
+    catalog: &CatalogState,
+    store: &Store,
+    http: &reqwest::Client,
+    show_id: i64,
+    episode: i64,
+) -> Result<Resolved, String> {
+    let deps = Deps { catalog, store, http };
+    let mut list = episode_releases(&deps, show_id, episode).await?;
+    let chosen = list.chosen.take().ok_or_else(|| format!("No release found for Episode {episode}."))?;
+    let release = list.releases.into_iter().find(|r| r.info_hash == chosen).ok_or("the Chosen Release is missing")?;
+    let show = catalog::show(catalog.client(), store, show_id).await?;
+    let context = ShowContext::from_show(&show);
+    Ok(Resolved { show, release, context })
 }
 
 /// Everything one Index call needs, borrowed from Tauri state.

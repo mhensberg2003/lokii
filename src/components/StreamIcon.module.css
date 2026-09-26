@@ -1,0 +1,55 @@
+.spinner,
+.ring,
+.ready,
+.failed {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.spinner {
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--accent);
+  border-radius: var(--r-full);
+  animation: spin 0.9s linear infinite;
+}
+
+.ring {
+  transform: rotate(-90deg);
+}
+
+.track,
+.value {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.track {
+  stroke: var(--line-strong);
+}
+
+.value {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--dur-slow) var(--ease-out);
+}
+
+.ready {
+  color: var(--success);
+}
+
+.failed {
+  color: var(--danger);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}

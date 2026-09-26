@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router";
 import { useEffect, useRef } from "react";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
+import { ActivityPanel } from "./ActivityPanel";
 import styles from "./AppShell.module.css";
 
 /** Persistent sidebar and top bar. Only the content area scrolls. */
@@ -22,6 +23,7 @@ export function AppShell() {
         <div ref={scrollRef} className={styles.content} id="content">
           <Outlet />
         </div>
+        <ActivityPanel />
       </div>
     </div>
   );

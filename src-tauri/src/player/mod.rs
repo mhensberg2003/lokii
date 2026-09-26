@@ -95,11 +95,6 @@ fn run(app: AppHandle) -> Result<(), String> {
     player.mpv.set(mpv.clone()).map_err(|_| "player started twice")?;
     let _ = app.emit("player://ready", ());
 
-    // Spike helper: autoplay a file so playback can be checked without the UI.
-    if let Ok(path) = std::env::var("LOKII_SPIKE_FILE") {
-        mpv.command("loadfile", &[&path, "replace"]).map_err(|e| format!("cannot load {path}: {e}"))?;
-    }
-
     loop {
         match mpv.wait_event(60.0) {
             Some(Ok(Event::PropertyChange { name, change, .. })) => {
