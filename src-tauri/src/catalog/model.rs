@@ -4,6 +4,7 @@
 
 use serde::{Deserialize, Serialize};
 
+use crate::catalog::episodes::{EpisodeDetail, EpisodeDetails};
 use crate::catalog::raw::{RawFranchiseNode, RawMedia, RawRelationEdge, RelationType, ANIME_TYPE, SHORT_FORMATS};
 use crate::catalog::text::{clean_description, parse_streaming_title};
 
@@ -156,34 +157,38 @@ pub fn to_franchise_entry(node: &RawFranchiseNode) -> FranchiseEntry {
 
 /// Builds the numbered Episode list: 1..=N, where N is `episodes`, or (for a RELEASING
 /// Show with no episode count yet) the number of the next airing Episode. Titles and
-/// thumbnails come from `streamingEpisodes` when its title parses as `"Episode N - Title"`.
-/// Only the next, not-yet-aired Episode carries `airingAt`.
-pub fn build_episode_list(media: &RawMedia) -> Vec<EpisodeInfo> {
-    let total = episode_count(media);
-    let Some(total) = total else {
+/// thumbnails come from `details` (ani.zip), else from `streamingEpisodes` when its title
+/// parses as `"Episode N - Title"`. Only the next, not-yet-aired Episode carries `airingAt`.
+pub fn build_episode_list(media: &RawMedia, details: &EpisodeDetails) -> Vec<EpisodeInfo> {
+    let Some(total) = episode_count(media) else {
         return Vec::new();
     };
-
-    let streaming: std::collections::HashMap<i64, &crate::catalog::raw::RawStreamingEpisode> = media
-        .streaming_episodes
-        .as_deref()
-        .unwrap_or_default()
-        .iter()
-        .filter_map(|ep| {
-            let title = ep.title.as_deref()?;
-            let (number, _) = parse_streaming_title(title)?;
-            Some((number as i64, ep))
-        })
-        .collect();
-
+    let streaming = streaming_details(media, total);
     (1..=total)
         .map(|number| {
-            let matched = streaming.get(&number);
-            let title = matched.and_then(|ep| ep.title.as_deref()).and_then(parse_streaming_title).map(|(_, t)| t);
-            let thumbnail_url = matched.and_then(|ep| ep.thumbnail.clone());
+            let detail = details.get(&number);
+            let fallback = streaming.get(&number);
+            let pick = |field: fn(&EpisodeDetail) -> &Option<String>| {
+                detail.and_then(|d| field(d).clone()).or_else(|| fallback.and_then(|d| field(d).clone()))
+            };
             let airing_at =
                 media.next_airing_episode.as_ref().filter(|next| next.episode == number).map(|next| next.airing_at);
-            EpisodeInfo { number, title, thumbnail_url, airing_at }
+            EpisodeInfo { number, title: pick(|d| &d.title), thumbnail_url: pick(|d| &d.thumbnail_url), airing_at }
+        })
+        .collect()
+}
+
+/// The `streamingEpisodes` details by Episode number. A list longer than the Show is
+/// the list of a different season (AniList copies it to some sequels), so it is ignored.
+fn streaming_details(media: &RawMedia, total: i64) -> EpisodeDetails {
+    let list = media.streaming_episodes.as_deref().unwrap_or_default();
+    if list.len() as i64 > total {
+        return EpisodeDetails::new();
+    }
+    list.iter()
+        .filter_map(|ep| {
+            let (number, title) = parse_streaming_title(ep.title.as_deref()?)?;
+            Some((number as i64, EpisodeDetail { title: Some(title), thumbnail_url: ep.thumbnail.clone() }))
         })
         .collect()
 }
@@ -294,7 +299,7 @@ mod tests {
     #[test]
     fn finished_show_episode_list_has_no_airing_at() {
         let media = fixture("finished_show.json");
-        let episodes = build_episode_list(&media);
+        let episodes = build_episode_list(&media, &EpisodeDetails::new());
         assert_eq!(episodes.len(), 3);
         assert!(episodes.iter().all(|e| e.airing_at.is_none()));
         assert_eq!(episodes[0].title, Some("The Beginning".to_string()));
@@ -302,9 +307,28 @@ mod tests {
     }
 
     #[test]
+    fn ani_zip_details_come_first_and_streaming_episodes_fill_the_gaps() {
+        let media = fixture("finished_show.json");
+        let detail = EpisodeDetail { title: Some("From ani.zip".into()), thumbnail_url: None };
+        let episodes = build_episode_list(&media, &EpisodeDetails::from([(1, detail)]));
+        assert_eq!(episodes[0].title.as_deref(), Some("From ani.zip"));
+        assert_eq!(episodes[0].thumbnail_url.as_deref(), Some("https://example.test/ep1.jpg"));
+        assert_eq!(episodes[1].title.as_deref(), Some("The Middle"));
+    }
+
+    #[test]
+    fn a_streaming_list_longer_than_the_show_is_ignored() {
+        let mut media = fixture("finished_show.json");
+        media.episodes = Some(1);
+        let episodes = build_episode_list(&media, &EpisodeDetails::new());
+        assert_eq!(episodes.len(), 1);
+        assert_eq!((episodes[0].title.as_ref(), episodes[0].thumbnail_url.as_ref()), (None, None));
+    }
+
+    #[test]
     fn airing_show_with_null_episodes_uses_next_airing_episode() {
         let media = fixture("airing_show.json");
-        let episodes = build_episode_list(&media);
+        let episodes = build_episode_list(&media, &EpisodeDetails::new());
         // nextAiringEpisode.episode = 6 in the fixture.
         assert_eq!(episodes.len(), 6);
         assert!(episodes[..5].iter().all(|e| e.airing_at.is_none()));

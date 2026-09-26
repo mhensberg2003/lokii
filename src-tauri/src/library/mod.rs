@@ -8,7 +8,6 @@ pub mod watchlist;
 use serde::Serialize;
 use tauri::{AppHandle, State};
 
-use crate::catalog::anilist::AniListClient;
 use crate::catalog::model::{ShowCard, ShowDetails};
 use crate::catalog::{self, CatalogState};
 use crate::store::{now, Store, StoreState};
@@ -66,7 +65,7 @@ pub async fn library_show(
     let up_next = if progress.is_empty() {
         None
     } else {
-        let details = catalog::cached_show(catalog.client(), store, show_id).await?;
+        let details = catalog::cached_show(&catalog, store, show_id).await?;
         up_next(&details, &progress, now())
     };
     Ok(ShowLibrary { progress, up_next, on_watchlist })
@@ -81,19 +80,19 @@ pub async fn library_continue(
 ) -> Result<Vec<ContinueItem>, String> {
     let store = store.get(&app).await?;
     let ids = progress::recent_shows(store, CONTINUE_LIMIT).await?;
-    let items = futures::future::join_all(ids.into_iter().map(|id| continue_for(catalog.client(), store, id))).await;
+    let items = futures::future::join_all(ids.into_iter().map(|id| continue_for(&catalog, store, id))).await;
     Ok(unique_shows(items.into_iter().flatten().collect()))
 }
 
 /// The Continue watching card of a Show, or None when it has no Up Next or cannot load.
-async fn continue_for(client: &AniListClient, store: &Store, show_id: i64) -> Option<ContinueItem> {
-    let details = catalog::cached_show(client, store, show_id).await.ok()?;
+async fn continue_for(catalog: &CatalogState, store: &Store, show_id: i64) -> Option<ContinueItem> {
+    let details = catalog::cached_show(catalog, store, show_id).await.ok()?;
     let progress = progress::for_show(store, show_id).await.ok()?;
     let next = up_next(&details, &progress, now())?;
     if next.show_id == show_id {
         return Some(continue_item(&details, &next));
     }
-    let sequel = catalog::cached_show(client, store, next.show_id).await.ok()?;
+    let sequel = catalog::cached_show(catalog, store, next.show_id).await.ok()?;
     Some(continue_item(&sequel, &next))
 }
 
@@ -134,7 +133,7 @@ pub async fn library_set_watchlist(
     if !on {
         return watchlist::remove(store, show_id).await;
     }
-    let details = catalog::cached_show(catalog.client(), store, show_id).await?;
+    let details = catalog::cached_show(&catalog, store, show_id).await?;
     watchlist::add(store, &details.lite.card).await
 }
 

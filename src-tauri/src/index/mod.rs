@@ -23,7 +23,7 @@ use matching::ShowContext;
 use model::{EpisodeReleases, Release};
 use seadex::SeaDex;
 
-const USER_AGENT: &str = concat!("Lokii/", env!("CARGO_PKG_VERSION"), " (+https://github.com/mhensberg2003/lokii)");
+pub const USER_AGENT: &str = concat!("Lokii/", env!("CARGO_PKG_VERSION"), " (+https://github.com/mhensberg2003/lokii)");
 
 /// The HTTP client for every service except AniList. AnimeTosho refuses requests
 /// without a User-Agent.
@@ -66,7 +66,7 @@ pub async fn resolve(
     let mut list = episode_releases(&deps, show_id, episode).await?;
     let chosen = list.chosen.take().ok_or_else(|| format!("No release found for Episode {episode}."))?;
     let release = list.releases.into_iter().find(|r| r.info_hash == chosen).ok_or("the Chosen Release is missing")?;
-    let show = catalog::show(catalog.client(), store, show_id).await?;
+    let show = catalog::show(catalog, store, show_id).await?;
     let context = ShowContext::from_show(&show);
     Ok(Resolved { show, release, context })
 }
@@ -120,7 +120,7 @@ pub async fn index_pick(
 }
 
 async fn episode_releases(deps: &Deps<'_>, show_id: i64, episode: i64) -> Result<EpisodeReleases, String> {
-    let show = catalog::show(deps.catalog.client(), deps.store, show_id).await?;
+    let show = catalog::show(deps.catalog, deps.store, show_id).await?;
     let mut releases: Vec<Release> =
         show_releases(deps, &show).await?.into_iter().filter(|r| r.coverage.contains(episode)).collect();
     choose::sort(&mut releases);
