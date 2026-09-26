@@ -2,6 +2,7 @@ mod catalog;
 mod ids;
 mod index;
 mod player;
+mod skip;
 mod sources;
 mod store;
 mod stream;
@@ -20,6 +21,7 @@ pub fn run() {
         .manage(sources::torbox::TorBoxState::default())
         .manage(sources::local::LocalTorrentState::default())
         .manage(stream::StreamState::default())
+        .manage(skip::SkipState::default())
         .setup(|app| {
             player::setup(app)?;
             ids::spawn_refresh(app.handle());
@@ -34,6 +36,12 @@ pub fn run() {
             player::player_seek,
             player::player_cycle,
             player::player_stop,
+            player::player_seek_by,
+            player::player_set_volume,
+            player::player_toggle_mute,
+            player::player_tracks,
+            player::player_set_track,
+            skip::skip_segments,
             catalog::catalog_home,
             catalog::catalog_browse,
             catalog::catalog_show,

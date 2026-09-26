@@ -121,6 +121,7 @@ mod tests {
             media_type: ANIME_TYPE.to_string(),
             title: RawTitle { romaji: Some(format!("Show {id}")), english: None, native: None },
             format: Some(format.to_string()),
+            status: Some("FINISHED".to_string()),
             season: None,
             season_year: None,
             episodes: Some(12),

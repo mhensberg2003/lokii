@@ -101,8 +101,5 @@ export function streamHandlers(fixtures: Record<string, unknown>): Record<string
       if (index >= 0) list.splice(index, 1);
       return null;
     },
-    player_snapshot: () => Promise.reject("mpv is not available in the browser preview"),
-    player_load: () => null,
-    player_stop: () => null,
   };
 }

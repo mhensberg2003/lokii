@@ -19,7 +19,12 @@ const OBSERVED: &[(&str, Format)] = &[
     ("sid", Format::String),
     ("aid", Format::String),
     ("media-title", Format::String),
+    ("volume", Format::Double),
+    ("mute", Format::Flag),
 ];
+
+/// Highest volume the UI can set, in percent.
+const MAX_VOLUME: f64 = 100.0;
 
 #[derive(Default)]
 pub struct Player {
@@ -30,6 +35,20 @@ impl Player {
     fn mpv(&self) -> Result<&Arc<Mpv>, String> {
         self.mpv.get().ok_or_else(|| "player is not ready".to_string())
     }
+}
+
+/// One audio or subtitle track of the loaded file.
+#[derive(Serialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Track {
+    pub id: i64,
+    /// "audio" or "sub".
+    pub kind: String,
+    pub title: Option<String>,
+    /// Language code as the file gives it, for example "jpn" or "en".
+    pub lang: Option<String>,
+    pub codec: Option<String>,
+    pub selected: bool,
 }
 
 #[derive(Clone, Serialize)]
@@ -76,6 +95,8 @@ fn run(app: AppHandle) -> Result<(), String> {
         init.set_option("vo", "libmpv")?;
         init.set_option("hwdec", "auto-safe")?;
         init.set_option("keep-open", "yes")?;
+        // keep-open pauses at the end of a file; the next file must still start playing.
+        init.set_option("reset-on-next-file", "pause")?;
         init.set_option("osc", "no")?;
         init.set_option("osd-level", 0i64)?;
         init.set_option("input-default-bindings", "no")?;
@@ -106,7 +127,14 @@ fn run(app: AppHandle) -> Result<(), String> {
                 };
                 let _ = app.emit("player://property", PropertyEvent { name: name.to_string(), value });
             }
+            Some(Ok(Event::FileLoaded)) => {
+                let _ = app.emit("player://file-loaded", ());
+            }
             Some(Ok(Event::EndFile(reason))) => {
+                // libmpv sends no change when these become unavailable, so clear them here.
+                for name in ["time-pos", "duration"] {
+                    let _ = app.emit("player://property", PropertyEvent { name: name.into(), value: Value::Null });
+                }
                 let _ = app.emit("player://end-file", reason as i64);
             }
             Some(Ok(Event::Shutdown)) => return Ok(()),
@@ -166,4 +194,55 @@ pub fn player_cycle(player: State<Player>, property: String) -> Result<(), Strin
 #[tauri::command]
 pub fn player_stop(player: State<Player>) -> Result<(), String> {
     player.mpv()?.command("stop", &[]).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn player_seek_by(player: State<Player>, seconds: f64) -> Result<(), String> {
+    player.mpv()?.command("seek", &[&seconds.to_string(), "relative"]).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn player_set_volume(player: State<Player>, volume: f64) -> Result<(), String> {
+    let mpv = player.mpv()?;
+    mpv.set_property("volume", volume.clamp(0.0, MAX_VOLUME)).map_err(|e| e.to_string())?;
+    mpv.set_property("mute", false).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn player_toggle_mute(player: State<Player>) -> Result<(), String> {
+    player.mpv()?.command("cycle", &["mute"]).map_err(|e| e.to_string())
+}
+
+/// The audio and subtitle tracks of the loaded file.
+#[tauri::command]
+pub fn player_tracks(player: State<Player>) -> Result<Vec<Track>, String> {
+    let mpv = player.mpv()?;
+    let count = mpv.get_property::<i64>("track-list/count").unwrap_or(0);
+    let text = |i: i64, field: &str| mpv.get_property::<String>(&format!("track-list/{i}/{field}")).ok();
+    let tracks = (0..count)
+        .filter_map(|i| {
+            let kind = text(i, "type").filter(|kind| kind == "audio" || kind == "sub")?;
+            Some(Track {
+                id: mpv.get_property::<i64>(&format!("track-list/{i}/id")).ok()?,
+                kind,
+                title: text(i, "title"),
+                lang: text(i, "lang"),
+                codec: text(i, "codec"),
+                selected: mpv.get_property::<bool>(&format!("track-list/{i}/selected")).unwrap_or(false),
+            })
+        })
+        .collect();
+    Ok(tracks)
+}
+
+/// Selects a track by ID, or turns the kind off with `None`.
+#[tauri::command]
+pub fn player_set_track(player: State<Player>, kind: String, id: Option<i64>) -> Result<(), String> {
+    let property = match kind.as_str() {
+        "audio" => "aid",
+        "sub" => "sid",
+        _ => return Err(format!("unknown track kind {kind}")),
+    };
+    let value = id.map_or_else(|| "no".to_string(), |id| id.to_string());
+    player.mpv()?.set_property(property, value).map_err(|e| e.to_string())
 }

@@ -108,6 +108,7 @@ query FranchiseNode($id: Int) {
     type
     title { romaji english native }
     format
+    status
     season
     seasonYear
     episodes

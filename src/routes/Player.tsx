@@ -1,233 +1,172 @@
-import { useEffect, useRef, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
-import { listen } from "@tauri-apps/api/event";
-import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
 import { ArrowLeft } from "lucide-react";
-import { detailLabel, sourceLabel, streams, STREAMS_KEY, upsertStream, WATCHED_AT, type StreamView } from "../lib/streams";
-import { useStreams } from "../lib/useStreams";
-import "./Player.css";
+import { catalog } from "../lib/catalog";
+import {
+  activeSegment,
+  nextEpisodeDue,
+  nextEpisodeOf,
+  player,
+  type NextEpisode,
+  type PlayerState,
+  type ShortcutAction,
+  type SkipSegment,
+  type Track,
+} from "../lib/player";
+import { sourceLabel, type StreamView } from "../lib/streams";
+import { Controls, IconButton } from "../player/Controls";
+import { NextEpisodeCard, SkipButton } from "../player/Prompts";
+import { StreamStatus } from "../player/StreamStatus";
+import { TrackPanel } from "../player/TrackPanel";
+import { usePlayerState, useSkipSegments, useTracks } from "../player/usePlayer";
+import { useFullscreen, useIdle, useShortcuts } from "../player/useScreen";
+import { useStreamPlayback } from "../player/useStreamPlayback";
+import styles from "../player/Player.module.css";
 
-type PlayerState = {
-  ready: boolean;
-  pause: boolean;
-  timePos: number;
-  duration: number;
-  buffering: boolean;
-  sid: string;
-  aid: string;
-  error: string;
-};
+type Screen = ReturnType<typeof useFullscreen>;
 
-const INITIAL: PlayerState = {
-  ready: false,
-  pause: true,
-  timePos: 0,
-  duration: 0,
-  buffering: false,
-  sid: "",
-  aid: "",
-  error: "",
-};
-
-const PROPERTY_KEYS: Record<string, keyof PlayerState> = {
-  pause: "pause",
-  "time-pos": "timePos",
-  duration: "duration",
-  "paused-for-cache": "buffering",
-  sid: "sid",
-  aid: "aid",
-};
-
-function formatTime(seconds: number) {
-  const s = Math.max(0, Math.floor(seconds));
-  const m = Math.floor(s / 60);
-  return `${m}:${String(s % 60).padStart(2, "0")}`;
-}
-
-function run(command: string, args?: Record<string, unknown>) {
-  return invoke(command, args).catch((err) => String(err));
-}
-
-/** mpv's observed properties, kept in React state. */
-function usePlayerState() {
-  const [state, setState] = useState<PlayerState>(INITIAL);
-  useEffect(() => {
-    const unlisteners = [
-      listen("player://ready", () => setState((s) => ({ ...s, ready: true }))),
-      listen<{ name: string; value: unknown }>("player://property", ({ payload }) => {
-        const key = PROPERTY_KEYS[payload.name];
-        if (key) setState((s) => ({ ...s, [key]: payload.value ?? INITIAL[key] }));
-      }),
-      listen<string>("player://error", ({ payload }) => setState((s) => ({ ...s, error: payload }))),
-    ];
-    // mpv can start before these listeners exist, so read the current values once as well.
-    invoke<Record<string, unknown>>("player_snapshot")
-      .then((snapshot) =>
-        setState((s) => {
-          const next: PlayerState = { ...s, ready: true };
-          for (const [name, value] of Object.entries(snapshot)) {
-            const key = PROPERTY_KEYS[name];
-            if (key) Object.assign(next, { [key]: value ?? INITIAL[key] });
-          }
-          return next;
-        }),
-      )
-      .catch(() => {});
-    return () => unlisteners.forEach((p) => p.then((off) => off()).catch(() => {}));
-  }, []);
-  return state;
-}
-
-/** Starts the Stream for the Episode, loads its URL into mpv, and reports Watched. */
-function useStreamPlayback(showId: number, episode: number, player: PlayerState) {
-  const queryClient = useQueryClient();
-  const [streamId, setStreamId] = useState<string | null>(null);
-  const [startError, setStartError] = useState("");
-  const [attempt, setAttempt] = useState(0);
-  const stream = useStreams().data?.find((s) => s.id === streamId) ?? null;
-  const loaded = useRef<string | null>(null);
-  const watched = useRef(false);
-  const current = useRef<string | null>(null);
-  current.current = streamId;
-
-  // Leaving the player in any way (Back, history, a route change) stops mpv and closes the Stream.
-  useEffect(
-    () => () => {
-      run("player_stop");
-      if (current.current) streams.close(current.current).catch(() => {});
-    },
-    [],
-  );
-
-  useEffect(() => {
-    setStartError("");
-    streams
-      .start(showId, episode)
-      .then((view) => {
-        queryClient.setQueryData<StreamView[]>(STREAMS_KEY, (list) => upsertStream(list, view));
-        setStreamId(view.id);
-      })
-      .catch((err) => setStartError(String(err)));
-  }, [showId, episode, attempt, queryClient]);
-
-  const url = stream?.phase.kind === "ready" ? stream.url : null;
-  useEffect(() => {
-    if (!url || !player.ready || loaded.current === url) return;
-    loaded.current = url;
-    run("player_load", { url });
-  }, [url, player.ready]);
-
-  useEffect(() => {
-    if (!stream || watched.current || player.duration <= 0) return;
-    if (player.timePos / player.duration >= WATCHED_AT) {
-      watched.current = true;
-      streams.watched(stream.id).catch(() => {
-        watched.current = false;
-      });
-    }
-  }, [stream, player.timePos, player.duration]);
-
-  return { stream, startError, retry: () => setAttempt((n) => n + 1) };
-}
-
-/** The player for one Episode (`/watch/:showId/:episode`). The full player UI is issue #19. */
+/** The player (`/watch/:showId/:episode`). Fullscreen stays on across Episodes. */
 export function Player() {
   const params = useParams();
   const showId = Number(params.showId);
   const episode = Number(params.episode);
+  const screen = useFullscreen();
+  // A new key per Episode, so Next Episode starts with a new Stream and a clean state.
+  return <EpisodePlayer key={`${showId}/${episode}`} showId={showId} episode={episode} screen={screen} />;
+}
+
+function useEpisode(showId: number, episode: number) {
+  const show = useQuery({ queryKey: ["catalog", "show", showId], queryFn: () => catalog.show(showId) }).data;
+  const title = show?.episodeList.find((e) => e.number === episode)?.title ?? null;
+  return { show, title, next: show ? nextEpisodeOf(show, episode) : null };
+}
+
+type ShortcutContext = { volume: number; screen: Screen; panelOpen: boolean; closePanel: () => void };
+
+function runShortcut(action: ShortcutAction, ctx: ShortcutContext) {
+  const ignore = (promise: Promise<unknown>) => void promise.catch(() => {});
+  switch (action.kind) {
+    case "togglePause":
+      return ignore(player.togglePause());
+    case "seekBy":
+      return ignore(player.seekBy(action.seconds));
+    case "volumeBy":
+      return ignore(player.setVolume(ctx.volume + action.amount));
+    case "mute":
+      return ignore(player.toggleMute());
+    case "cycle":
+      return ignore(player.cycle(action.property));
+    case "fullscreen":
+      return ctx.screen.setFullscreen(!ctx.screen.fullscreen);
+    case "escape":
+      if (ctx.panelOpen) ctx.closePanel();
+      else if (ctx.screen.fullscreen) ctx.screen.setFullscreen(false);
+  }
+}
+
+type EpisodePlayerProps = { showId: number; episode: number; screen: Screen };
+
+function EpisodePlayer({ showId, episode, screen }: EpisodePlayerProps) {
   const navigate = useNavigate();
-  const state = usePlayerState();
-  const { stream, startError, retry } = useStreamPlayback(showId, episode, state);
-
-  const leave = () => navigate(-1);
-
+  const mpv = usePlayerState();
+  const { stream, fileLoaded, startError, retry } = useStreamPlayback(showId, episode, mpv);
+  // Before this Episode's file loads, mpv can still report the previous file's time.
+  const state = fileLoaded ? mpv : { ...mpv, timePos: 0, duration: 0 };
+  const { show, title, next } = useEpisode(showId, episode);
+  const segments = useSkipSegments(showId, episode, state.duration);
+  const tracks = useTracks(state.sid, state.aid);
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [onControls, setOnControls] = useState(false);
   const playing = stream?.phase.kind === "ready";
-  const title = stream?.showTitle ? `${stream.showTitle} · Episode ${episode}` : `Episode ${episode}`;
+  const { idle, poke } = useIdle(!playing || state.pause || panelOpen || onControls);
+  const closePanel = () => setPanelOpen(false);
+  useShortcuts((action) => {
+    poke();
+    runShortcut(action, { volume: state.volume, screen, panelOpen, closePanel });
+  });
 
+  const hover = { onPointerEnter: () => setOnControls(true), onPointerLeave: () => setOnControls(false) };
+  const onSurfaceClick = () => (panelOpen ? closePanel() : playing && void player.togglePause().catch(() => {}));
+  const layer = { state, segments, tracks, next, screen, panelOpen, hover };
   return (
-    <main className="stage">
-      <header className="top">
-        <button type="button" className="back" aria-label="Back" onClick={leave}>
-          <ArrowLeft />
-        </button>
-        <div className="heading">
-          <span className="title">{title}</span>
-          {stream && <span className="source">{sourceLabel(stream.source)}</span>}
-        </div>
-      </header>
-
-      {!playing && <StreamStatus stream={stream} startError={startError} onRetry={retry} onBack={leave} />}
-      {playing && state.error && <p className="error">{state.error}</p>}
-      {playing && state.buffering && <p className="buffering">Buffering…</p>}
-      {playing && <Controls state={state} />}
+    <main className={styles.stage} data-idle={idle || undefined} data-fullscreen={screen.fullscreen || undefined}>
+      <div
+        className={styles.surface}
+        onClick={onSurfaceClick}
+        onDoubleClick={() => screen.setFullscreen(!screen.fullscreen)}
+      />
+      <Heading showTitle={stream?.showTitle || show?.title || ""} episode={episode} title={title} stream={stream} onBack={() => navigate(-1)} hover={hover} />
+      {!playing && <StreamStatus stream={stream} startError={startError} onRetry={retry} onBack={() => navigate(-1)} />}
+      {playing && <PlaybackLayer {...layer} onTogglePanel={() => setPanelOpen((open) => !open)} />}
     </main>
   );
 }
 
-type StreamStatusProps = { stream: StreamView | null; startError: string; onRetry: () => void; onBack: () => void };
+type Hover = { onPointerEnter: () => void; onPointerLeave: () => void };
 
-/** What the Stream does before the video can play: preparing, downloading on TorBox, or failed. */
-function StreamStatus({ stream, startError, onRetry, onBack }: StreamStatusProps) {
-  const failed = startError !== "" || stream?.phase.kind === "failed";
-  const detail = startError || (stream ? detailLabel(stream) : "Starting…");
-  const progress = stream?.phase.kind === "downloading" ? stream.phase.progress : null;
+type HeadingProps = {
+  showTitle: string;
+  episode: number;
+  title: string | null;
+  stream: StreamView | null;
+  onBack: () => void;
+  hover: Hover;
+};
+
+function Heading({ showTitle, episode, title, stream, onBack, hover }: HeadingProps) {
+  const detail = [`Episode ${episode}`, title, stream && sourceLabel(stream.source)].filter(Boolean).join(" · ");
   return (
-    <section className="status" role="status" aria-live="polite">
-      {!failed && <span className="spinner" aria-hidden="true" />}
-      <p className="status-title">{failed ? "This Episode cannot play" : "Getting the Episode ready"}</p>
-      <p className="status-detail">{detail}</p>
-      {progress !== null && (
-        <span className="status-bar" aria-hidden="true">
-          <span style={{ width: `${progress * 100}%` }} />
-        </span>
-      )}
-      {stream?.releaseTitle && <p className="status-release">{stream.releaseTitle}</p>}
-      {failed && (
-        <div className="status-actions">
-          <button type="button" onClick={onRetry}>
-            Try again
-          </button>
-          <button type="button" onClick={onBack}>
-            Back
-          </button>
-        </div>
-      )}
-    </section>
+    <header className={styles.top} {...hover}>
+      <IconButton label="Back" onClick={onBack}>
+        <ArrowLeft />
+      </IconButton>
+      <div className={styles.heading}>
+        <span className={styles.title}>{showTitle || `Episode ${episode}`}</span>
+        <span className={styles.subtitle}>{detail}</span>
+      </div>
+    </header>
   );
 }
 
-function Controls({ state }: { state: PlayerState }) {
-  const progress = state.duration > 0 ? (state.timePos / state.duration) * 100 : 0;
+type LayerProps = {
+  state: PlayerState;
+  segments: SkipSegment[];
+  tracks: Track[];
+  next: NextEpisode | null;
+  screen: Screen;
+  panelOpen: boolean;
+  hover: Hover;
+  onTogglePanel: () => void;
+};
+
+/** Everything over the playing video: notices, Skip and Next Episode, the panel, the controls. */
+function PlaybackLayer({ state, segments, tracks, next, screen, panelOpen, hover, onTogglePanel }: LayerProps) {
+  const navigate = useNavigate();
+  const [nextHidden, setNextHidden] = useState(false);
+  const segment = activeSegment(segments, state.timePos);
+  const showNext = next !== null && !nextHidden && nextEpisodeDue(state.timePos, state.duration, segments);
+  const playNext = () => next && navigate(`/watch/${next.showId}/${next.episode}`, { replace: true });
+
   return (
-    <footer className="controls">
-      <input
-        id="scrubber"
-        className="scrubber"
-        type="range"
-        min={0}
-        max={state.duration || 0}
-        step={0.1}
-        value={state.timePos}
-        style={{ "--progress": `${progress}%` } as React.CSSProperties}
-        onChange={(e) => run("player_seek", { seconds: Number(e.target.value) })}
-        disabled={!state.duration}
-      />
-      <div className="row">
-        <button onClick={() => run("player_toggle_pause")} disabled={!state.ready}>
-          {state.pause ? "Play" : "Pause"}
-        </button>
-        <span className="time">
-          {formatTime(state.timePos)} / {formatTime(state.duration)}
-        </span>
-        <span className="spacer" />
-        <button onClick={() => run("player_cycle", { property: "sid" })} disabled={!state.ready}>
-          Subtitles: {state.sid || "off"}
-        </button>
-        <button onClick={() => run("player_cycle", { property: "aid" })} disabled={!state.ready}>
-          Audio: {state.aid || "off"}
-        </button>
+    <>
+      {state.error && <p className={styles.notice}>{state.error}</p>}
+      {!state.error && state.buffering && <span className={styles.buffering} role="status" aria-label="Buffering" />}
+      <div className={styles.bottom} {...hover}>
+        <div className={styles.prompts} hidden={panelOpen}>
+          {showNext && next && <NextEpisodeCard next={next} onPlay={playNext} onDismiss={() => setNextHidden(true)} />}
+          {!showNext && segment && <SkipButton segment={segment} onSkip={() => void player.seek(segment.end).catch(() => {})} />}
+        </div>
+        {panelOpen && <TrackPanel tracks={tracks} />}
+        <Controls
+          state={state}
+          segments={segments}
+          fullscreen={screen.fullscreen}
+          panelOpen={panelOpen}
+          onTogglePanel={onTogglePanel}
+          onFullscreen={() => screen.setFullscreen(!screen.fullscreen)}
+        />
       </div>
-    </footer>
+    </>
   );
 }

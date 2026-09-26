@@ -6,6 +6,7 @@ const entry = (id: number, seasonYear: number | null, title = `Show ${id}`): Fra
   id,
   title,
   format: "TV",
+  status: "FINISHED",
   season: null,
   seasonYear,
   episodes: 12,

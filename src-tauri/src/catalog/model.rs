@@ -61,6 +61,8 @@ pub struct FranchiseEntry {
     pub id: i64,
     pub title: String,
     pub format: Option<String>,
+    /// AniList status, for example "FINISHED" or "NOT_YET_RELEASED".
+    pub status: Option<String>,
     pub season: Option<Season>,
     pub season_year: Option<i32>,
     pub episodes: Option<i64>,
@@ -145,6 +147,7 @@ pub fn to_franchise_entry(node: &RawFranchiseNode) -> FranchiseEntry {
         id: node.id,
         title: pick_title(&node.title),
         format: node.format.clone(),
+        status: node.status.clone(),
         season: node.season,
         season_year: node.season_year,
         episodes: node.episodes,

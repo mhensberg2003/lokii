@@ -41,6 +41,8 @@ export type FranchiseEntry = {
   id: number;
   title: string;
   format: string | null;
+  /** AniList status, e.g. "FINISHED" or "NOT_YET_RELEASED". */
+  status: string | null;
   season: Season | null;
   seasonYear: number | null;
   episodes: number | null;
