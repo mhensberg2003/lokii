@@ -1,0 +1,117 @@
+{
+  "id": 100,
+  "idMal": 12345,
+  "title": { "romaji": "Finished Show JP", "english": "Finished Show EN", "native": "終わった番組" },
+  "description": "A finished show.<br>It has two lines.<br><br>(Source: Test)",
+  "coverImage": {
+    "extraLarge": "https://example.test/extra-large.jpg",
+    "large": "https://example.test/large.jpg",
+    "color": "#e4a15d"
+  },
+  "bannerImage": "https://example.test/banner.jpg",
+  "format": "TV",
+  "status": "FINISHED",
+  "episodes": 3,
+  "duration": 24,
+  "season": "SPRING",
+  "seasonYear": 2020,
+  "averageScore": 78,
+  "genres": ["Action", "Drama"],
+  "isAdult": false,
+  "type": "ANIME",
+  "studios": { "nodes": [{ "name": "Studio A" }] },
+  "nextAiringEpisode": null,
+  "streamingEpisodes": [
+    { "title": "Episode 1 - The Beginning", "thumbnail": "https://example.test/ep1.jpg" },
+    { "title": "Episode 2 - The Middle", "thumbnail": "https://example.test/ep2.jpg" }
+  ],
+  "relations": {
+    "edges": [
+      {
+        "relationType": "SIDE_STORY",
+        "node": {
+          "id": 201,
+          "isAdult": false,
+          "type": "ANIME",
+          "title": { "romaji": "Side Story", "english": null, "native": null },
+          "coverImage": { "extraLarge": "https://example.test/201.jpg", "large": null, "color": null },
+          "bannerImage": null,
+          "format": "OVA",
+          "episodes": 1,
+          "season": null,
+          "seasonYear": null,
+          "averageScore": null,
+          "genres": []
+        }
+      },
+      {
+        "relationType": "SEQUEL",
+        "node": {
+          "id": 202,
+          "isAdult": false,
+          "type": "ANIME",
+          "title": { "romaji": "Finished Show Season 2", "english": null, "native": null },
+          "coverImage": { "extraLarge": "https://example.test/202.jpg", "large": null, "color": null },
+          "bannerImage": null,
+          "format": "TV",
+          "episodes": 12,
+          "season": "SPRING",
+          "seasonYear": 2021,
+          "averageScore": null,
+          "genres": []
+        }
+      },
+      {
+        "relationType": "SEQUEL",
+        "node": {
+          "id": 203,
+          "isAdult": false,
+          "type": "ANIME",
+          "title": { "romaji": "Finished Show the Movie", "english": null, "native": null },
+          "coverImage": { "extraLarge": "https://example.test/203.jpg", "large": null, "color": null },
+          "bannerImage": null,
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": null,
+          "seasonYear": null,
+          "averageScore": null,
+          "genres": []
+        }
+      },
+      {
+        "relationType": "SIDE_STORY",
+        "node": {
+          "id": 204,
+          "isAdult": true,
+          "type": "ANIME",
+          "title": { "romaji": "Adult Side Story", "english": null, "native": null },
+          "coverImage": { "extraLarge": null, "large": null, "color": null },
+          "bannerImage": null,
+          "format": "OVA",
+          "episodes": 1,
+          "season": null,
+          "seasonYear": null,
+          "averageScore": null,
+          "genres": []
+        }
+      },
+      {
+        "relationType": "ADAPTATION",
+        "node": {
+          "id": 205,
+          "isAdult": false,
+          "type": "MANGA",
+          "title": { "romaji": "Finished Show Manga", "english": null, "native": null },
+          "coverImage": { "extraLarge": null, "large": null, "color": null },
+          "bannerImage": null,
+          "format": null,
+          "episodes": null,
+          "season": null,
+          "seasonYear": null,
+          "averageScore": null,
+          "genres": []
+        }
+      }
+    ]
+  }
+}

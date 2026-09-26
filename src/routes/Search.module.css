@@ -1,0 +1,24 @@
+.page {
+  padding: calc(var(--topbar-height) + var(--space-6)) var(--gutter) var(--space-16);
+}
+
+.title {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-8);
+  color: var(--text-muted);
+}
+
+.query {
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-8) var(--space-4);
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.grid[data-stale="true"] {
+  opacity: 0.5;
+}

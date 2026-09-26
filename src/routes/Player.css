@@ -1,22 +1,5 @@
-:root {
-  --text: #e9e8ee;
-  --muted: #9a9aa9;
-  --line: rgba(255, 255, 255, 0.14);
-  --accent: #f2b3c1;
+.stage {
   --scrim: rgba(10, 10, 14, 0.72);
-  color-scheme: dark;
-  font-family: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 14px;
-  color: var(--text);
-}
-
-/* Transparent so mpv's native view behind the webview shows through. */
-html,
-body,
-#root {
-  margin: 0;
-  height: 100%;
-  background: transparent;
 }
 
 .stage {
@@ -35,9 +18,18 @@ body,
   background: linear-gradient(var(--scrim), transparent);
 }
 
-.brand {
-  font-weight: 600;
-  white-space: nowrap;
+.back {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.back svg {
+  width: 18px;
+  height: 18px;
 }
 
 .source {
@@ -119,7 +111,7 @@ input:focus-visible {
 }
 
 .time {
-  color: var(--muted);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -142,4 +134,9 @@ input:focus-visible {
   height: 12px;
   border-radius: 50%;
   background: var(--text);
+}
+
+/* Leave room for the macOS traffic lights (overlay title bar). */
+.platform-mac .top {
+  padding-top: 40px;
 }

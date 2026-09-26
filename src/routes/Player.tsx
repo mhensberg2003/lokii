@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import "./App.css";
+import { useNavigate } from "react-router";
+import { ArrowLeft } from "lucide-react";
+import "./Player.css";
 
 type PlayerState = {
   ready: boolean;
@@ -47,7 +49,9 @@ function run(command: string, args?: Record<string, unknown>) {
   return invoke(command, args).catch((err) => String(err));
 }
 
-export default function App() {
+/** Spike player (M0). The full player UI is issue #19. */
+export function Player() {
+  const navigate = useNavigate();
   const [state, setState] = useState<PlayerState>(INITIAL);
   const [url, setUrl] = useState("");
 
@@ -87,7 +91,17 @@ export default function App() {
   return (
     <main className="stage">
       <header className="top">
-        <span className="brand">Lokii · M0 player spike</span>
+        <button
+          type="button"
+          className="back"
+          aria-label="Back"
+          onClick={() => {
+            run("player_stop");
+            navigate(-1);
+          }}
+        >
+          <ArrowLeft />
+        </button>
         <form
           className="source"
           onSubmit={(e) => {

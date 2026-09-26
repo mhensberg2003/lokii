@@ -1,0 +1,74 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 0 var(--space-3) var(--space-4);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--line);
+}
+
+/* On macOS the traffic lights sit in this area (overlay title bar). */
+.brand {
+  display: flex;
+  align-items: flex-end;
+  height: var(--topbar-height);
+  padding: 0 var(--space-3) var(--space-2);
+}
+
+:global(.platform-mac) .brand {
+  height: calc(var(--topbar-height) + 28px);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--space-4);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 36px;
+  padding: 0 var(--space-3);
+  border-radius: var(--r-md);
+  color: var(--text-muted);
+  font-size: var(--text-md);
+  font-weight: 500;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.active,
+.active:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}

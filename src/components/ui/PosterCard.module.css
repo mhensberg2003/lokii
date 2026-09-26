@@ -1,0 +1,80 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  border-radius: var(--r-md);
+  outline-offset: 4px;
+}
+
+.art {
+  border-radius: var(--r-md);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.card:hover .art {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 0 1px var(--line-strong),
+    0 12px 28px -12px rgba(0, 0, 0, 0.7);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: var(--space-2);
+}
+
+.title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skeletonArt {
+  aspect-ratio: 2 / 3;
+  background: var(--surface-1);
+  animation: pulse 1.6s var(--ease-in-out) infinite;
+}
+
+.skeletonLine {
+  height: 12px;
+  width: 85%;
+  border-radius: var(--r-sm);
+  background: var(--surface-1);
+  margin-top: 4px;
+  animation: pulse 1.6s var(--ease-in-out) infinite;
+}
+
+.short {
+  width: 50%;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonArt,
+  .skeletonLine {
+    animation: none;
+  }
+}

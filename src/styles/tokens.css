@@ -1,0 +1,87 @@
+/*
+ * Lokii design tokens. Direction: calm dark (docs/DESIGN.md).
+ * The UI stays grey; color comes from artwork, plus one soft accent.
+ */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces, darkest to lightest. Slight blue-violet bias toward the accent. */
+  --bg-sidebar: #0b0c10;
+  --bg: #0f1015;
+  --surface-1: #16181e;
+  --surface-2: #1d1f27;
+  --surface-3: #262932;
+  --overlay: rgba(10, 10, 14, 0.72);
+
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.13);
+
+  --text: #ecebf1;
+  --text-muted: #9d9cab;
+  --text-faint: #6c6b7a;
+  --text-on-light: #111217;
+
+  /* The one accent: pale sakura. Focus, progress, active navigation. */
+  --accent: #f2b3c1;
+  --accent-soft: rgba(242, 179, 193, 0.14);
+  --accent-ink: #2b1219;
+
+  /* Semantic colors are separate from the accent. */
+  --success: #9fd8c4;
+  --warning: #e8c07a;
+  --danger: #ef9a8a;
+
+  /* Type */
+  --font-body: "Hanken Grotesk Variable", "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", system-ui, sans-serif;
+
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+
+  /* Spacing, 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Page gutter used by every scrolling page and row */
+  --gutter: 40px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-full: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  /* Layout */
+  --sidebar-width: 224px;
+  --topbar-height: 56px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}

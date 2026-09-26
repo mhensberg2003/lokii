@@ -1,0 +1,1461 @@
+{
+  "hero": {
+    "id": 182205,
+    "title": "That Time I Got Reincarnated as a Slime Season 4",
+    "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182205-q2AeO1owuQbO.jpg",
+    "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182205-fRUoKv6f2JAq.jpg",
+    "color": "#1abbd6",
+    "format": "TV",
+    "episodes": 24,
+    "season": "SPRING",
+    "seasonYear": 2026,
+    "averageScore": 83,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Fantasy"
+    ],
+    "description": "Demon Lord Rimuru's dream of creating an alliance between humans and monsters takes a step closer to being realized. As Tempest continues to prosper, Granville Rozzo and his granddaughter, Maribel Rozzo, clash with Demon Lord Rimuru over their plan to protect mankind by ruling over them. Meanwhile, in El Dorado, Demon Lord Leon works toward goals of his own. The awakening of a new Hero draws near!"
+  },
+  "rows": [
+    {
+      "id": "airing",
+      "title": "Airing this season",
+      "shows": [
+        {
+          "id": 195516,
+          "title": "The Apothecary Diaries Season 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195516-MJpUZlOberqH.jpg",
+          "bannerUrl": null,
+          "color": "#e4a128",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Drama",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 195539,
+          "title": "Cyberpunk: Edgerunners 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195539-jaarfaxv6K0Z.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195539-2obqrBzqrOSR.jpg",
+          "color": "#1ac9e4",
+          "format": "ONA",
+          "episodes": 10,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 195604,
+          "title": "Black Clover Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195604-8xUI10lVVhPY.jpg",
+          "bannerUrl": null,
+          "color": "#e4c9ae",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 160275,
+          "title": "Made in Abyss: Mezameru Shinpi",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx160275-cBOWJpcCGeMq.jpg",
+          "bannerUrl": null,
+          "color": "#e4d643",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Horror",
+            "Mystery",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 159042,
+          "title": "Reincarnated as a Sword Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx159042-GGFwlDskc5vR.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/159042-X0mqyaUFBkms.jpg",
+          "color": "#f19328",
+          "format": "ONA",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 143103,
+          "title": "Witch on the Holy Night",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx143103-vvsaIpZPpIuE.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/143103-KwDRPfPl4OwL.jpg",
+          "color": "#f1d6ae",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 189123,
+          "title": "Blue Box Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189123-0secXELIhkIW.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189123-s2oirY2r1Svy.jpg",
+          "color": "#e4ae50",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Romance",
+            "Slice of Life",
+            "Sports"
+          ]
+        },
+        {
+          "id": 199340,
+          "title": "Rascal Does Not Dream of a Dear Friend",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199340-YQlmzvmcJzyt.jpg",
+          "bannerUrl": null,
+          "color": "#5da1f1",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Drama",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 210482,
+          "title": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg",
+          "bannerUrl": null,
+          "color": "#f1ae50",
+          "format": "ONA",
+          "episodes": 11,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": 85,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Mystery",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 200929,
+          "title": "Kusuriya no Hitorigoto: Bouhi no Hihou",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx200929-ZnRFJbEqFbgJ.jpg",
+          "bannerUrl": null,
+          "color": "#f19335",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Drama",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 178083,
+          "title": "Tokyo Revengers: Santen Sensou-hen",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178083-bg7pg6TCHwtG.jpg",
+          "bannerUrl": null,
+          "color": "#c99350",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 213805,
+          "title": "The Ramparts of Ice Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx213805-Nokui3uWlIlw.png",
+          "bannerUrl": null,
+          "color": "#e4a143",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 152677,
+          "title": "The Detective Is Already Dead Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx152677-xVKqY1rqKK75.jpg",
+          "bannerUrl": null,
+          "color": "#93a1e4",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Comedy",
+            "Drama",
+            "Mystery",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 172192,
+          "title": "A Returner's Magic Should be Special Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx172192-L4pRzycNZOOF.jpg",
+          "bannerUrl": null,
+          "color": "#f1a143",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 205909,
+          "title": "Firefly Wedding",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx205909-DM0fAzNQulod.jpg",
+          "bannerUrl": null,
+          "color": "#aebb35",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Drama",
+            "Romance"
+          ]
+        },
+        {
+          "id": 213457,
+          "title": "Fool Night",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx213457-gN5p1GZjK3zi.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/213457-4m8VEkWwzJEq.jpg",
+          "color": "#93281a",
+          "format": "ONA",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Drama",
+            "Psychological",
+            "Sci-Fi",
+            "Thriller"
+          ]
+        },
+        {
+          "id": 191788,
+          "title": "Aoashi Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191788-XC6F24LdX6a4.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/191788-tyhsHpXeF26X.jpg",
+          "color": "#e4ae50",
+          "format": "TV",
+          "episodes": 24,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Sports"
+          ]
+        },
+        {
+          "id": 185756,
+          "title": "As a Reincarnated Aristocrat, I'll Use My Appraisal Skill to Rise in the World Season 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185756-xPCl0RyQ7fXD.jpg",
+          "bannerUrl": null,
+          "color": "#d6f1c9",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 191656,
+          "title": "Seitokai ni mo Ana wa Aru!",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191656-xFHtxM8SUTdU.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/191656-JQILdzh3FQxN.jpg",
+          "color": "#5dbbe4",
+          "format": "TV",
+          "episodes": 12,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Comedy",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 206814,
+          "title": "Dragon Ball Super: Beerus",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx206814-PVVzRbf1IQpe.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/206814-ARuwrZJAGONN.jpg",
+          "color": "#e48643",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Adventure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trending",
+      "title": "Trending now",
+      "shows": [
+        {
+          "id": 182205,
+          "title": "That Time I Got Reincarnated as a Slime Season 4",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182205-q2AeO1owuQbO.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182205-fRUoKv6f2JAq.jpg",
+          "color": "#1abbd6",
+          "format": "TV",
+          "episodes": 24,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 83,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 184492,
+          "title": "Welcome to Demon School! Iruma-kun Season 4",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx184492-KUVFGieuMaOx.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/184492-JsZazzn4Acqf.jpg",
+          "color": "#f1bb28",
+          "format": "TV",
+          "episodes": 24,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 80,
+          "genres": [
+            "Comedy",
+            "Fantasy",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 204389,
+          "title": "A Wild Last Boss Appeared! Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204389-jCoFCeTthDMy.jpg",
+          "bannerUrl": null,
+          "color": "#e45dc9",
+          "format": "ONA",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 209983,
+          "title": "HELL MODE: The Hardcore Gamer Dominates in Another World with Garbage Balancing Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209983-sFOcKyqMufxb.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/209983-fJysbFB72IM9.jpg",
+          "color": "#0dbbf1",
+          "format": "TV",
+          "episodes": 13,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 72,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 196187,
+          "title": "Smoking Behind the Supermarket with You",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196187-0dgFi2CPp3xn.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196187-Z9dV6uotmKjM.jpg",
+          "color": "#f1c9bb",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 82,
+          "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 189046,
+          "title": "Re:ZERO -Starting Life in Another World- Season 4",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189046-MDk2CaVuRWpb.jpg",
+          "color": "#e49350",
+          "format": "TV",
+          "episodes": 19,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Romance",
+            "Thriller"
+          ]
+        },
+        {
+          "id": 171110,
+          "title": "Ascendance of a Bookworm: Adopted Daughter of an Archduke",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171110-7zOdInS6DQNL.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/171110-lgtmKokpevUM.jpg",
+          "color": "#5daee4",
+          "format": "TV",
+          "episodes": 24,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 76,
+          "genres": [
+            "Drama",
+            "Fantasy",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 21,
+          "title": "ONE PIECE",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+          "color": "#e49335",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 1999,
+          "averageScore": 87,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 217331,
+          "title": "Tensei Shitara Slime Datta Ken 4th Season Part 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx217331-iennFNPU2f7K.png",
+          "bannerUrl": null,
+          "color": "#e4ae35",
+          "format": "TV",
+          "episodes": null,
+          "season": "SUMMER",
+          "seasonYear": 2027,
+          "averageScore": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 207141,
+          "title": "Chainsmoker Cat",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207141-h5q5KJPd6vaX.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/207141-MvHAS2YVfJzL.jpg",
+          "color": "#50a1f1",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 69,
+          "genres": [
+            "Comedy",
+            "Ecchi",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 210482,
+          "title": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg",
+          "bannerUrl": null,
+          "color": "#f1ae50",
+          "format": "ONA",
+          "episodes": 11,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": 85,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Mystery",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 178789,
+          "title": "Mushoku Tensei: Jobless Reincarnation Season 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/178789-9nHWmoRLlcLu.jpg",
+          "color": "#28bbe4",
+          "format": "TV",
+          "episodes": 14,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 85,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Ecchi",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 180136,
+          "title": "The Exiled Heavy Knight Knows How to Game the System",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg",
+          "bannerUrl": null,
+          "color": "#50c9fe",
+          "format": "TV",
+          "episodes": 26,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 67,
+          "genres": [
+            "Action",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 135865,
+          "title": "Saga of Tanya the Evil Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx135865-T7XIPMAbqcxN.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/135865-Ws3e7BhBkFxd.jpg",
+          "color": "#e46b28",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 80,
+          "genres": [
+            "Action",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 195600,
+          "title": "Daemons of the Shadow Realm",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195600-moI0UFArtOme.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195600-UxHvDXwzJxlP.jpg",
+          "color": "#e49335",
+          "format": "TV",
+          "episodes": 24,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 78,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 194829,
+          "title": "From Old Country Bumpkin to Master Swordsman II",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx194829-bZKwhfo60EuF.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/194829-mAQpjlKYA8c2.jpg",
+          "color": "#aed6e4",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 72,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 269,
+          "title": "Bleach",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/269-08ar2HJOUAuL.jpg",
+          "color": "#f1a150",
+          "format": "TV",
+          "episodes": 366,
+          "season": "FALL",
+          "seasonYear": 2004,
+          "averageScore": 79,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 182616,
+          "title": "The Elusive Samurai Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182616-DymJCBpkR4qs.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182616-kmIqMEUsLYrO.jpg",
+          "color": "#e45050",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 76,
+          "genres": [
+            "Action",
+            "Adventure"
+          ]
+        },
+        {
+          "id": 202269,
+          "title": "Love Unseen Beneath the Clear Night Sky",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx202269-7KNj8s2fSsJJ.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/202269-u0PTTsiKwrVL.jpg",
+          "color": "#5da1e4",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 83,
+          "genres": [
+            "Drama",
+            "Romance"
+          ]
+        },
+        {
+          "id": 204431,
+          "title": "Narumi's Week at Work",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204431-5JC0YY6i6ECJ.jpg",
+          "bannerUrl": null,
+          "color": "#0daeae",
+          "format": "SPECIAL",
+          "episodes": 4,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": 65,
+          "genres": [
+            "Slice of Life"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "popular",
+      "title": "All-time popular",
+      "shows": [
+        {
+          "id": 16498,
+          "title": "Attack on Titan",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg",
+          "color": "#f1a143",
+          "format": "TV",
+          "episodes": 25,
+          "season": "SPRING",
+          "seasonYear": 2013,
+          "averageScore": 85,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 101922,
+          "title": "Demon Slayer: Kimetsu no Yaiba",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSxga.jpg",
+          "color": "#f1c9ae",
+          "format": "TV",
+          "episodes": 26,
+          "season": "SPRING",
+          "seasonYear": 2019,
+          "averageScore": 82,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 113415,
+          "title": "JUJUTSU KAISEN",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
+          "color": "#e45d5d",
+          "format": "TV",
+          "episodes": 24,
+          "season": "FALL",
+          "seasonYear": 2020,
+          "averageScore": 84,
+          "genres": [
+            "Action",
+            "Drama",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 1535,
+          "title": "Death Note",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-kUgkcrfOrkUM.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1535.jpg",
+          "color": null,
+          "format": "TV",
+          "episodes": 37,
+          "season": "FALL",
+          "seasonYear": 2006,
+          "averageScore": 84,
+          "genres": [
+            "Mystery",
+            "Psychological",
+            "Supernatural",
+            "Thriller"
+          ]
+        },
+        {
+          "id": 21459,
+          "title": "My Hero Academia",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-nYh85uj2Fuwr.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21459-yeVkolGKdGUV.jpg",
+          "color": "#f1d643",
+          "format": "TV",
+          "episodes": 13,
+          "season": "SPRING",
+          "seasonYear": 2016,
+          "averageScore": 76,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy"
+          ]
+        },
+        {
+          "id": 11061,
+          "title": "Hunter x Hunter (2011)",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+          "color": "#f1d65d",
+          "format": "TV",
+          "episodes": 148,
+          "season": "FALL",
+          "seasonYear": 2011,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 21087,
+          "title": "One-Punch Man",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21087-B5DHjqZ3kW4b.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21087-sHb9zUZFsHe1.jpg",
+          "color": "#e4ae5d",
+          "format": "TV",
+          "episodes": 12,
+          "season": "FALL",
+          "seasonYear": 2015,
+          "averageScore": 82,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Sci-Fi",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 21,
+          "title": "ONE PIECE",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+          "color": "#e49335",
+          "format": "TV",
+          "episodes": null,
+          "season": "FALL",
+          "seasonYear": 1999,
+          "averageScore": 87,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 20605,
+          "title": "Tokyo Ghoul",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20605-k665mVkSug8D.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20605-RCJ7M71zLmrh.jpg",
+          "color": "#ff6b35",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2014,
+          "averageScore": 76,
+          "genres": [
+            "Action",
+            "Drama",
+            "Horror",
+            "Mystery",
+            "Psychological",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 20958,
+          "title": "Attack on Titan Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20958-Y7eQdz9VENBD.jpg",
+          "color": "#e47850",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SPRING",
+          "seasonYear": 2017,
+          "averageScore": 85,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 5114,
+          "title": "Fullmetal Alchemist: Brotherhood",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+          "color": "#e4c993",
+          "format": "TV",
+          "episodes": 64,
+          "season": "SPRING",
+          "seasonYear": 2009,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "Naruto",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-dE6UHbFFg1A5.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg",
+          "color": "#e47850",
+          "format": "TV",
+          "episodes": 220,
+          "season": "FALL",
+          "seasonYear": 2002,
+          "averageScore": 80,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 11757,
+          "title": "Sword Art Online",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-SxYDUzdr9rh2.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11757-TlEEV9weG4Ag.jpg",
+          "color": "#e4bb5d",
+          "format": "TV",
+          "episodes": 25,
+          "season": "SUMMER",
+          "seasonYear": 2012,
+          "averageScore": 70,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Romance"
+          ]
+        },
+        {
+          "id": 20954,
+          "title": "A Silent Voice",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20954-sYRfE5jQRtSB.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20954-f30bHMXa5Qoe.jpg",
+          "color": "#5dbbe4",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "SUMMER",
+          "seasonYear": 2016,
+          "averageScore": 88,
+          "genres": [
+            "Drama",
+            "Romance",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 21519,
+          "title": "Your Name.",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21519-SUo3ZQuCbYhJ.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21519-1ayMXgNlmByb.jpg",
+          "color": "#0da1e4",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "SUMMER",
+          "seasonYear": 2016,
+          "averageScore": 85,
+          "genres": [
+            "Drama",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 99147,
+          "title": "Attack on Titan Season 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99147-AiPDD8cwlCfi.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/99147-HACsFVrynFf5.jpg",
+          "color": "#4386e4",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2018,
+          "averageScore": 86,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 21856,
+          "title": "My Hero Academia Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21856-gutauxhWAwn6.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21856-wtSHgeHFmzdG.jpg",
+          "color": "#e48643",
+          "format": "TV",
+          "episodes": 25,
+          "season": "SPRING",
+          "seasonYear": 2017,
+          "averageScore": 79,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy"
+          ]
+        },
+        {
+          "id": 110277,
+          "title": "Attack on Titan Final Season",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx110277-sKUNXAsWMNFw.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/110277-iuGn6F5bK1U1.jpg",
+          "color": "#ae6b35",
+          "format": "TV",
+          "episodes": 16,
+          "season": "WINTER",
+          "seasonYear": 2021,
+          "averageScore": 87,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 127230,
+          "title": "Chainsaw Man",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-DdP4vAdssLoz.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/127230-o8IRwCGVr9KW.jpg",
+          "color": "#6b1a1a",
+          "format": "TV",
+          "episodes": 12,
+          "season": "FALL",
+          "seasonYear": 2022,
+          "averageScore": 83,
+          "genres": [
+            "Action",
+            "Drama",
+            "Horror",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 101759,
+          "title": "The Promised Neverland",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101759-8UR7r9MNVpz2.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101759-MhlCoeqnODso.jpg",
+          "color": "#e4ae50",
+          "format": "TV",
+          "episodes": 12,
+          "season": "WINTER",
+          "seasonYear": 2019,
+          "averageScore": 83,
+          "genres": [
+            "Drama",
+            "Fantasy",
+            "Horror",
+            "Mystery",
+            "Psychological",
+            "Thriller"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top",
+      "title": "Top rated",
+      "shows": [
+        {
+          "id": 114129,
+          "title": "Gintama: THE VERY FINAL",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx114129-RLgSuh6YbeYx.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/114129-ZsLDkdwaYeJY.jpg",
+          "color": "#e48643",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "WINTER",
+          "seasonYear": 2021,
+          "averageScore": 91,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 154587,
+          "title": "Frieren: Beyond Journey’s End",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1xB.jpg",
+          "color": "#bbf1a1",
+          "format": "TV",
+          "episodes": 28,
+          "season": "FALL",
+          "seasonYear": 2023,
+          "averageScore": 91,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 20996,
+          "title": "Gintama Season 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20996-kBEGEGdeK1r7.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20996-gaNJKtjmy3Pf.jpg",
+          "color": "#e45d86",
+          "format": "TV",
+          "episodes": 51,
+          "season": "SPRING",
+          "seasonYear": 2015,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 189046,
+          "title": "Re:ZERO -Starting Life in Another World- Season 4",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189046-MDk2CaVuRWpb.jpg",
+          "color": "#e49350",
+          "format": "TV",
+          "episodes": 19,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Romance",
+            "Thriller"
+          ]
+        },
+        {
+          "id": 171627,
+          "title": "Chainsaw Man – The Movie: Reze Arc",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171627-ZN9D7P46yHnw.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/171627-7esVHhgw69rn.jpg",
+          "color": "#e43550",
+          "format": "MOVIE",
+          "episodes": 1,
+          "season": "SUMMER",
+          "seasonYear": 2025,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Drama",
+            "Horror",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 5114,
+          "title": "Fullmetal Alchemist: Brotherhood",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+          "color": "#e4c993",
+          "format": "TV",
+          "episodes": 64,
+          "season": "SPRING",
+          "seasonYear": 2009,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 185874,
+          "title": "BLEACH: Thousand-Year Blood War - The Calamity",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185874-aU3e6tBT6wwA.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/185874-IdGyh1EBG91I.jpg",
+          "color": null,
+          "format": "TV",
+          "episodes": 10,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 90,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 104578,
+          "title": "Attack on Titan Season 3 Part 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104578-k61nx3LPjvgd.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/104578-z7SadpYEuAsy.jpg",
+          "color": "#e49350",
+          "format": "TV",
+          "episodes": 10,
+          "season": "SPRING",
+          "seasonYear": 2019,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ]
+        },
+        {
+          "id": 182469,
+          "title": "ONE PIECE FAN LETTER",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182469-JQ808NBPxmgn.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182469-obNr7bznMzN7.jpg",
+          "color": "#e4935d",
+          "format": "SPECIAL",
+          "episodes": 1,
+          "season": "FALL",
+          "seasonYear": 2024,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 124194,
+          "title": "Fruits Basket The Final Season",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx124194-TJlqMMR7BGn9.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/124194-IB2X2IdALUYB.jpg",
+          "color": "#35bbf1",
+          "format": "TV",
+          "episodes": 13,
+          "season": "SPRING",
+          "seasonYear": 2021,
+          "averageScore": 89,
+          "genres": [
+            "Comedy",
+            "Drama",
+            "Psychological",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 9253,
+          "title": "Steins;Gate",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-tIUXF2gfU8Sg.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n9253-JIhmKgBKsWUN.jpg",
+          "color": "#ffd6ae",
+          "format": "TV",
+          "episodes": 24,
+          "season": "SPRING",
+          "seasonYear": 2011,
+          "averageScore": 89,
+          "genres": [
+            "Drama",
+            "Psychological",
+            "Sci-Fi",
+            "Thriller"
+          ]
+        },
+        {
+          "id": 21745,
+          "title": "Owarimonogatari Second Season",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21745-VrhhJjZNdBXV.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21745-5psGR43Ck4RZ.jpg",
+          "color": "#5dbbe4",
+          "format": "TV",
+          "episodes": 7,
+          "season": "SUMMER",
+          "seasonYear": 2017,
+          "averageScore": 89,
+          "genres": [
+            "Comedy",
+            "Mystery",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 11061,
+          "title": "Hunter x Hunter (2011)",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+          "color": "#f1d65d",
+          "format": "TV",
+          "episodes": 148,
+          "season": "FALL",
+          "seasonYear": 2011,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 15417,
+          "title": "Gintama Season 2 Part 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx15417-Uc2uNdWEixwi.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/15417-0T9JCwFZM99Q.jpg",
+          "color": "#50aed6",
+          "format": "TV",
+          "episodes": 13,
+          "season": "FALL",
+          "seasonYear": 2012,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 9969,
+          "title": "Gintama Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9969-0GaRABYVdUcH.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/9969-pxE6nSzGGyUB.jpg",
+          "color": "#6baed6",
+          "format": "TV",
+          "episodes": 51,
+          "season": "SPRING",
+          "seasonYear": 2011,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 98478,
+          "title": "March comes in like a lion Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx98478-Yua5iL9zbrji.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/98478-BDH64RDmBlr8.jpg",
+          "color": "#ffc993",
+          "format": "TV",
+          "episodes": 22,
+          "season": "FALL",
+          "seasonYear": 2017,
+          "averageScore": 89,
+          "genres": [
+            "Drama",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 2921,
+          "title": "Tomorrow's Joe 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2921-PxFepBRCGD0K.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/2921-8cz7wULNyEgs.jpg",
+          "color": "#f13550",
+          "format": "TV",
+          "episodes": 47,
+          "season": "FALL",
+          "seasonYear": 1980,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Drama",
+            "Slice of Life",
+            "Sports"
+          ]
+        },
+        {
+          "id": 97889,
+          "title": "Gintama Season 4",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx97889-ytqHdmus9wQi.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/97889-z0Gm66dFW93U.jpg",
+          "color": "#e4d650",
+          "format": "TV",
+          "episodes": 12,
+          "season": "WINTER",
+          "seasonYear": 2017,
+          "averageScore": 89,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ]
+        },
+        {
+          "id": 125367,
+          "title": "Kaguya-sama: Love is War -Ultra Romantic-",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx125367-1yuq9NFcQuLI.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/125367-hGPJLSNfprO3.jpg",
+          "color": "#d6f1a1",
+          "format": "TV",
+          "episodes": 13,
+          "season": "SPRING",
+          "seasonYear": 2022,
+          "averageScore": 89,
+          "genres": [
+            "Comedy",
+            "Psychological",
+            "Romance",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 116674,
+          "title": "BLEACH: Thousand-Year Blood War",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx116674-p3zK4PUX2Aag.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/116674-l2YlIyJzvGSV.jpg",
+          "color": "#e45043",
+          "format": "TV",
+          "episodes": 13,
+          "season": "FALL",
+          "seasonYear": 2022,
+          "averageScore": 88,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Supernatural"
+          ]
+        }
+      ]
+    }
+  ]
+}
