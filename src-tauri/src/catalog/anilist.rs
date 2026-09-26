@@ -36,7 +36,7 @@ pub enum Freshness {
 }
 
 impl Freshness {
-    fn ttl(self, normal: Duration) -> Duration {
+    pub fn ttl(self, normal: Duration) -> Duration {
         match self {
             Freshness::Ttl => normal,
             Freshness::AnyAge => ANY_AGE,

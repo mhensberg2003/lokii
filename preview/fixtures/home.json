@@ -392,6 +392,23 @@
           ]
         },
         {
+          "id": 199066,
+          "title": "Hanaori-san Still Wants to Fight in the Next Life",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199066-YXDVsguvFZMm.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/199066-nmAYnI6uChse.jpg",
+          "color": "#43bbe4",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 69,
+          "genres": [
+            "Comedy",
+            "Romance",
+            "Supernatural"
+          ]
+        },
+        {
           "id": 184492,
           "title": "Welcome to Demon School! Iruma-kun Season 4",
           "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx184492-KUVFGieuMaOx.jpg",
@@ -409,40 +426,6 @@
           ]
         },
         {
-          "id": 204389,
-          "title": "A Wild Last Boss Appeared! Season 2",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204389-jCoFCeTthDMy.jpg",
-          "bannerUrl": null,
-          "color": "#e45dc9",
-          "format": "ONA",
-          "episodes": null,
-          "season": "FALL",
-          "seasonYear": 2026,
-          "averageScore": null,
-          "genres": [
-            "Action",
-            "Adventure",
-            "Fantasy"
-          ]
-        },
-        {
-          "id": 209983,
-          "title": "HELL MODE: The Hardcore Gamer Dominates in Another World with Garbage Balancing Season 2",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209983-sFOcKyqMufxb.jpg",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/209983-fJysbFB72IM9.jpg",
-          "color": "#0dbbf1",
-          "format": "TV",
-          "episodes": 13,
-          "season": "SUMMER",
-          "seasonYear": 2026,
-          "averageScore": 72,
-          "genres": [
-            "Action",
-            "Adventure",
-            "Fantasy"
-          ]
-        },
-        {
           "id": 196187,
           "title": "Smoking Behind the Supermarket with You",
           "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196187-0dgFi2CPp3xn.jpg",
@@ -456,6 +439,23 @@
           "genres": [
             "Comedy",
             "Romance",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 171110,
+          "title": "Ascendance of a Bookworm: Adopted Daughter of an Archduke",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171110-7zOdInS6DQNL.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/171110-lgtmKokpevUM.jpg",
+          "color": "#5daee4",
+          "format": "TV",
+          "episodes": 24,
+          "season": "SPRING",
+          "seasonYear": 2026,
+          "averageScore": 76,
+          "genres": [
+            "Drama",
+            "Fantasy",
             "Slice of Life"
           ]
         },
@@ -481,20 +481,20 @@
           ]
         },
         {
-          "id": 171110,
-          "title": "Ascendance of a Bookworm: Adopted Daughter of an Archduke",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171110-7zOdInS6DQNL.jpg",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/171110-lgtmKokpevUM.jpg",
-          "color": "#5daee4",
-          "format": "TV",
-          "episodes": 24,
-          "season": "SPRING",
+          "id": 204389,
+          "title": "A Wild Last Boss Appeared! Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204389-jCoFCeTthDMy.jpg",
+          "bannerUrl": null,
+          "color": "#e45dc9",
+          "format": "ONA",
+          "episodes": null,
+          "season": "FALL",
           "seasonYear": 2026,
-          "averageScore": 76,
+          "averageScore": null,
           "genres": [
-            "Drama",
-            "Fantasy",
-            "Slice of Life"
+            "Action",
+            "Adventure",
+            "Fantasy"
           ]
         },
         {
@@ -517,57 +517,20 @@
           ]
         },
         {
-          "id": 217331,
-          "title": "Tensei Shitara Slime Datta Ken 4th Season Part 3",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx217331-iennFNPU2f7K.png",
-          "bannerUrl": null,
-          "color": "#e4ae35",
+          "id": 209983,
+          "title": "HELL MODE: The Hardcore Gamer Dominates in Another World with Garbage Balancing Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209983-sFOcKyqMufxb.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/209983-fJysbFB72IM9.jpg",
+          "color": "#0dbbf1",
           "format": "TV",
-          "episodes": null,
+          "episodes": 13,
           "season": "SUMMER",
-          "seasonYear": 2027,
-          "averageScore": null,
+          "seasonYear": 2026,
+          "averageScore": 72,
           "genres": [
             "Action",
             "Adventure",
-            "Comedy",
             "Fantasy"
-          ]
-        },
-        {
-          "id": 207141,
-          "title": "Chainsmoker Cat",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207141-h5q5KJPd6vaX.jpg",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/207141-MvHAS2YVfJzL.jpg",
-          "color": "#50a1f1",
-          "format": "TV",
-          "episodes": 12,
-          "season": "SUMMER",
-          "seasonYear": 2026,
-          "averageScore": 69,
-          "genres": [
-            "Comedy",
-            "Ecchi",
-            "Slice of Life"
-          ]
-        },
-        {
-          "id": 210482,
-          "title": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg",
-          "bannerUrl": null,
-          "color": "#f1ae50",
-          "format": "ONA",
-          "episodes": 11,
-          "season": "FALL",
-          "seasonYear": 2026,
-          "averageScore": 85,
-          "genres": [
-            "Action",
-            "Adventure",
-            "Drama",
-            "Mystery",
-            "Supernatural"
           ]
         },
         {
@@ -585,38 +548,6 @@
             "Adventure",
             "Drama",
             "Ecchi",
-            "Fantasy"
-          ]
-        },
-        {
-          "id": 180136,
-          "title": "The Exiled Heavy Knight Knows How to Game the System",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg",
-          "bannerUrl": null,
-          "color": "#50c9fe",
-          "format": "TV",
-          "episodes": 26,
-          "season": "SUMMER",
-          "seasonYear": 2026,
-          "averageScore": 67,
-          "genres": [
-            "Action",
-            "Fantasy"
-          ]
-        },
-        {
-          "id": 135865,
-          "title": "Saga of Tanya the Evil Season 2",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx135865-T7XIPMAbqcxN.png",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/135865-Ws3e7BhBkFxd.jpg",
-          "color": "#e46b28",
-          "format": "TV",
-          "episodes": 12,
-          "season": "SUMMER",
-          "seasonYear": 2026,
-          "averageScore": 80,
-          "genres": [
-            "Action",
             "Fantasy"
           ]
         },
@@ -640,20 +571,123 @@
           ]
         },
         {
-          "id": 194829,
-          "title": "From Old Country Bumpkin to Master Swordsman II",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx194829-bZKwhfo60EuF.jpg",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/194829-mAQpjlKYA8c2.jpg",
-          "color": "#aed6e4",
+          "id": 210482,
+          "title": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg",
+          "bannerUrl": null,
+          "color": "#f1ae50",
+          "format": "ONA",
+          "episodes": 11,
+          "season": "FALL",
+          "seasonYear": 2026,
+          "averageScore": 85,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Mystery",
+            "Supernatural"
+          ]
+        },
+        {
+          "id": 207141,
+          "title": "Chainsmoker Cat",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207141-h5q5KJPd6vaX.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/207141-MvHAS2YVfJzL.jpg",
+          "color": "#50a1f1",
           "format": "TV",
           "episodes": 12,
           "season": "SUMMER",
           "seasonYear": 2026,
-          "averageScore": 72,
+          "averageScore": 69,
+          "genres": [
+            "Comedy",
+            "Ecchi",
+            "Slice of Life"
+          ]
+        },
+        {
+          "id": 196017,
+          "title": "Grow Up Show",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196017-GynDNdbDzqzk.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196017-qB1xhp5PO10x.jpg",
+          "color": "#f1ae1a",
+          "format": "TV",
+          "episodes": 13,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 71,
+          "genres": [
+            "Adventure",
+            "Slice of Life",
+            "Sports"
+          ]
+        },
+        {
+          "id": 217331,
+          "title": "Tensei Shitara Slime Datta Ken 4th Season Part 3",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx217331-iennFNPU2f7K.png",
+          "bannerUrl": null,
+          "color": "#e4ae35",
+          "format": "TV",
+          "episodes": null,
+          "season": "SUMMER",
+          "seasonYear": 2027,
+          "averageScore": null,
           "genres": [
             "Action",
             "Adventure",
             "Comedy",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 180136,
+          "title": "The Exiled Heavy Knight Knows How to Game the System",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg",
+          "bannerUrl": null,
+          "color": "#50c9fe",
+          "format": "TV",
+          "episodes": 26,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 67,
+          "genres": [
+            "Action",
+            "Fantasy"
+          ]
+        },
+        {
+          "id": 185692,
+          "title": "Magilumiere Magical Girls Inc. Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185692-1a8huwOIx7gw.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/185692-FLmhWYEAA7IY.jpg",
+          "color": "#5dc9e4",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 64,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Fantasy",
+            "Mahou Shoujo"
+          ]
+        },
+        {
+          "id": 135865,
+          "title": "Saga of Tanya the Evil Season 2",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx135865-T7XIPMAbqcxN.png",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/135865-Ws3e7BhBkFxd.jpg",
+          "color": "#e46b28",
+          "format": "TV",
+          "episodes": 12,
+          "season": "SUMMER",
+          "seasonYear": 2026,
+          "averageScore": 80,
+          "genres": [
+            "Action",
             "Fantasy"
           ]
         },
@@ -675,50 +709,21 @@
           ]
         },
         {
-          "id": 182616,
-          "title": "The Elusive Samurai Season 2",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182616-DymJCBpkR4qs.jpg",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182616-kmIqMEUsLYrO.jpg",
-          "color": "#e45050",
+          "id": 196012,
+          "title": "MAO",
+          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196012-R3YNjunufpYh.jpg",
+          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196012-BbzGv8DuqVah.jpg",
+          "color": "#f1935d",
           "format": "TV",
-          "episodes": 12,
-          "season": "SUMMER",
-          "seasonYear": 2026,
-          "averageScore": 76,
-          "genres": [
-            "Action",
-            "Adventure"
-          ]
-        },
-        {
-          "id": 202269,
-          "title": "Love Unseen Beneath the Clear Night Sky",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx202269-7KNj8s2fSsJJ.jpg",
-          "bannerUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/202269-u0PTTsiKwrVL.jpg",
-          "color": "#5da1e4",
-          "format": "TV",
-          "episodes": 12,
-          "season": "SUMMER",
-          "seasonYear": 2026,
-          "averageScore": 83,
-          "genres": [
-            "Drama",
-            "Romance"
-          ]
-        },
-        {
-          "id": 204431,
-          "title": "Narumi's Week at Work",
-          "coverUrl": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204431-5JC0YY6i6ECJ.jpg",
-          "bannerUrl": null,
-          "color": "#0daeae",
-          "format": "SPECIAL",
-          "episodes": 4,
-          "season": "FALL",
+          "episodes": 26,
+          "season": "SPRING",
           "seasonYear": 2026,
           "averageScore": 65,
           "genres": [
-            "Slice of Life"
+            "Drama",
+            "Mystery",
+            "Romance",
+            "Supernatural"
           ]
         }
       ]

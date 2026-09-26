@@ -124,7 +124,7 @@ pub async fn skip_segments(
     if !duration.is_finite() || duration <= 0.0 {
         return Ok(Vec::new());
     }
-    let show = catalog::show(catalog.client(), store.get(&app).await?, show_id).await?;
+    let show = catalog::show(&catalog, store.get(&app).await?, show_id).await?;
     let Some(mal_id) = show.id_mal else {
         return Ok(Vec::new());
     };

@@ -3,6 +3,7 @@
 //! Output types mirror `src/lib/catalog.ts` exactly (see `model.rs`).
 
 pub mod anilist;
+pub mod episodes;
 mod franchise;
 pub mod model;
 mod queries;
@@ -16,6 +17,7 @@ use std::collections::HashSet;
 use tauri::{AppHandle, State};
 
 use anilist::{AniListClient, CachingFetcher, Freshness};
+use episodes::EpisodeClient;
 use model::{BrowseFeed, HomeFeed, NextAiring, ShowCard, ShowDetails, ShowRow};
 use raw::{RawFranchiseNode, RawMedia, RawStudioConnection};
 
@@ -44,12 +46,7 @@ pub const BROWSE_GENRES: &[&str] = &[
 #[derive(Default)]
 pub struct CatalogState {
     client: AniListClient,
-}
-
-impl CatalogState {
-    pub fn client(&self) -> &AniListClient {
-        &self.client
-    }
+    episodes: EpisodeClient,
 }
 
 #[tauri::command]
@@ -118,30 +115,34 @@ pub async fn catalog_show(
     id: i64,
 ) -> Result<ShowDetails, String> {
     let cache = store.get(&app).await?;
-    show(&state.client, cache, id).await
+    show(&state, cache, id).await
 }
 
-pub async fn show(client: &AniListClient, cache: &Store, id: i64) -> Result<ShowDetails, String> {
-    show_with(client, cache, id, Freshness::Ttl).await
+pub async fn show(catalog: &CatalogState, cache: &Store, id: i64) -> Result<ShowDetails, String> {
+    show_with(catalog, cache, id, Freshness::Ttl).await
 }
 
 /// The Show from the cache at any age, so a list of many Shows costs no AniList
 /// requests. Only a Show that was never loaded is fetched.
-pub async fn cached_show(client: &AniListClient, cache: &Store, id: i64) -> Result<ShowDetails, String> {
-    show_with(client, cache, id, Freshness::AnyAge).await
+pub async fn cached_show(catalog: &CatalogState, cache: &Store, id: i64) -> Result<ShowDetails, String> {
+    show_with(catalog, cache, id, Freshness::AnyAge).await
 }
 
 async fn show_with(
-    client: &AniListClient,
+    catalog: &CatalogState,
     cache: &Store,
     id: i64,
     freshness: Freshness,
 ) -> Result<ShowDetails, String> {
+    let client = &catalog.client;
     let media = client.fetch_show(cache, id, freshness).await?;
 
     let start = RawFranchiseNode::from_media(&media);
     let fetcher = CachingFetcher { client, cache, freshness };
-    let franchise = franchise::walk(start, &fetcher).await;
+    let (franchise, details) = tokio::join!(
+        franchise::walk(start, &fetcher),
+        catalog.episodes.fetch(cache, id, freshness.ttl(anilist::TTL_SHOW)),
+    );
     let franchise_ids: HashSet<i64> = franchise.iter().map(|entry| entry.id).collect();
 
     let related = media
@@ -163,7 +164,7 @@ async fn show_with(
             .next_airing_episode
             .as_ref()
             .map(|next| NextAiring { episode: next.episode, airing_at: next.airing_at }),
-        episode_list: model::build_episode_list(&media),
+        episode_list: model::build_episode_list(&media, &details),
         franchise,
         related,
     })
@@ -206,7 +207,8 @@ mod tests {
     #[tokio::test]
     #[ignore = "calls the live AniList API"]
     async fn dump_preview_fixtures() {
-        let client = AniListClient::new();
+        let catalog = CatalogState::default();
+        let client = &catalog.client;
         let cache = Store::in_memory().unwrap();
         let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../preview/fixtures");
         std::fs::create_dir_all(&dir).unwrap();
@@ -214,13 +216,13 @@ mod tests {
             std::fs::write(dir.join(name), value.json()).unwrap();
         };
 
-        let home_feed = home(&client, &cache).await.unwrap();
+        let home_feed = home(client, &cache).await.unwrap();
         write("home.json", &home_feed);
-        write("browse-Action.json", &browse(&client, &cache, "Action".into()).await.unwrap());
-        write("search.json", &search(&client, &cache, "frieren").await.unwrap());
+        write("browse-Action.json", &browse(client, &cache, "Action".into()).await.unwrap());
+        write("search.json", &search(client, &cache, "frieren").await.unwrap());
         // The hero, plus Attack on Titan (16498) for a long Franchise season strip.
         for id in [home_feed.hero.card.id, 16498] {
-            write(&format!("show-{id}.json"), &show(&client, &cache, id).await.unwrap());
+            write(&format!("show-{id}.json"), &show(&catalog, &cache, id).await.unwrap());
         }
     }
 

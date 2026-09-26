@@ -19,6 +19,23 @@
   "idMal": 16498,
   "titleRomaji": "Shingeki no Kyojin",
   "titleNative": "進撃の巨人",
+  "synonyms": [
+    "SnK",
+    "AoT",
+    "Ataque a los Titanes",
+    "Ataque dos Titãs",
+    "L'Attacco dei Giganti",
+    "מתקפת הטיטאנים",
+    "进击的巨人",
+    "L’Attaque des Titans",
+    "الهجوم على العمالقة",
+    "ผ่าพิภพไททัน",
+    "حمله به تایتان",
+    "Ataque de Titãs",
+    "Atak Tytanów",
+    "Атака титанов",
+    "Đại Chiến Titan"
+  ],
   "status": "FINISHED",
   "duration": 24,
   "studios": [
@@ -30,6 +47,7 @@
       "id": 16498,
       "title": "Attack on Titan",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SPRING",
       "seasonYear": 2013,
       "episodes": 25
@@ -38,6 +56,7 @@
       "id": 20958,
       "title": "Attack on Titan Season 2",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SPRING",
       "seasonYear": 2017,
       "episodes": 12
@@ -46,6 +65,7 @@
       "id": 99147,
       "title": "Attack on Titan Season 3",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SUMMER",
       "seasonYear": 2018,
       "episodes": 12
@@ -54,6 +74,7 @@
       "id": 104578,
       "title": "Attack on Titan Season 3 Part 2",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SPRING",
       "seasonYear": 2019,
       "episodes": 10
@@ -62,6 +83,7 @@
       "id": 110277,
       "title": "Attack on Titan Final Season",
       "format": "TV",
+      "status": "FINISHED",
       "season": "WINTER",
       "seasonYear": 2021,
       "episodes": 16
@@ -70,6 +92,7 @@
       "id": 131681,
       "title": "Attack on Titan Final Season Part 2",
       "format": "TV",
+      "status": "FINISHED",
       "season": "WINTER",
       "seasonYear": 2022,
       "episodes": 12
@@ -78,152 +101,152 @@
   "episodeList": [
     {
       "number": 1,
-      "title": "To You, 2,000 Years in the Future -The Fall of Zhiganshina (1)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire1-tmb/b199406edeebc19a7f4e4412d6e1dfcc1365964779_full.jpg",
+      "title": "To You, 2000 Years in the Future: The Fall of Zhiganshina (1)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4516067.jpg",
       "airingAt": null
     },
     {
       "number": 2,
-      "title": "That Day - The Fall of Zhiganshina (2)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/b9fbee83c6c9a6353383a36b81d861211365965650_full.jpg",
+      "title": "That Day: The Fall of Zhiganshina (2)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520243.jpg",
       "airingAt": null
     },
     {
       "number": 3,
-      "title": "A Dim Light in the Darkness of Despair - Humanity Rises Again (1)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/c7b6627f8880562f34268096f9c55c051366564160_full.jpg",
+      "title": "A Dim Light in the Darkness of Despair: Humanity Rises Again (1)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520244.jpg",
       "airingAt": null
     },
     {
       "number": 4,
-      "title": "Night of the Graduation Ceremony - Humanity Rises Again (2)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/941f10ee007bd7a2704d00dfb460c8fa1367145015_full.jpg",
+      "title": "Night of the Graduation Ceremony: Humanity Rises Again (2)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520245.jpg",
       "airingAt": null
     },
     {
       "number": 5,
-      "title": "First Battle - Battle of Trost (1)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/cc56e86eb68f3afde55d62e008fddb441367805554_full.jpg",
+      "title": "First Battle: Battle of Trost (1)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520246.jpg",
       "airingAt": null
     },
     {
       "number": 6,
-      "title": "The World the Girl Saw - Battle for Trost (2)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire4-tmb/0b9d827f813bd0f5b934721b7cce37d31368457914_full.jpg",
+      "title": "The World the Girl Saw: Battle for Trost (2)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520247.jpg",
       "airingAt": null
     },
     {
       "number": 7,
-      "title": "The Small Blade - The Battle for Trost (3)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/adea712fbf73a3096ace5c4bcfb94ab71368954327_full.jpg",
+      "title": "The Small Blade: The Battle for Trost (3)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520248.jpg",
       "airingAt": null
     },
     {
       "number": 8,
-      "title": "Hearing the Heartbeat - The Battle for Trost (4)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/35c4c2b8bb74d8ee888aeff5a90e911c1369526858_full.jpg",
+      "title": "Hearing the Heartbeat: The Battle for Trost (4)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520249.jpg",
       "airingAt": null
     },
     {
       "number": 9,
-      "title": "Where the Left Arm Went  - The Battle for Trost (5)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire1-tmb/dbe188f8378a1fbeb6bd75dca5f4833d1370123553_full.jpg",
+      "title": "Where the Left Arm Went: The Battle for Trost (5)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520250.jpg",
       "airingAt": null
     },
     {
       "number": 10,
-      "title": "Response - The Battle for Trost (6)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/d817405dd8bb881c6cbea6bfaff591c21370729401_full.jpg",
+      "title": "Response: The Battle for Trost (6)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520251.jpg",
       "airingAt": null
     },
     {
       "number": 11,
-      "title": "Icon - The Battle for Trost (7)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/d178c066f3340c55c1f77f777f9082fd1371318103_full.jpg",
+      "title": "Icon: The Battle for Trost (7)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520252.jpg",
       "airingAt": null
     },
     {
       "number": 12,
-      "title": "Wound - The Battle for Trost (8)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire4-tmb/6401b828d7db85669e185d115fa102a41371935223_full.jpg",
+      "title": "Wound: The Battle for Trost (8)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4520253.jpg",
       "airingAt": null
     },
     {
       "number": 13,
-      "title": "Primal Desires - The Battle for Trost (9)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire1-tmb/69349336c3ef4817e40d7f4b99bee4e51372540942_full.jpg",
+      "title": "Primal Desires: The Battle for Trost (9)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546795.jpg",
       "airingAt": null
     },
     {
       "number": 14,
-      "title": "Still Can't See - Night Before the Counteroffensive (1)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire1-tmb/94536ae32c4df9f96d8d8194c674c45d1373752009_full.jpg",
+      "title": "Still Can`t See: Night Before the Counteroffensive (1)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546797.jpg",
       "airingAt": null
     },
     {
       "number": 15,
-      "title": "Special Ops Squad - Night Before the Counteroffensive (2)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire1-tmb/745d6f6f240ffc99cc08f4f4d52f6e0b1374356790_full.jpg",
+      "title": "Special Ops Squad: Night Before the Counteroffensive (2)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546798.jpg",
       "airingAt": null
     },
     {
       "number": 16,
-      "title": "What Should Be Done - Night Before the Counteroffensive (3)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire4-tmb/91e17edd483923b330428ac5de39796d1374964414_full.jpg",
+      "title": "What Should Be Done: Night Before the Counteroffensive (3)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546799.jpg",
       "airingAt": null
     },
     {
       "number": 17,
-      "title": "Female Titan - 57th Expedition Beyond the Walls (1)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire1-tmb/af666f0f1d7dac4aea8fd7b548419e001375570078_full.jpg",
+      "title": "Female Titan: 57th Expedition Beyond the Walls (1)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546800.jpg",
       "airingAt": null
     },
     {
       "number": 18,
-      "title": "Forest of Giant Trees - 57th Expedition Beyond the Walls (2)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/96361bbd829a6ba6aa8d7e803b18ef3e1376169742_full.jpg",
+      "title": "Forest of Giant Trees: 57th Expedition Beyond the Walls (2)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546801.jpg",
       "airingAt": null
     },
     {
       "number": 19,
-      "title": "Bite - 57th Expedition Beyond the Walls (3)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire4-tmb/fbb4f7f661b9fe2e169bde507c96df441376778966_full.jpg",
+      "title": "Bite: 57th Expedition Beyond the Walls (3)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546802.jpg",
       "airingAt": null
     },
     {
       "number": 20,
-      "title": "Erwin Smith - 57th Expedition Beyond the Walls (4)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/d6f7322acdd63ccc27387feea0fd8a661377384263_full.jpg",
+      "title": "Erwin Smith: 57th Expedition Beyond the Walls (4)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546803.jpg",
       "airingAt": null
     },
     {
       "number": 21,
-      "title": "Crushing Blow - 57th Expedition Beyond the Walls (5)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire4-tmb/554197194719955e2f746fc300540f321377988494_full.jpg",
+      "title": "Crushing Blow: 57th Expedition Beyond the Walls (5)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546804.jpg",
       "airingAt": null
     },
     {
       "number": 22,
-      "title": "The Defeated - 57th Expedition Beyond the Walls (6)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire2-tmb/350c8f1fddd535e04cfb4b29b4e3ab751378592642_full.jpg",
+      "title": "The Defeated: 57th Expedition Beyond the Walls (6)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546805.jpg",
       "airingAt": null
     },
     {
       "number": 23,
-      "title": "Smile - Raid on Stohess District (1)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/5c2122871212f063628d60a0280568bf1379190681_full.jpg",
+      "title": "Smile: Raid on Stohess District (1)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546806.jpg",
       "airingAt": null
     },
     {
       "number": 24,
-      "title": "Mercy - Raid on Stohess District (2)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/83697a20a24c8d623cba002043e8e5241379794821_full.jpg",
+      "title": "Mercy: Raid on Stohess District (2)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4546807.jpg",
       "airingAt": null
     },
     {
       "number": 25,
-      "title": "The Wall - Raid on Stohess District (3)",
-      "thumbnailUrl": "https://img1.ak.crunchyroll.com/i/spire3-tmb/09379010a52b6c46c3e8fd0939974a071380395420_full.jpg",
+      "title": "The Wall: Raid on Stohess District (3)",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/episodes/267440/4638113.jpg",
       "airingAt": null
     }
   ],

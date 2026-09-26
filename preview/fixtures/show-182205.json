@@ -19,6 +19,14 @@
   "idMal": 59970,
   "titleRomaji": "Tensei Shitara Slime Datta Ken 4th Season Part 1 & 2",
   "titleNative": "転生したらスライムだった件 第4期 第1&2クール",
+  "synonyms": [
+    "Tensura 4",
+    "転スラ 4",
+    "เกิดใหม่ทั้งทีก็เป็นสไลม์ไปซะแล้ว ซีซั่น 4",
+    "О моём перерождении в слизь 4",
+    "Aquella vez que me convertí en slime - Temporada 4",
+    "Moi, quand je me réincarne en Slime Saison 4"
+  ],
   "status": "FINISHED",
   "duration": 24,
   "studios": [
@@ -30,6 +38,7 @@
       "id": 108511,
       "title": "That Time I Got Reincarnated as a Slime Season 2",
       "format": "TV",
+      "status": "FINISHED",
       "season": "WINTER",
       "seasonYear": 2021,
       "episodes": 12
@@ -38,6 +47,7 @@
       "id": 116742,
       "title": "That Time I Got Reincarnated as a Slime Season 2 Part 2",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SUMMER",
       "seasonYear": 2021,
       "episodes": 12
@@ -46,6 +56,7 @@
       "id": 156822,
       "title": "That Time I Got Reincarnated as a Slime Season 3",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SPRING",
       "seasonYear": 2024,
       "episodes": 24
@@ -54,6 +65,7 @@
       "id": 182205,
       "title": "That Time I Got Reincarnated as a Slime Season 4",
       "format": "TV",
+      "status": "FINISHED",
       "season": "SPRING",
       "seasonYear": 2026,
       "episodes": 24
@@ -62,6 +74,7 @@
       "id": 217331,
       "title": "Tensei Shitara Slime Datta Ken 4th Season Part 3",
       "format": "TV",
+      "status": "NOT_YET_RELEASED",
       "season": "SUMMER",
       "seasonYear": 2027,
       "episodes": null
@@ -70,146 +83,146 @@
   "episodeList": [
     {
       "number": 1,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "New Days",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11561313/screencap/69cbb9ad64647.jpg",
       "airingAt": null
     },
     {
       "number": 2,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Dungeon Evolves",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696720/screencap/69d59d2930387.jpg",
       "airingAt": null
     },
     {
       "number": 3,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Avatar Team Is Formed",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696721/screencap/69e2170496c9a.jpg",
       "airingAt": null
     },
     {
       "number": 4,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Invitation",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696722/screencap/69ea877d2a96c.jpg",
       "airingAt": null
     },
     {
       "number": 5,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The First Step",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696723/screencap/69f79e4fee55e.jpg",
       "airingAt": null
     },
     {
       "number": 6,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Council of the West",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696725/screencap/6a03bd43472a2.jpg",
       "airingAt": null
     },
     {
       "number": 7,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Mastermind`s Identity",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696727/screencap/6a0dece1b4360.jpg",
       "airingAt": null
     },
     {
       "number": 8,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Groundwork of Greed",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696729/screencap/6a158a7ae26b4.jpg",
       "airingAt": null
     },
     {
       "number": 9,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Investigating the Ruins",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696731/screencap/6a1ec613445a0.jpg",
       "airingAt": null
     },
     {
       "number": 10,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Master of Greed",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696733/screencap/6a281ac120043.jpg",
       "airingAt": null
     },
     {
       "number": 11,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Milim`s Friend",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696735/screencap/6a31572fee81d.jpg",
       "airingAt": null
     },
     {
       "number": 12,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Tempest Evolves",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696738/screencap/6a3c1de78428f.jpg",
       "airingAt": null
     },
     {
       "number": 13,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "New Companions",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696740/screencap/6a43a74531cf6.jpg",
       "airingAt": null
     },
     {
       "number": 14,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Black Numbers",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696742/screencap/6a50306197727.jpg",
       "airingAt": null
     },
     {
       "number": 15,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "An Unsettling Feeling",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696744/screencap/6a55acfacf3f0.jpg",
       "airingAt": null
     },
     {
       "number": 16,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Gran, the Hero of Dawn",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696745/screencap/6a62ba9e59d0e.jpg",
       "airingAt": null
     },
     {
       "number": 17,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Lubelius, the Point of Convergence",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696747/screencap/6a696ce51048f.jpg",
       "airingAt": null
     },
     {
       "number": 18,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Turbulence in the West",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696750/screencap/6a7d271ee8df6.jpg",
       "airingAt": null
     },
     {
       "number": 19,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Death and Loss",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696752/screencap/6a877c7bb395b.jpg",
       "airingAt": null
     },
     {
       "number": 20,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Chronoa the Hero, Part 1",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696754/screencap/6a916fc52a7f2.jpg",
       "airingAt": null
     },
     {
       "number": 21,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Chronoa the Hero, Part 2",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696756/screencap/6a9a1a1481242.jpg",
       "airingAt": null
     },
     {
       "number": 22,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Where the Soul Resides",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696758/screencap/6aa350bde95e8.jpg",
       "airingAt": null
     },
     {
       "number": 23,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "Granville`s Hope",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696760/screencap/6aad3c4313b91.jpg",
       "airingAt": null
     },
     {
       "number": 24,
-      "title": null,
-      "thumbnailUrl": null,
+      "title": "The Hero Awakens",
+      "thumbnailUrl": "https://artworks.thetvdb.com/banners/v4/episode/11696762/screencap/6ab5be6f16376.jpg",
       "airingAt": null
     }
   ],
