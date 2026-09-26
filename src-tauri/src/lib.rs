@@ -2,6 +2,7 @@ mod catalog;
 mod ids;
 mod index;
 mod library;
+mod onepace;
 mod player;
 mod skip;
 mod sources;
@@ -28,6 +29,7 @@ pub fn run() {
         .setup(|app| {
             player::setup(app)?;
             ids::spawn_refresh(app.handle());
+            onepace::spawn_refresh(app.handle());
             sources::local::spawn_startup_cleanup(app.handle());
             Ok(())
         })

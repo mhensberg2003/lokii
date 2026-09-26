@@ -2,7 +2,7 @@
 //! largest video file; a Batch plays the file whose name holds the Episode number.
 
 use crate::index::matching::{self, FileEpisode, ShowContext};
-use crate::index::model::Coverage;
+use crate::index::model::{Coverage, Release};
 use crate::index::name;
 
 const VIDEO_EXTENSIONS: &[&str] = &["mkv", "mp4", "m4v", "webm", "avi", "ts", "m2ts"];
@@ -18,6 +18,18 @@ pub struct ReleaseFile {
     /// The path inside the Release, with `/` between folders.
     pub path: String,
     pub size: u64,
+}
+
+/// Returns the ID of the file that plays `episode`: the file the Index named for the
+/// Release (One Pace), else the file that `pick` finds.
+pub fn pick_release(files: &[ReleaseFile], release: &Release, ctx: &ShowContext, episode: i64) -> Result<u64, String> {
+    if let Some(known) = release.file_path.as_deref() {
+        let name = file_name(known);
+        if let Some(file) = files.iter().find(|f| f.path == known || file_name(&f.path) == name) {
+            return Ok(file.id);
+        }
+    }
+    pick(files, release.coverage, ctx, episode)
 }
 
 /// Returns the ID of the file that plays `episode`.
@@ -77,6 +89,35 @@ mod tests {
 
     fn aot_s1() -> ShowContext {
         ShowContext::new(&["Attack on Titan", "Shingeki no Kyojin"], Some(25), 1, vec![], Some("TV"))
+    }
+
+    #[test]
+    fn a_file_the_index_named_wins_even_without_its_root_folder() {
+        let files = [
+            file(0, "[One Pace] Wano 01 [1080p][F15AFDE0].mkv", 900),
+            file(1, "[One Pace] Wano 02 [1080p][8538EDC4].mkv", 800),
+        ];
+        let mut release = crate::index::model::Release {
+            info_hash: "a".into(),
+            title: "[One Pace][909-924] Wano Act 1".into(),
+            group: None,
+            resolution: None,
+            size_bytes: 0,
+            seeders: 0,
+            leechers: 0,
+            file_count: 2,
+            coverage: Coverage::Show,
+            is_best: true,
+            published_at: 0,
+            magnet: String::new(),
+            link: String::new(),
+            file_path: Some("[One Pace][909-924] Wano Act 1/[One Pace] Wano 02 [1080p][8538EDC4].mkv".into()),
+        };
+        let ctx = ShowContext::new(&["One Pace: Wano"], Some(2), 1, vec![], Some("ONA"));
+        assert_eq!(pick_release(&files, &release, &ctx, 2), Ok(1));
+        release.file_path = Some("gone.mkv".into());
+        release.coverage = Coverage::Episode { episode: 2 };
+        assert_eq!(pick_release(&files, &release, &ctx, 2), Ok(0), "falls back to the largest video");
     }
 
     /// A Batch of both parts of AoT's Final Season, numbered S04E01 to S04E28.

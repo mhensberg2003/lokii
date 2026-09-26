@@ -118,6 +118,7 @@ pub mod tests {
             season: None,
             season_year: None,
             episodes: Some(12),
+            label: None,
         }
     }
 

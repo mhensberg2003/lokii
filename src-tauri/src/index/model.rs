@@ -42,8 +42,11 @@ pub struct Release {
     /// Unix seconds.
     pub published_at: i64,
     pub magnet: String,
-    /// The Release page on AnimeTosho.
+    /// The Release page on the Index: AnimeTosho, or Nyaa for One Pace.
     pub link: String,
+    /// The Episode's file inside the Release, when the Index knows it.
+    #[serde(default)]
+    pub file_path: Option<String>,
 }
 
 #[derive(Serialize, Debug, Clone)]

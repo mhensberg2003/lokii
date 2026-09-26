@@ -11,6 +11,7 @@ Desktop anime streaming app for macOS and Windows. All user state stays on the d
 | Player | Embedded libmpv with our own controls ([ADR 0002](./adr/0002-embedded-libmpv-player.md)) |
 | Catalog | AniList GraphQL, no login |
 | Index | AnimeTosho, with SeaDex for the Best Release |
+| One Pace | Arcs as Shows in one Franchise, built from the One Pace Episode Guide and Nyaa; bundled snapshot, rebuilt weekly |
 | Source | TorBox when connected, else Local Torrent |
 | After Watched | Local Torrent: delete data, stop seeding. TorBox: remove the torrent (a Batch stays until its last Episode is Watched) |
 | Unfinished Streams | Local data is deleted when the app quits |
@@ -32,6 +33,7 @@ Downloads · Settings                       index     AnimeTosho search, SeaDex 
                                            stream    Stream lifecycle → one playable HTTP URL
                                            player    libmpv control: load URL, tracks, seek, events
                                            library   Watch Progress, Watchlist, Up Next (SQLite)
+                                           onepace   One Pace Arcs and their Nyaa Releases (weekly rebuild)
                                            skip      AniSkip client
 ```
 

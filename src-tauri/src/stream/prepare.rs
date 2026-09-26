@@ -73,8 +73,8 @@ async fn local(app: &AppHandle, id: &str, store: &Store, r: &Resolved, episode: 
         return Ok(());
     }
     step(app, id, "Finding peers");
-    let (coverage, context) = (r.release.coverage, r.context.clone());
-    let choose = move |list: &[ReleaseFile]| files::pick(list, coverage, &context, episode);
+    let (release, context) = (r.release.clone(), r.context.clone());
+    let choose = move |list: &[ReleaseFile]| files::pick_release(list, &release, &context, episode);
     let opened = match engine.open(&hash, &r.release.magnet, PEER_TIMEOUT, choose).await {
         Ok(opened) => opened,
         Err(err) => {
@@ -103,7 +103,7 @@ async fn torbox(app: &AppHandle, id: &str, store: &Store, r: &Resolved, episode:
 
     let torrent = wait_until_present(app, id, &client, torrent_id).await?;
     let list = torrent.release_files();
-    let file_id = files::pick(&list, r.release.coverage, &r.context, episode)?;
+    let file_id = files::pick_release(&list, &r.release, &r.context, episode)?;
     let file = list.iter().find(|f| f.id == file_id).ok_or("the chosen file is not in the torrent")?;
     step(app, id, "Getting the link");
     let url = client.download_link(torrent_id, file_id).await?;

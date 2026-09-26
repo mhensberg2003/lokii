@@ -24,6 +24,7 @@ After that, Lokii finds new versions itself: an **Update** button shows in the s
 ## Features (v1 plan)
 
 - Browse and search anime, with data from AniList, and Episode titles and images from ani.zip
+- One Pace: search "one pace" to watch every Arc, with Episode titles from the One Pace Episode Guide
 - Stream through TorBox, or through a local torrent when TorBox is not connected
 - Built-in mpv player: plays MKV, HEVC, 10-bit video and styled ASS subtitles
 - Continue watching, watchlist, and skip intro/outro

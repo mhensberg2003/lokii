@@ -40,6 +40,7 @@ const entry = (id: number, format: string, status: string | null = "FINISHED") =
   season: null,
   seasonYear: null,
   episodes: 12,
+  label: null,
 });
 
 describe("formatTime", () => {

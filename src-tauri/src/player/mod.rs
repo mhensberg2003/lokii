@@ -127,7 +127,9 @@ fn run(app: AppHandle) -> Result<(), String> {
         init.set_option("keep-open", "yes")?;
         // keep-open pauses at the end of a file; the next file must still start playing.
         init.set_option("reset-on-next-file", "pause")?;
-        init.set_option("osc", "no")?;
+        // The OSC is a Lua script: a libmpv built without Lua (the bundled one) has no
+        // "osc" option and fails on it.
+        let _ = init.set_option("osc", "no");
         init.set_option("osd-level", 0i64)?;
         init.set_option("input-default-bindings", "no")?;
         init.set_option("slang", "eng,en")?;

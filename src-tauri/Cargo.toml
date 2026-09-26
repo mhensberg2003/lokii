@@ -1,6 +1,6 @@
 [package]
 name = "lokii"
-version = "0.1.0"
+version = "0.2.0"
 description = "Desktop anime streaming"
 license = "GPL-3.0-or-later"
 authors = ["Lokii contributors"]
@@ -40,6 +40,8 @@ keyring = { version = "3", features = ["apple-native", "windows-native"] }
 tauri-plugin-dialog = "2"
 tauri-plugin-updater = "2"
 tauri-plugin-process = "2"
+csv = "1"
+regex = "1"
 
 
 # Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration

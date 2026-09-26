@@ -26,8 +26,10 @@ export type Release = {
   /** Unix seconds. */
   publishedAt: number;
   magnet: string;
-  /** The Release page on AnimeTosho. */
+  /** The Release page on the Index: AnimeTosho, or Nyaa for One Pace. */
   link: string;
+  /** The Episode's file inside the Release, when the Index knows it. */
+  filePath?: string | null;
 };
 
 export type EpisodeReleases = {
