@@ -2,7 +2,7 @@
 
 A calm desktop app for watching anime on macOS and Windows. Lokii finds a show on AniList, picks a good Release, and streams it through TorBox or a local torrent. All your data stays on your device.
 
-> Status: early development (milestone M2: finding Releases). Browsing and Release lookup work; playback does not yet.
+> Status: early development (milestone M3: Sources and Streams). Episodes play through TorBox or a local torrent. The full player UI comes in M4.
 
 ## Features (v1 plan)
 
@@ -29,10 +29,12 @@ pnpm install
 pnpm tauri dev
 ```
 
-To test playback without the UI, set `LOKII_SPIKE_FILE` to a local video file:
+To stream through TorBox, paste your API key in Settings → Sources. Without a key, Lokii uses Local Torrent.
+
+Check the local stream server against real peers (downloads a few MB of Big Buck Bunny):
 
 ```sh
-LOKII_SPIKE_FILE=/path/to/video.mkv pnpm tauri dev
+cd src-tauri && cargo test live_local_stream -- --ignored --nocapture
 ```
 
 ### Browser preview

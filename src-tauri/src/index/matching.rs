@@ -87,6 +87,12 @@ impl ShowContext {
         Self::new(&titles, episodes, position.map_or(1, |p| p + 1), offsets, card.format.as_deref())
     }
 
+    /// True for "Part 2" and later of a split season. Batches of a split season often
+    /// number all parts in one run, so part 2 starts at the previous part's last number + 1.
+    pub fn is_later_part(&self) -> bool {
+        self.part.is_some_and(|part| part >= 2)
+    }
+
     fn is_single_episode(&self) -> bool {
         self.episodes == Some(1) || self.format.as_deref() == Some("MOVIE")
     }
@@ -147,6 +153,35 @@ fn map_episode(ctx: &ShowContext, number: f64) -> Option<i64> {
         return Some(number);
     }
     ctx.offsets.iter().map(|offset| number - offset).find(|episode| (1..=total).contains(episode))
+}
+
+/// How one file inside a Release maps to an Episode of the Show.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct FileEpisode {
+    pub episode: i64,
+    /// False when the number only fits through absolute numbering ("- 17" as Episode 1).
+    pub direct: bool,
+    /// The file's season number is the Show's place in its Franchise.
+    pub season_exact: bool,
+}
+
+/// The Episode that one file inside a Release holds, or `None` for extras (NCOP, OVA)
+/// and files of another season or part.
+pub fn file_episode(ctx: &ShowContext, parsed: &ParsedName) -> Option<FileEpisode> {
+    if !parsed.is_video || parsed.has_volume || parsed.seasons.len() > 1 || parsed.episodes.len() != 1 {
+        return None;
+    }
+    let season = parsed.seasons.first().copied();
+    if !kind_matches(ctx, parsed.kind.as_deref()) || !season_matches(ctx, season) || !part_matches(ctx, parsed.part) {
+        return None;
+    }
+    let number = parsed.episodes[0];
+    let episode = map_episode(ctx, number)?;
+    Some(FileEpisode {
+        episode,
+        direct: episode as f64 == number,
+        season_exact: season.is_some_and(|s| s as usize == ctx.season_index),
+    })
 }
 
 fn kind_matches(ctx: &ShowContext, kind: Option<&str>) -> bool {

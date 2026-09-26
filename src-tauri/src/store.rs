@@ -18,7 +18,7 @@ use tokio::sync::{Mutex, OnceCell};
 
 /// The schema version this build knows how to migrate to. Later milestones add more
 /// `if version < N` steps in `migrate` and bump this constant.
-const SCHEMA_VERSION: i32 = 2;
+const SCHEMA_VERSION: i32 = 3;
 
 pub struct Store {
     conn: Arc<Mutex<Connection>>,
@@ -104,6 +104,32 @@ impl Store {
         self.write(key, body, fetched_at).await
     }
 
+    /// A value from the `meta` table.
+    pub async fn meta(&self, key: &str) -> Result<Option<String>, String> {
+        let key = key.to_string();
+        self.with_conn(move |conn| {
+            conn.query_row("SELECT value FROM meta WHERE key = ?1", [key], |row| row.get(0)).optional()
+        })
+        .await
+    }
+
+    /// Stores a value in the `meta` table, or removes it when `value` is `None`.
+    pub async fn set_meta(&self, key: &str, value: Option<String>) -> Result<(), String> {
+        let key = key.to_string();
+        self.with_conn(move |conn| {
+            match value {
+                Some(value) => conn.execute(
+                    "INSERT INTO meta (key, value) VALUES (?1, ?2)
+                     ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+                    [key, value],
+                )?,
+                None => conn.execute("DELETE FROM meta WHERE key = ?1", [key])?,
+            };
+            Ok(())
+        })
+        .await
+    }
+
     /// Runs `f` with the connection on a blocking thread.
     pub async fn with_conn<T, F>(&self, f: F) -> Result<T, String>
     where
@@ -151,6 +177,23 @@ fn migrate(conn: &Connection) -> Result<(), String> {
         )
         .map_err(|e| e.to_string())?;
     }
+    if version < 3 {
+        conn.execute_batch(
+            "DROP TABLE IF EXISTS torbox_item;
+             CREATE TABLE torbox_item (
+                info_hash TEXT NOT NULL,
+                show_id INTEGER NOT NULL,
+                torrent_id INTEGER NOT NULL,
+                first_episode INTEGER NOT NULL,
+                last_episode INTEGER NOT NULL,
+                watched TEXT NOT NULL DEFAULT '[]',
+                added_by_lokii INTEGER NOT NULL,
+                added_at INTEGER NOT NULL,
+                PRIMARY KEY (info_hash, show_id)
+             );",
+        )
+        .map_err(|e| e.to_string())?;
+    }
     conn.pragma_update(None, "user_version", SCHEMA_VERSION).map_err(|e| e.to_string())?;
     Ok(())
 }
@@ -192,6 +235,17 @@ pub fn cache_key(namespace: &str, query: &str, variables: &serde_json::Value) ->
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[tokio::test]
+    async fn meta_values_can_be_set_replaced_and_removed() {
+        let store = Store::in_memory().unwrap();
+        assert_eq!(store.meta("k").await.unwrap(), None);
+        store.set_meta("k", Some("1".into())).await.unwrap();
+        store.set_meta("k", Some("2".into())).await.unwrap();
+        assert_eq!(store.meta("k").await.unwrap(), Some("2".into()));
+        store.set_meta("k", None).await.unwrap();
+        assert_eq!(store.meta("k").await.unwrap(), None);
+    }
 
     #[tokio::test]
     async fn fresh_entry_is_returned_without_calling_fetch() {
