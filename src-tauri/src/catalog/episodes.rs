@@ -78,7 +78,7 @@ impl EpisodeClient {
 }
 
 /// Keeps the numbered Episodes. Specials have keys such as "S1" and are ignored.
-fn parse(body: &str) -> EpisodeDetails {
+pub(crate) fn parse(body: &str) -> EpisodeDetails {
     let Ok(response) = serde_json::from_str::<Response>(body) else {
         return EpisodeDetails::new();
     };

@@ -100,10 +100,11 @@ pub fn spawn_refresh(app: &AppHandle) {
 }
 
 async fn rebuild(http: &reqwest::Client, current: &Mapping, built_at: i64) -> Result<Mapping, String> {
-    let (guide_tabs, descriptions, posters, releases) = tokio::join!(
+    let (guide_tabs, descriptions, posters, stills, releases) = tokio::join!(
         sources::guide(http),
         sources::descriptions(http),
         sources::posters(http),
+        sources::stills(http),
         sources::nyaa_releases(http, &current.file_lists),
     );
     let (episode_descriptions, arc_descriptions) = descriptions?;
@@ -111,14 +112,20 @@ async fn rebuild(http: &reqwest::Client, current: &Mapping, built_at: i64) -> Re
     let posters = posters.unwrap_or_else(|_| {
         current.arcs.iter().filter_map(|arc| Some((arc.title.clone(), arc.poster_url.clone()?))).collect()
     });
-    let fresh = build::build(build::Inputs {
+    // Stills are decoration too: without ani.zip, keep the ones we have.
+    let stills_failed = stills.is_err();
+    let mut fresh = build::build(build::Inputs {
         guide_tabs: guide_tabs?,
         episode_descriptions,
         arc_descriptions,
         posters,
+        stills: stills.unwrap_or_default(),
         releases: releases?,
         built_at,
     })?;
+    if stills_failed {
+        fresh.keep_thumbnails(current);
+    }
     let (kept, before) = (fresh.playable_episodes(), current.playable_episodes());
     if (kept as f64) < before as f64 * MIN_KEPT_SHARE {
         return Err(format!("the rebuilt One Pace mapping has {kept} playable Episodes, down from {before}"));
@@ -169,13 +176,19 @@ mod tests {
     /// Rebuilds `onepace.json` from the live sources. Run with
     /// `cargo test dump_bundled_mapping -- --ignored --nocapture`.
     #[tokio::test]
-    #[ignore = "calls Google Sheets, GitHub and Nyaa"]
+    #[ignore = "calls Google Sheets, GitHub, ani.zip and Nyaa"]
     async fn dump_bundled_mapping() {
         let current = bundled().unwrap_or_default();
         let mapping = rebuild(&crate::index::http_client(), &current, now()).await.unwrap();
         for arc in &mapping.arcs {
             let playable = arc.episodes.iter().filter(|e| e.chosen.is_some()).count();
-            println!("{:<34} {playable:>3}/{:<3} poster={}", arc.title, arc.episodes.len(), arc.poster_url.is_some());
+            let stills = arc.episodes.iter().filter(|e| e.thumbnail_url.is_some()).count();
+            println!(
+                "{:<34} {playable:>3}/{:<3} stills={stills:<3} poster={}",
+                arc.title,
+                arc.episodes.len(),
+                arc.poster_url.is_some()
+            );
         }
         let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("src/onepace/onepace.json");
         std::fs::write(path, serde_json::to_string(&mapping).unwrap()).unwrap();

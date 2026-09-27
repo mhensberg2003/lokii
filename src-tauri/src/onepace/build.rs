@@ -1,6 +1,6 @@
 //! Builds the One Pace mapping from its sources: the Episode Guide sheet (Arcs, Episodes
-//! and the CRC32 of each file), the Episode Descriptions sheet (titles), and the "[One
-//! Pace]" Releases on Nyaa. A file belongs to an Episode when the CRC32 in its name
+//! and the CRC32 of each file), the Episode Descriptions sheet (titles), the stills of
+//! the One Piece anime Episodes, and the "[One Pace]" Releases on Nyaa. A file belongs to an Episode when the CRC32 in its name
 //! matches the Episode Guide.
 //!
 //! Which Release plays an Episode: the Episode Guide's current cut first; among the
@@ -24,6 +24,8 @@ pub struct Inputs {
     pub arc_descriptions: String,
     /// (Arc title, poster URL).
     pub posters: Vec<(String, String)>,
+    /// One Piece anime Episode number → still URL.
+    pub stills: HashMap<i64, String>,
     pub releases: Vec<ListedRelease>,
     pub built_at: i64,
 }
@@ -54,7 +56,7 @@ pub fn build(inputs: Inputs) -> Result<Mapping, String> {
         }
         let Some(rows) = guide_rows(&rows) else { continue };
         let title = name.trim().to_string();
-        let episodes = episodes(&title, rows, &texts, &files);
+        let episodes = episodes(&title, rows, &texts, &files, &inputs.stills);
         if episodes.is_empty() {
             continue;
         }
@@ -159,7 +161,13 @@ fn is_crc32(text: &str) -> bool {
     text.len() == 8 && text.chars().all(|c| c.is_ascii_hexdigit())
 }
 
-fn episodes(arc: &str, rows: Vec<GuideRow>, texts: &Texts, files: &FileIndex) -> Vec<PaceEpisode> {
+fn episodes(
+    arc: &str,
+    rows: Vec<GuideRow>,
+    texts: &Texts,
+    files: &FileIndex,
+    stills: &HashMap<i64, String>,
+) -> Vec<PaceEpisode> {
     let mut episodes: Vec<PaceEpisode> = Vec::new();
     for row in rows {
         let number_in_label = label_number(arc, row.label);
@@ -187,6 +195,7 @@ fn episodes(arc: &str, rows: Vec<GuideRow>, texts: &Texts, files: &FileIndex) ->
             anime_episodes: row.anime_episodes.split_whitespace().collect::<Vec<_>>().join(" "),
             released: Some(row.released.to_string()).filter(|r| r.chars().next().is_some_and(|c| c.is_ascii_digit())),
             length: parse_length(row.length),
+            thumbnail_url: still(row.anime_episodes, stills),
             chosen: None,
             files: found,
         });
@@ -201,6 +210,13 @@ fn episodes(arc: &str, rows: Vec<GuideRow>, texts: &Texts, files: &FileIndex) ->
 fn label_number(arc: &str, label: &str) -> i64 {
     let rest = label.get(arc.len()..).filter(|_| label.to_lowercase().starts_with(&arc.to_lowercase())).unwrap_or("");
     rest.split(|c: char| !c.is_ascii_digit()).find(|s| !s.is_empty()).and_then(|n| n.parse().ok()).unwrap_or(1)
+}
+
+/// The still of the first anime Episode in "Ep. 100, 103-104" that has one: 100, else
+/// 103, else 104.
+fn still(anime_episodes: &str, stills: &HashMap<i64, String>) -> Option<String> {
+    let (_, numbers) = anime_episodes.split_once("Ep.")?;
+    numbers.split(|c: char| !c.is_ascii_digit()).filter_map(|n| n.parse().ok()).find_map(|n| stills.get(&n).cloned())
 }
 
 /// "22:48" or "1:02:03" in seconds.
@@ -347,6 +363,10 @@ Punk Hazard,One Pace Episode,Chapters,Episodes,Release Date,Length,MKV CRC32
             episode_descriptions: EPISODES.into(),
             arc_descriptions: ARCS.into(),
             posters: vec![("Wano".into(), "https://example.test/wano.png".into())],
+            stills: HashMap::from([
+                (890, "https://example.test/890.jpg".into()),
+                (894, "https://example.test/894.jpg".into()),
+            ]),
             releases,
             built_at: 7,
         }
@@ -427,6 +447,15 @@ Punk Hazard,One Pace Episode,Chapters,Episodes,Release Date,Length,MKV CRC32
         let mapping = build(inputs(vec![other])).unwrap();
         assert!(mapping.releases.is_empty());
         assert!(mapping.arcs[1].episodes[0].chosen.is_none());
+    }
+
+    #[test]
+    fn an_episode_shows_the_still_of_its_first_anime_episode_that_has_one() {
+        let mapping = build(inputs(vec![wano_batch()])).unwrap();
+        let stills: Vec<_> = mapping.arcs[1].episodes.iter().map(|e| e.thumbnail_url.as_deref()).collect();
+        // Wano 02 is "Ep. 892, 894": 892 has no still, so 894.
+        assert_eq!(stills, [Some("https://example.test/890.jpg"), Some("https://example.test/894.jpg")]);
+        assert_eq!(mapping.arcs[0].episodes[0].thumbnail_url, None, "Ep. 598 has no still");
     }
 
     #[test]

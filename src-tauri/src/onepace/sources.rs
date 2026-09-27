@@ -1,8 +1,9 @@
 //! Downloads the inputs of the One Pace mapping: the Episode Guide and Episode
 //! Descriptions sheets (Google Sheets CSV export), the Arc posters (the
-//! one-pace-metadata project on GitHub), and the "[One Pace]" Releases on Nyaa.
+//! one-pace-metadata project on GitHub), the One Piece anime Episode stills (ani.zip),
+//! and the "[One Pace]" Releases on Nyaa.
 
-use std::collections::{BTreeMap, HashSet};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use std::time::Duration;
 
 use regex::Regex;
@@ -20,6 +21,8 @@ const POSTER_ARCS_URL: &str =
 const POSTER_TREE_URL: &str = "https://api.github.com/repos/ladyisatis/one-pace-metadata/git/trees/v2?recursive=1";
 /// The posters are Git LFS files, which raw.githubusercontent.com serves as pointers.
 const POSTER_BASE: &str = "https://media.githubusercontent.com/media/ladyisatis/one-pace-metadata/v2/arcs/en";
+/// ani.zip's Episode data for the One Piece anime (AniList ID 21).
+const STILLS_URL: &str = "https://api.ani.zip/mappings?anilist_id=21";
 const NYAA: &str = "https://nyaa.si";
 /// Nyaa's search matches every word, so this finds every "one pace {arc}" Release.
 const NYAA_QUERY: &str = "one pace";
@@ -124,6 +127,17 @@ pub async fn posters(http: &reqwest::Client) -> Result<Vec<(String, String)>, St
         .filter(|arc| present.contains(&format!("arcs/en/{}/poster.png", arc.part)))
         .map(|arc| (arc.title, format!("{POSTER_BASE}/{}/poster.png", arc.part)))
         .collect())
+}
+
+/// One Piece anime Episode number → still URL.
+pub async fn stills(http: &reqwest::Client) -> Result<HashMap<i64, String>, String> {
+    let details = crate::catalog::episodes::parse(&get(http, STILLS_URL).await?);
+    let stills: HashMap<i64, String> =
+        details.into_iter().filter_map(|(number, detail)| Some((number, detail.thumbnail_url?))).collect();
+    if stills.is_empty() {
+        return Err("ani.zip has no One Piece stills".to_string());
+    }
+    Ok(stills)
 }
 
 /// Every "[One Pace]" Release on Nyaa with its file list, except for a Release named
