@@ -2,7 +2,7 @@
 //! Episode's file. `build.rs` makes it; this file turns it into the catalog and Index
 //! types, so the rest of the app sees each Arc as one Show in one Franchise.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 
 use serde::{Deserialize, Serialize};
 
@@ -77,6 +77,9 @@ pub struct PaceEpisode {
     pub released: Option<String>,
     /// Seconds.
     pub length: Option<i64>,
+    /// A still of the anime Episode that the Episode starts from.
+    #[serde(default)]
+    pub thumbnail_url: Option<String>,
     pub files: Vec<EpisodeFile>,
     /// The info hash of the Release to play when the user did not pick one.
     pub chosen: Option<String>,
@@ -169,7 +172,7 @@ impl Mapping {
                 .map(|e| EpisodeInfo {
                     number: e.number,
                     title: Some(e.title.clone().unwrap_or_else(|| e.label.clone())),
-                    thumbnail_url: None,
+                    thumbnail_url: e.thumbnail_url.clone(),
                     airing_at: None,
                 })
                 .collect(),
@@ -208,6 +211,21 @@ impl Mapping {
             .collect()
     }
 
+    /// Gives each Episode without a thumbnail the one it had in `older`.
+    pub fn keep_thumbnails(&mut self, older: &Mapping) {
+        let known: HashMap<&str, &String> = older
+            .arcs
+            .iter()
+            .flat_map(|arc| &arc.episodes)
+            .filter_map(|e| Some((e.label.as_str(), e.thumbnail_url.as_ref()?)))
+            .collect();
+        for episode in self.arcs.iter_mut().flat_map(|arc| &mut arc.episodes) {
+            if episode.thumbnail_url.is_none() {
+                episode.thumbnail_url = known.get(episode.label.as_str()).map(|url| url.to_string());
+            }
+        }
+    }
+
     /// Arcs whose words start with every word of the query ("one pace", "wano").
     pub fn search(&self, query: &str) -> Vec<ShowCard> {
         let words: Vec<String> = normalize(query).split(' ').filter(|w| !w.is_empty()).map(str::to_string).collect();
@@ -236,7 +254,12 @@ fn card(arc: &StoryArc) -> ShowCard {
     ShowCard {
         id: arc.id,
         title: format!("{TITLE_PREFIX}{}", arc.title),
-        cover_url: arc.poster_url.clone().unwrap_or_default(),
+        // Three early Arcs have no poster: their first still is better than nothing.
+        cover_url: arc
+            .poster_url
+            .clone()
+            .or_else(|| arc.episodes.iter().find_map(|e| e.thumbnail_url.clone()))
+            .unwrap_or_default(),
         banner_url: None,
         color: None,
         // ONA lets Up Next continue into the next Arc (see `library::up_next`).
@@ -311,6 +334,7 @@ pub mod tests {
             anime_episodes: String::new(),
             released: None,
             length: Some(1500),
+            thumbnail_url: None,
             files: files
                 .into_iter()
                 .map(|(hash, cut)| EpisodeFile { info_hash: hash.into(), path: format!("Wano {number:02}.mkv"), cut })
@@ -385,6 +409,31 @@ pub mod tests {
         assert_eq!(list[0].file_path.as_deref(), Some("Wano 02.mkv"));
         assert_eq!(list[0].link, "https://nyaa.si/view/2");
         assert_eq!(list[1].resolution, Some(1080));
+    }
+
+    #[test]
+    fn episodes_show_their_still_and_a_poster_less_arc_shows_the_first_one() {
+        let mut mapping = mapping();
+        mapping.arcs[0].episodes[1].thumbnail_url = Some("https://example.test/892.jpg".into());
+        let show = mapping.show(arc_id("Wano")).unwrap();
+        let stills: Vec<_> = show.episode_list.iter().map(|e| e.thumbnail_url.as_deref()).collect();
+        assert_eq!(stills, [None, Some("https://example.test/892.jpg"), None]);
+        assert_eq!(show.lite.card.cover_url, "https://example.test/892.jpg");
+
+        mapping.arcs[0].poster_url = Some("https://example.test/wano.png".into());
+        assert_eq!(mapping.show(arc_id("Wano")).unwrap().lite.card.cover_url, "https://example.test/wano.png");
+    }
+
+    #[test]
+    fn a_rebuild_without_stills_keeps_the_older_ones() {
+        let mut older = mapping();
+        older.arcs[0].episodes[0].thumbnail_url = Some("https://example.test/old.jpg".into());
+        older.arcs[0].episodes[1].thumbnail_url = Some("https://example.test/old2.jpg".into());
+        let mut fresh = mapping();
+        fresh.arcs[0].episodes[1].thumbnail_url = Some("https://example.test/new2.jpg".into());
+        fresh.keep_thumbnails(&older);
+        let stills: Vec<_> = fresh.arcs[0].episodes.iter().map(|e| e.thumbnail_url.as_deref()).collect();
+        assert_eq!(stills, [Some("https://example.test/old.jpg"), Some("https://example.test/new2.jpg"), None]);
     }
 
     #[test]
