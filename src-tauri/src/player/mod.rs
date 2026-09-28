@@ -93,11 +93,14 @@ fn video_surface(window: &tauri::WebviewWindow) -> Result<(), String> {
     win32::attach_video_window(window)
 }
 
-/// mpv draws into the child window from `video_surface`.
+/// mpv draws into its own child of the Lokii window (see `win32`).
 #[cfg(windows)]
 fn video_output(init: &MpvInitializer) -> libmpv2::Result<()> {
     init.set_option("vo", "gpu")?;
-    init.set_option("wid", win32::video_window())
+    init.set_option("wid", win32::video_window())?;
+    // mpv otherwise creates its window only when a file starts, and the transparent page
+    // shows the desktop until then. This keeps it black while nothing plays, as on macOS.
+    init.set_option("force-window", "yes")
 }
 
 #[cfg(windows)]
